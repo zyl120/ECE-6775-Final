@@ -8,11 +8,13 @@ AVX2FLAGS = -mavx2
 # Executable names
 EXE1 = Traditional_Short
 EXE2 = Traditional_Float
-EXE3 = Optimized_Short
-EXE4 = Optimized_Float
+EXE3 = AVX2_Short
+EXE4 = AVX2_Float
+EXE5 = Neon_Short
+EXE6 = Neon_Float
 
 # Build all executables
-all: $(EXE1) $(EXE2) $(EXE3) $(EXE4)
+all: $(EXE1) $(EXE2) $(EXE3) $(EXE4) $(EXE5) $(EXE6)
 
 # Traditional executables
 $(EXE1): Traditional_Short.cpp
@@ -22,29 +24,42 @@ $(EXE2): Traditional_Float.cpp
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 # Optimized executables with AVX2 support
-$(EXE3): Optimized_Short.cpp
+$(EXE3): AVX2_Short.cpp
 	$(CXX) $(AVX2FLAGS) $(CXXFLAGS)  $^ -o $@
 
-$(EXE4): Optimized_Float.cpp
+$(EXE4): AVX2_Float.cpp
 	$(CXX) $(AVX2FLAGS) $(CXXFLAGS)  $^ -o $@
+
+# Optimized executables with Neon support
+$(EXE5): Neon_Short.cpp
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+$(EXE6): Neon_Float.cpp
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
 # Run targets
-run: run1 run2 run3 run4
+run: nopt_short nopt_float avx2_short avx2_float neon_short neon_float
 
-run1: $(EXE1)
+nopt_short: $(EXE1)
 	./$(EXE1)
 
-run2: $(EXE2)
+nopt_float: $(EXE2)
 	./$(EXE2)
 
-run3: $(EXE3)
+avx2_short: $(EXE3)
 	./$(EXE3)
 
-run4: $(EXE4)
+avx2_float: $(EXE4)
 	./$(EXE4)
+
+neon_short: $(EXE5)
+	./$(EXE5)
+
+neon_float: $(EXE6)
+	./$(EXE6)
 
 # Clean up
 clean:
-	rm -f $(EXE1) $(EXE2) $(EXE3) $(EXE4)
+	rm -f $(EXE1) $(EXE2) $(EXE3) $(EXE4) $(EXE5) $(EXE6)
 
-.PHONY: all run run1 run2 run3 run4 clean
+.PHONY: all run nopt_short nopt_float avx2_short avx2_float neon_short neon_float clean
