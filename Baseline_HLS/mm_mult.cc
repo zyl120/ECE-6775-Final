@@ -4,25 +4,26 @@
 
 #include "./mm_mult.h"
 
-// This module performs matrix multiplication of matrices A and B
-// Where A is an (m,n) and B is an (n,o) matrix.
-// We assume that B is stored transposed, resulting in a (o,n) shape.
-void matrix_mult(
-    volatile int *a,
-    volatile int *b,
-    volatile int *c) {
-// #pragma HLS INTERFACE m_axi port = a offset = slave bundle = a_port
-// #pragma HLS INTERFACE m_axi port = b offset = slave bundle = b_port
-// #pragma HLS INTERFACE m_axi port = c offset = slave bundle = c_port
-// #pragma HLS INTERFACE s_axilite port = return bundle = CONTROL_BUS
+void matrix_mult(int a[A_MATRIX_SIZE],
+                 int b[B_MATRIX_SIZE],
+                 int c[C_MATRIX_SIZE]) {
 
     int a_buff[M][N];
     int b_buff[O][N];
     int c_buff[M][O];
 
     // Load A & B
-    memcpy(&a_buff[0][0], const_cast<int *>(a), sizeof(int) * M * N);
-    memcpy(&b_buff[0][0], const_cast<int *>(b), sizeof(int) * O * N);
+    for (int i = 0; i < M; ++i) {
+        for (int j = 0; j < N; ++j) {
+            a_buff[i][j] = a[i * N + j];
+        }
+    }
+
+    for (int i = 0; i < O; ++i) {
+        for (int j = 0; j < N; ++j) {
+            b_buff[i][j] = b[i * N + j];
+        }
+    }
 
     // Matrix Multiplication
     for (int m = 0; m < M; m++) {
@@ -35,5 +36,9 @@ void matrix_mult(
     }
 
     // Store C
-    memcpy(const_cast<int *>(c), const_cast<int *>(&c_buff[0][0]), sizeof(int) * M * O);
+    for (int i = 0; i < M; ++i) {
+        for (int j = 0; j < O; ++j) {
+            c[i * O + j] = c_buff[i][j];
+        }
+    }
 }

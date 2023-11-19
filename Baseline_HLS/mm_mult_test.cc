@@ -4,7 +4,6 @@
 #include <iostream>
 
 #include "mm_mult.h"
-// #include "../src/test_lib.h"
 
 unsigned globalSeed;
 
@@ -17,9 +16,9 @@ int main(void) {
   int c_ref[M][O];
 
   // Input and output array initialization
-  int *a = (int *) allocBuffer(sizeof(int) * M * N);
-  int *b = (int *) allocBuffer(sizeof(int) * O * N);
-  int *c = (int *) allocBuffer(sizeof(int) * M * O);
+  int a[M*N];
+  int b[O*N];
+  int c[M*O];
   for (int m = 0; m < M; m++) {
     for (int n = 0; n < N; n++) {
       a[m * N + n] = rand_r(&globalSeed) % 1024 - 512;
@@ -30,6 +29,8 @@ int main(void) {
       b[o * N + n] = rand_r(&globalSeed) % 1024 - 512;
     }
   }
+
+  //software matrix matrix multiplication
   for (int m = 0; m < M; m++) {
     for (int o = 0; o < O; o++) {
       c[m * O + o] = 0;
@@ -37,13 +38,8 @@ int main(void) {
     }
   }
 
-  // Invoke the matrix multiply module
-#if NO_SIM
-  uint64_t t_fpga = matrix_mult(a, b, c);
-  printf("Synchronization time: %.3lfms\n", static_cast<float>(t_fpga) / 1E6);
-#else
+  //call our matrix function
   matrix_mult(a, b, c);
-#endif
 
   // Check output
   for (int m = 0; m < M; m++) {
@@ -53,14 +49,10 @@ int main(void) {
       }
       if (c_ref[m][o] != c[m * O + o]) {
         correct = false;
+        break;
       }
     }
   }
-
-  // Free arrays
-  freeBuffer(a);
-  freeBuffer(b);
-  freeBuffer(c);
 
   if (correct) {
     printf("Test successful\n");

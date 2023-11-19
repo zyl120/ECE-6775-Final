@@ -5,15 +5,27 @@
 #ifndef MM_MULT_H
 #define MM_MULT_H
 
+#ifndef M
 #define M 100
+#endif
+
+#ifndef N
 #define N 100
+#endif
+
+#ifndef O
 #define O 100
+#endif
 
-#ifndef NO_SIM
-void matrix_mult(
-    volatile int *a,
-    volatile int *b,
-    volatile int *c);
-#endif  // NO_SIM
 
-#endif  // PART2_GEMM_H_
+#define A_MATRIX_SIZE M*N
+#define B_MATRIX_SIZE O*N
+#define C_MATRIX_SIZE M*O
+
+
+void matrix_mult(int a[A_MATRIX_SIZE],
+                 int b[B_MATRIX_SIZE],
+                 int c[C_MATRIX_SIZE]);
+
+
+#endif 
