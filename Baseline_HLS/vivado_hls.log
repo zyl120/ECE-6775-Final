@@ -7,7 +7,7 @@
 source /opt/xilinx/Xilinx_Vivado_vitis_2019.2/Vivado/2019.2/scripts/vivado_hls/hls.tcl -notrace
 INFO: Applying HLS Y2K22 patch v1.2 for IP revision
 INFO: [HLS 200-10] Running '/opt/xilinx/Xilinx_Vivado_vitis_2019.2/Vivado/2019.2/bin/unwrapped/lnx64.o/vivado_hls'
-INFO: [HLS 200-10] For user 'yz2797' on host 'en-ec-ecelinux-15.coecis.cornell.edu' (Linux_x86_64 version 3.10.0-1160.92.1.el7.x86_64) on Sat Nov 18 22:57:42 EST 2023
+INFO: [HLS 200-10] For user 'yz2797' on host 'en-ec-ecelinux-08.coecis.cornell.edu' (Linux_x86_64 version 3.10.0-1160.92.1.el7.x86_64) on Sun Nov 19 00:47:40 EST 2023
 INFO: [HLS 200-10] On os "CentOS Linux release 7.9.2009 (Core)"
 INFO: [HLS 200-10] In directory '/home/yz2797/ECE-6775-Final/Baseline_HLS'
 Sourcing Tcl script 'run.tcl'
@@ -28,45 +28,38 @@ INFO: [SIM 211-1] CSim done with 0 errors.
 INFO: [SIM 211-3] *************** CSIM finish ***************
 INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
 INFO: [HLS 200-10] Analyzing design file 'mm_mult.cc' ... 
-INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 17742 ; free virtual = 25020
-INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 17742 ; free virtual = 25020
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:11 ; elapsed = 00:00:17 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 19886 ; free virtual = 27686
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:11 ; elapsed = 00:00:17 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 19887 ; free virtual = 27687
 INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:12 ; elapsed = 00:00:16 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 17737 ; free virtual = 25015
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:12 ; elapsed = 00:00:19 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 19878 ; free virtual = 27681
 INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:12 ; elapsed = 00:00:16 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 17737 ; free virtual = 25014
-INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:12 ; elapsed = 00:00:16 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 17704 ; free virtual = 24981
-INFO: [HLS 200-472] Inferring partial write operation for 'a_buff' (mm_mult.cc:21:13)
-INFO: [HLS 200-472] Inferring partial write operation for 'b_buff' (mm_mult.cc:27:13)
-INFO: [HLS 200-472] Inferring partial write operation for 'c_buff' (mm_mult.cc:36:17)
-INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:12 ; elapsed = 00:00:16 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 17723 ; free virtual = 25001
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:12 ; elapsed = 00:00:19 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 19878 ; free virtual = 27681
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-1' (mm_mult.cc:20) in function 'matrix_mult' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-2' (mm_mult.cc:27) in function 'matrix_mult' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-4' (mm_mult.cc:48) in function 'matrix_mult' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1' (mm_mult.cc:22) in function 'matrix_mult' completely with a factor of 100.
+INFO: [HLS 200-489] Unrolling loop 'Loop-2.1' (mm_mult.cc:29) in function 'matrix_mult' completely with a factor of 100.
+INFO: [HLS 200-489] Unrolling loop 'Loop-4.1' (mm_mult.cc:50) in function 'matrix_mult' completely with a factor of 100.
+INFO: [XFORM 203-101] Partitioning array 'a' (mm_mult.cc:7) in dimension 1 with a block factor 100.
+INFO: [XFORM 203-101] Partitioning array 'b' (mm_mult.cc:8) in dimension 1 with a block factor 100.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:02:57 ; elapsed = 00:03:05 . Memory (MB): peak = 1236.680 ; gain = 594.188 ; free physical = 19800 ; free virtual = 27605
+WARNING: [XFORM 203-542] Cannot flatten a loop nest 'Loop-3.1' (mm_mult.cc:37:23) in function 'matrix_mult' : 
+
+the outer loop is not a perfect loop.
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-3' (mm_mult.cc:35:19) in function 'matrix_mult'.
+INFO: [HLS 200-472] Inferring partial write operation for 'a_buff' (mm_mult.cc:23:13)
+INFO: [HLS 200-472] Inferring partial write operation for 'b_buff' (mm_mult.cc:30:13)
+INFO: [HLS 200-472] Inferring partial write operation for 'c_buff' (mm_mult.cc:42:2)
+INFO: [HLS 200-472] Inferring partial write operation for 'c_buff' (mm_mult.cc:39:13)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:09:39 ; elapsed = 00:09:46 . Memory (MB): peak = 1492.680 ; gain = 850.188 ; free physical = 19513 ; free virtual = 27321
 INFO: [HLS 200-10] Starting hardware synthesis ...
 INFO: [HLS 200-10] Synthesizing 'matrix_mult' ...
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-42] -- Implementing module 'matrix_mult' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 16.56 seconds; current allocated memory: 119.136 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.16 seconds; current allocated memory: 119.672 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'matrix_mult' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [RTGEN 206-500] Setting interface mode on port 'matrix_mult/a' to 'ap_memory'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'matrix_mult/b' to 'ap_memory'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'matrix_mult/c' to 'ap_memory'.
-INFO: [RTGEN 206-500] Setting interface mode on function 'matrix_mult' to 'ap_ctrl_hs'.
-INFO: [RTGEN 206-100] Finished creating RTL model for 'matrix_mult'.
-INFO: [HLS 200-111]  Elapsed time: 0.28 seconds; current allocated memory: 120.478 MB.
-INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
-INFO: [HLS 200-789] **** Estimated Fmax: 117.51 MHz
-INFO: [RTMG 210-278] Implementing memory 'matrix_mult_a_buff_ram (RAM)' using block RAMs.
-INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:14 ; elapsed = 00:00:19 . Memory (MB): peak = 1169.719 ; gain = 527.227 ; free physical = 17712 ; free virtual = 24992
-INFO: [VHDL 208-304] Generating VHDL RTL for matrix_mult.
-INFO: [VLOG 209-307] Generating Verilog RTL for matrix_mult.
-INFO: [HLS 200-112] Total elapsed time: 19.19 seconds; peak allocated memory: 120.478 MB.
-INFO: [Common 17-206] Exiting vivado_hls at Sat Nov 18 22:58:01 2023...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('a_0_load_2', mm_mult.cc:23) on array 'a_0' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'a_0'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 50, Depth = 52.
+INFO: [SCHED 204-61] Pipelining loop 'Loop 2'.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('b_0_load_2', mm_mult.cc:30) on array 'b_0' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'b_0'.
