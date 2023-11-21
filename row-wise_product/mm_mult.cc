@@ -40,17 +40,21 @@ void matrix_mult(int a[A_MATRIX_SIZE],
     for (int m = 0; m < M; m++) {
         //#pragma HLS pipeline II=1
 
+        int c_vec[O];
         for (int o = 0; o < O; o++) {
-            c_buff[m][o] = 0;
+            c_vec[o] = 0;
         }
         
         for (int n = 0; n < N; n++) {
             #pragma HLS pipeline II=1
             for (int o = 0; o < O; o++) {
-                
                 //#pragma HLS pipeline II=1
-                c_buff[m][o] += a_buff[m][n] * b_buff[n][o];
+                c_vec[o] += a_buff[m][n] * b_buff[n][o];
             }
+        }
+
+        for (int o = 0; o < O; o++) {
+            c_buff[m][o] = c_vec[o];
         }
     }
 

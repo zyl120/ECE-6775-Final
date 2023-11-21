@@ -52,7 +52,7 @@
     "ClockPeriod": "10",
     "IsCombLogic": "0",
     "II": "x",
-    "Latency": "1095",
+    "Latency": "9982",
     "Uncertainty": "1.25"
   },
   "Xdc": {"OocClocks": ["create_clock -name ap_clk -period 10.000 [get_ports ap_clk]"]},
@@ -71,22 +71,24 @@
     "CSource": ["..\/..\/mm_mult.cc"],
     "Vhdl": [
       "impl\/vhdl\/matrix_mult_a_bufbkb.vhd",
-      "impl\/vhdl\/matrix_mult_c_bufbtn.vhd",
-      "impl\/vhdl\/matrix_mult_urem_bvn.vhd",
-      "impl\/vhdl\/matrix_mult_urem_bwn.vhd",
+      "impl\/vhdl\/matrix_mult_b_bufdEe.vhd",
+      "impl\/vhdl\/matrix_mult_c_bufRg6.vhd",
+      "impl\/vhdl\/matrix_mult_c_vec.vhd",
+      "impl\/vhdl\/matrix_mult_urem_Thq.vhd",
       "impl\/vhdl\/matrix_mult.vhd"
     ],
     "Verilog": [
       "impl\/verilog\/matrix_mult_a_bufbkb.v",
-      "impl\/verilog\/matrix_mult_c_bufbtn.v",
-      "impl\/verilog\/matrix_mult_urem_bvn.v",
-      "impl\/verilog\/matrix_mult_urem_bwn.v",
+      "impl\/verilog\/matrix_mult_b_bufdEe.v",
+      "impl\/verilog\/matrix_mult_c_bufRg6.v",
+      "impl\/verilog\/matrix_mult_c_vec.v",
+      "impl\/verilog\/matrix_mult_urem_Thq.v",
       "impl\/verilog\/matrix_mult.v"
     ],
     "Misc": ["impl\/misc\/logo.png"],
-    "DesignXml": "\/home\/yz2797\/ECE-6775-Final\/Baseline_HLS\/mm.prj\/solution1\/.autopilot\/db\/matrix_mult.design.xml",
-    "DebugDir": "\/home\/yz2797\/ECE-6775-Final\/Baseline_HLS\/mm.prj\/solution1\/.debug",
-    "ProtoInst": ["\/home\/yz2797\/ECE-6775-Final\/Baseline_HLS\/mm.prj\/solution1\/.debug\/matrix_mult.protoinst"]
+    "DesignXml": "\/home\/ks977\/ECE-6775-Final\/row-wise_product\/mm.prj\/solution1\/.autopilot\/db\/matrix_mult.design.xml",
+    "DebugDir": "\/home\/ks977\/ECE-6775-Final\/row-wise_product\/mm.prj\/solution1\/.debug",
+    "ProtoInst": ["\/home\/ks977\/ECE-6775-Final\/row-wise_product\/mm.prj\/solution1\/.debug\/matrix_mult.protoinst"]
   },
   "SubcoreInfo": {
     "HasXpmMemory": false,
@@ -580,17 +582,17 @@
       }},
     "Metrics": {"matrix_mult": {
         "Latency": {
-          "LatencyBest": "1095",
-          "LatencyAvg": "1095",
-          "LatencyWorst": "1095",
-          "PipelineII": "1096",
+          "LatencyBest": "9982",
+          "LatencyAvg": "9982",
+          "LatencyWorst": "9982",
+          "PipelineII": "9983",
           "PipelineDepth": "",
           "PipelineType": "none"
         },
         "Timing": {
           "Target": "10.00",
           "Uncertainty": "1.25",
-          "Estimate": "8.742"
+          "Estimate": "8.510"
         },
         "Loops": [
           {
@@ -609,10 +611,33 @@
           },
           {
             "Name": "Loop 3",
-            "TripCount": "400",
-            "Latency": "412",
-            "PipelineII": "1",
-            "PipelineDepth": "14"
+            "TripCount": "20",
+            "Latency": "9300",
+            "PipelineII": "",
+            "PipelineDepth": "465",
+            "Loops": [
+              {
+                "Name": "Loop 3.1",
+                "TripCount": "20",
+                "Latency": "20",
+                "PipelineII": "",
+                "PipelineDepth": "1"
+              },
+              {
+                "Name": "Loop 3.2",
+                "TripCount": "20",
+                "Latency": "400",
+                "PipelineII": "20",
+                "PipelineDepth": "20"
+              },
+              {
+                "Name": "Loop 3.3",
+                "TripCount": "20",
+                "Latency": "40",
+                "PipelineII": "",
+                "PipelineDepth": "2"
+              }
+            ]
           },
           {
             "Name": "Loop 4",
@@ -623,10 +648,10 @@
           }
         ],
         "Area": {
-          "BRAM_18K": "4",
+          "BRAM_18K": "10",
           "DSP48E": "60",
-          "FF": "23109",
-          "LUT": "20336",
+          "FF": "19766",
+          "LUT": "18164",
           "URAM": "0"
         }
       }}
@@ -641,7 +666,7 @@
   },
   "GenData": {
     "DataVersion": "0.2",
-    "Time": "2023-11-20 00:24:25 EST",
+    "Time": "2023-11-21 02:17:56 EST",
     "ToolName": "vivado_hls",
     "ToolVersion": "2019.2.1"
   }

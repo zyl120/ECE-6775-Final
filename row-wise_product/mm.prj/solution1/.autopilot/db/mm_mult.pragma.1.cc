@@ -2503,13 +2503,22 @@ _ssdm_op_SpecPipeline(1, 1, 1, 0, "");
 
     for (int m = 0; m < 20; m++) {
 
-        for (int o = 0; o < 20; o++) {
-_ssdm_op_SpecPipeline(1, 1, 1, 0, "");
- c_buff[m][o] = 0;
-            for (int n = 0; n < 20; n++) {
 
-                c_buff[m][o] += a_buff[m][n] * b_buff[o][n];
+        int c_vec[20];
+        for (int o = 0; o < 20; o++) {
+            c_vec[o] = 0;
+        }
+
+        for (int n = 0; n < 20; n++) {
+_ssdm_op_SpecPipeline(1, 1, 1, 0, "");
+ for (int o = 0; o < 20; o++) {
+
+                c_vec[o] += a_buff[m][n] * b_buff[n][o];
             }
+        }
+
+        for (int o = 0; o < 20; o++) {
+            c_buff[m][o] = c_vec[o];
         }
     }
 
