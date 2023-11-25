@@ -2,5 +2,6 @@
     "files.associations": {
         "[20220507] Practice 3 Binary Search": "plaintext",
         "array": "cpp"
-    }
+    },
+    "cmake.configureOnOpen": false
 }

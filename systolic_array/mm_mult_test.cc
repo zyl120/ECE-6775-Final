@@ -48,6 +48,7 @@ int main(void) {
         c_ref[m][o] += a[m * N + n] * b[n * O + o];
       }
       if (c_ref[m][o] != c[m * O + o]) {
+        printf("%d, %d, %d, %d\n", c_ref[m][o], c[m*O+o], m, o);
         correct = false;
         break;
       }

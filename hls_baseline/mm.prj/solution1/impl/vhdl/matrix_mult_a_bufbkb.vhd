@@ -9,10 +9,10 @@ use ieee.std_logic_unsigned.all;
 
 entity matrix_mult_a_bufbkb_ram is 
     generic(
-            MEM_TYPE    : string := "distributed"; 
-            DWIDTH     : integer := 32; 
-            AWIDTH     : integer := 4; 
-            MEM_SIZE    : integer := 10
+            MEM_TYPE    : string := "block"; 
+            DWIDTH     : integer := 64; 
+            AWIDTH     : integer := 5; 
+            MEM_SIZE    : integer := 20
     ); 
     port (
           addr0     : in std_logic_vector(AWIDTH-1 downto 0); 
@@ -32,7 +32,7 @@ type mem_array is array (0 to MEM_SIZE-1) of std_logic_vector (DWIDTH-1 downto 0
 shared variable ram : mem_array;
 
 attribute syn_ramstyle : string; 
-attribute syn_ramstyle of ram : variable is "select_ram";
+attribute syn_ramstyle of ram : variable is "block_ram";
 attribute ram_style : string;
 attribute ram_style of ram : variable is MEM_TYPE;
 
@@ -71,9 +71,9 @@ use IEEE.std_logic_1164.all;
 
 entity matrix_mult_a_bufbkb is
     generic (
-        DataWidth : INTEGER := 32;
-        AddressRange : INTEGER := 10;
-        AddressWidth : INTEGER := 4);
+        DataWidth : INTEGER := 64;
+        AddressRange : INTEGER := 20;
+        AddressWidth : INTEGER := 5);
     port (
         reset : IN STD_LOGIC;
         clk : IN STD_LOGIC;

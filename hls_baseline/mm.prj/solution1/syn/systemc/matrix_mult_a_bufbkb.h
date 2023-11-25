@@ -18,9 +18,9 @@ using namespace sc_dt;
 
 struct matrix_mult_a_bufbkb_ram : public sc_core::sc_module {
 
-  static const unsigned DataWidth = 32;
-  static const unsigned AddressRange = 10;
-  static const unsigned AddressWidth = 4;
+  static const unsigned DataWidth = 64;
+  static const unsigned AddressRange = 20;
+  static const unsigned AddressWidth = 5;
 
 //latency = 1
 //input_reg = 1
@@ -75,9 +75,9 @@ void prc_write_0()
 SC_MODULE(matrix_mult_a_bufbkb) {
 
 
-static const unsigned DataWidth = 32;
-static const unsigned AddressRange = 10;
-static const unsigned AddressWidth = 4;
+static const unsigned DataWidth = 64;
+static const unsigned AddressRange = 20;
+static const unsigned AddressWidth = 5;
 
 sc_core::sc_in <sc_lv<AddressWidth> > address0;
 sc_core::sc_in<sc_logic> ce0;

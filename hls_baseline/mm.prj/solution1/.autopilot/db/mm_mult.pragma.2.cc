@@ -2476,14 +2476,8 @@ void matrix_mult(int a[20*20],
     int b_buff[20][20];
     int c_buff[20][20];
 
-_ssdm_SpecArrayPartition( a_buff, 1, "BLOCK", 2, "");
-_ssdm_SpecArrayPartition( b_buff, 1, "BLOCK", 2, "");
-_ssdm_SpecArrayPartition( c_buff, 1, "BLOCK", 2, "");
-_ssdm_SpecArrayPartition( a, 1, "BLOCK", 2, "");
-_ssdm_SpecArrayPartition( b, 1, "BLOCK", 2, "");
-_ssdm_SpecArrayPartition( c, 1, "BLOCK", 2, "");
-
-
+_ssdm_SpecArrayReshape( a_buff, 2,  "BLOCK",  2, "");
+_ssdm_SpecArrayReshape( b_buff, 1,  "BLOCK",  2, "");
 
 
  for (int i = 0; i < 20; ++i) {
@@ -2505,11 +2499,12 @@ _ssdm_op_SpecPipeline(1, 1, 1, 0, "");
 
         for (int o = 0; o < 20; o++) {
 _ssdm_op_SpecPipeline(1, 1, 1, 0, "");
- c_buff[m][o] = 0;
+ int accum = 0;
             for (int n = 0; n < 20; n++) {
 
-                c_buff[m][o] += a_buff[m][n] * b_buff[n][o];
+                accum += a_buff[m][n] * b_buff[n][o];
             }
+            c_buff[m][o] = accum;
         }
     }
 

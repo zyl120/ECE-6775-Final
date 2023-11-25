@@ -2476,14 +2476,8 @@ void matrix_mult(int a[20*20],
     int b_buff[20][20];
     int c_buff[20][20];
 
-#pragma HLS ARRAY_PARTITION variable=&a_buff dim=1 block factor=2
-#pragma HLS ARRAY_PARTITION variable=&b_buff dim=1 block factor=2
-#pragma HLS ARRAY_PARTITION variable=&c_buff dim=1 block factor=2
-#pragma HLS ARRAY_PARTITION variable=&a dim=1 block factor=2
-#pragma HLS ARRAY_PARTITION variable=&b dim=1 block factor=2
-#pragma HLS ARRAY_PARTITION variable=&c dim=1 block factor=2
-
-
+#pragma HLS ARRAY_RESHAPE variable=&a_buff block dim=2 factor=2
+#pragma HLS ARRAY_RESHAPE variable=&b_buff block dim=1 factor=2
 
 
  for (int i = 0; i < 20; ++i) {
@@ -2505,11 +2499,12 @@ void matrix_mult(int a[20*20],
 
         for (int o = 0; o < 20; o++) {
 #pragma HLS pipeline II=1
- c_buff[m][o] = 0;
+ int accum = 0;
             for (int n = 0; n < 20; n++) {
 
-                c_buff[m][o] += a_buff[m][n] * b_buff[n][o];
+                accum += a_buff[m][n] * b_buff[n][o];
             }
+            c_buff[m][o] = accum;
         }
     }
 

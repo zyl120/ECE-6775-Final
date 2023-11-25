@@ -12,14 +12,8 @@ void matrix_mult(int a[A_MATRIX_SIZE],
     int b_buff[N][O];
     int c_buff[M][O];
 
-    #pragma HLS ARRAY_PARTITION variable=a_buff dim=1 block factor=2
-    #pragma HLS ARRAY_PARTITION variable=b_buff dim=1 block factor=2
-    #pragma HLS ARRAY_PARTITION variable=c_buff dim=1 block factor=2
-    #pragma HLS ARRAY_PARTITION variable=a dim=1 block factor=2
-    #pragma HLS ARRAY_PARTITION variable=b dim=1 block factor=2
-    #pragma HLS ARRAY_PARTITION variable=c dim=1 block factor=2
-
-
+    #pragma HLS ARRAY_RESHAPE variable=a_buff block dim=2 factor=2
+    #pragma HLS ARRAY_RESHAPE variable=b_buff block dim=1 factor=2
 
     // Load A & B
     for (int i = 0; i < M; ++i) {
@@ -41,11 +35,12 @@ void matrix_mult(int a[A_MATRIX_SIZE],
         //#pragma HLS pipeline II=1
         for (int o = 0; o < O; o++) {
             #pragma HLS pipeline II=1
-            c_buff[m][o] = 0;
+            int accum = 0;
             for (int n = 0; n < N; n++) {
                 // #pragma HLS pipeline II=1
-                c_buff[m][o] += a_buff[m][n] * b_buff[n][o];
+                accum += a_buff[m][n] * b_buff[n][o];
             }
+            c_buff[m][o] = accum;
         }
     }
 

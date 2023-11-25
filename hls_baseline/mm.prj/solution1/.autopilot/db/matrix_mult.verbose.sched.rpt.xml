@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'matrix_mult'" level="0">
-<item name = "Date">Tue Nov 21 02:10:19 2023
+<item name = "Date">Sat Nov 25 00:18:34 2023
 </item>
 <item name = "Version">2019.2.1 (Build 2724168 on Thu Dec 05 05:19:09 MST 2019)</item>
 <item name = "Project">mm.prj</item>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">2697, 2697, 26.970 us, 26.970 us, 2697, 2697, none</column>
+<column name="">2612, 2612, 26.120 us, 26.120 us, 2612, 2612, none</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,10 +35,10 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- Loop 1">212, 212, 23, 10, 1, 20, yes</column>
-<column name="- Loop 2">212, 212, 23, 10, 1, 20, yes</column>
-<column name="- Loop 3">2014, 2014, 18, 5, 1, 400, yes</column>
-<column name="- Loop 4">251, 251, 24, 12, 1, 20, yes</column>
+<column name="- Loop 1">200, 200, 11, 10, 1, 20, yes</column>
+<column name="- Loop 2">201, 201, 12, 10, 1, 20, yes</column>
+<column name="- Loop 3">2003, 2003, 9, 5, 1, 400, yes</column>
+<column name="- Loop 4">200, 200, 11, 10, 1, 20, yes</column>
 </table>
 </item>
 </section>

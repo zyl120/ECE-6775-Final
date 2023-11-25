@@ -1,184 +1,14 @@
 # This script segment is generated automatically by AutoPilot
 
-set id 1
-set name matrix_mult_urem_Thq
-set corename simcore_urem
-set op urem
-set stage_num 13
-set max_latency -1
-set registered_input 1
-set clk_width 1
-set clk_signed 0
-set reset_width 1
-set reset_signed 0
-set in0_width 9
-set in0_signed 0
-set in1_width 9
-set in1_signed 0
-set ce_width 1
-set ce_signed 0
-set out_width 9
-if {${::AESL::PGuard_simmodel_gen}} {
-if {[info proc ap_gen_simcore_urem] == "ap_gen_simcore_urem"} {
-eval "ap_gen_simcore_urem { \
-    id ${id} \
-    name ${name} \
-    corename ${corename} \
-    op ${op} \
-    reset_level 1 \
-    sync_rst true \
-    stage_num ${stage_num} \
-    max_latency ${max_latency} \
-    registered_input ${registered_input} \
-    clk_width ${clk_width} \
-    clk_signed ${clk_signed} \
-    reset_width ${reset_width} \
-    reset_signed ${reset_signed} \
-    in0_width ${in0_width} \
-    in0_signed ${in0_signed} \
-    in1_width ${in1_width} \
-    in1_signed ${in1_signed} \
-    ce_width ${ce_width} \
-    ce_signed ${ce_signed} \
-    out_width ${out_width} \
-}"
-} else {
-puts "@W \[IMPL-100\] Cannot find ap_gen_simcore_urem, check your AutoPilot builtin lib"
-}
-}
-
-
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler ${name}
-}
-
-
-set op urem
-set corename DivnS
-if {${::AESL::PGuard_autocg_gen} && ${::AESL::PGuard_autocg_ipmgen}} {
-if {[info proc ::AESL_LIB_VIRTEX::xil_gen_div] == "::AESL_LIB_VIRTEX::xil_gen_div"} {
-eval "::AESL_LIB_VIRTEX::xil_gen_div { \
-    id ${id} \
-    name ${name} \
-    corename ${corename} \
-    op ${op} \
-    reset_level 1 \
-    sync_rst true \
-    stage_num ${stage_num} \
-    max_latency ${max_latency} \
-    registered_input ${registered_input} \
-    clk_width ${clk_width} \
-    clk_signed ${clk_signed} \
-    reset_width ${reset_width} \
-    reset_signed ${reset_signed} \
-    in0_width ${in0_width} \
-    in0_signed ${in0_signed} \
-    in1_width ${in1_width} \
-    in1_signed ${in1_signed} \
-    ce_width ${ce_width} \
-    ce_signed ${ce_signed} \
-    out_width ${out_width} \
-}"
-} else {
-puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_div, check your platform lib"
-}
-}
-
-
-set id 41
-set name matrix_mult_urem_UhA
-set corename simcore_urem
-set op urem
-set stage_num 9
-set max_latency -1
-set registered_input 1
-set clk_width 1
-set clk_signed 0
-set reset_width 1
-set reset_signed 0
-set in0_width 5
-set in0_signed 0
-set in1_width 5
-set in1_signed 0
-set ce_width 1
-set ce_signed 0
-set out_width 5
-if {${::AESL::PGuard_simmodel_gen}} {
-if {[info proc ap_gen_simcore_urem] == "ap_gen_simcore_urem"} {
-eval "ap_gen_simcore_urem { \
-    id ${id} \
-    name ${name} \
-    corename ${corename} \
-    op ${op} \
-    reset_level 1 \
-    sync_rst true \
-    stage_num ${stage_num} \
-    max_latency ${max_latency} \
-    registered_input ${registered_input} \
-    clk_width ${clk_width} \
-    clk_signed ${clk_signed} \
-    reset_width ${reset_width} \
-    reset_signed ${reset_signed} \
-    in0_width ${in0_width} \
-    in0_signed ${in0_signed} \
-    in1_width ${in1_width} \
-    in1_signed ${in1_signed} \
-    ce_width ${ce_width} \
-    ce_signed ${ce_signed} \
-    out_width ${out_width} \
-}"
-} else {
-puts "@W \[IMPL-100\] Cannot find ap_gen_simcore_urem, check your AutoPilot builtin lib"
-}
-}
-
-
-if {${::AESL::PGuard_rtl_comp_handler}} {
-	::AP::rtl_comp_handler ${name}
-}
-
-
-set op urem
-set corename DivnS
-if {${::AESL::PGuard_autocg_gen} && ${::AESL::PGuard_autocg_ipmgen}} {
-if {[info proc ::AESL_LIB_VIRTEX::xil_gen_div] == "::AESL_LIB_VIRTEX::xil_gen_div"} {
-eval "::AESL_LIB_VIRTEX::xil_gen_div { \
-    id ${id} \
-    name ${name} \
-    corename ${corename} \
-    op ${op} \
-    reset_level 1 \
-    sync_rst true \
-    stage_num ${stage_num} \
-    max_latency ${max_latency} \
-    registered_input ${registered_input} \
-    clk_width ${clk_width} \
-    clk_signed ${clk_signed} \
-    reset_width ${reset_width} \
-    reset_signed ${reset_signed} \
-    in0_width ${in0_width} \
-    in0_signed ${in0_signed} \
-    in1_width ${in1_width} \
-    in1_signed ${in1_signed} \
-    ce_width ${ce_width} \
-    ce_signed ${ce_signed} \
-    out_width ${out_width} \
-}"
-} else {
-puts "@W \[IMPL-101\] Cannot find ::AESL_LIB_VIRTEX::xil_gen_div, check your platform lib"
-}
-}
-
-
 # Memory (RAM/ROM)  definition:
-set ID 65
+set ID 1
 set hasByteEnable 0
 set MemName matrix_mult_a_bufbkb
 set CoreName ap_simcore_mem
 set PortList { 2 3 }
-set DataWd 32
-set AddrRange 10
-set AddrWd 4
+set DataWd 64
+set AddrRange 20
+set AddrWd 5
 set impl_style block
 set TrueReset 0
 set HasInitializer 0
@@ -186,7 +16,7 @@ set IsROM 0
 set ROMData {}
 set NumOfStage 2
 set MaxLatency -1
-set DelayBudget 2.322
+set DelayBudget 3.254
 set ClkPeriod 10
 set RegisteredInput 0
 if {${::AESL::PGuard_simmodel_gen}} {
@@ -256,12 +86,12 @@ if {[info proc ::AESL_LIB_VIRTEX::xil_gen_RAM] == "::AESL_LIB_VIRTEX::xil_gen_RA
 
 
 # Memory (RAM/ROM)  definition:
-set ID 66
-set hasByteEnable 0
-set MemName matrix_mult_b_bufPgM
+set ID 2
+set hasByteEnable 1
+set MemName matrix_mult_b_buff
 set CoreName ap_simcore_mem
 set PortList { 2 2 }
-set DataWd 32
+set DataWd 64
 set AddrRange 200
 set AddrWd 8
 set impl_style block
@@ -341,14 +171,14 @@ if {[info proc ::AESL_LIB_VIRTEX::xil_gen_RAM] == "::AESL_LIB_VIRTEX::xil_gen_RA
 
 
 # Memory (RAM/ROM)  definition:
-set ID 67
+set ID 3
 set hasByteEnable 0
-set MemName matrix_mult_c_bufRg6
+set MemName matrix_mult_c_buff
 set CoreName ap_simcore_mem
 set PortList { 2 1 }
 set DataWd 32
-set AddrRange 200
-set AddrWd 8
+set AddrRange 400
+set AddrWd 9
 set impl_style block
 set TrueReset 0
 set HasInitializer 0
@@ -437,17 +267,17 @@ set axilite_register_dict [dict create]
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 68 \
-    name a_0 \
+    id 4 \
+    name a \
     reset_level 1 \
     sync_rst true \
     dir I \
-    corename a_0 \
+    corename a \
     op interface \
-    ports { a_0_address0 { O 8 vector } a_0_ce0 { O 1 bit } a_0_q0 { I 32 vector } a_0_address1 { O 8 vector } a_0_ce1 { O 1 bit } a_0_q1 { I 32 vector } } \
+    ports { a_address0 { O 9 vector } a_ce0 { O 1 bit } a_q0 { I 32 vector } a_address1 { O 9 vector } a_ce1 { O 1 bit } a_q1 { I 32 vector } } \
 } "
 } else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'a_0'"
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'a'"
 }
 }
 
@@ -456,17 +286,17 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 69 \
-    name a_1 \
+    id 5 \
+    name b \
     reset_level 1 \
     sync_rst true \
     dir I \
-    corename a_1 \
+    corename b \
     op interface \
-    ports { a_1_address0 { O 8 vector } a_1_ce0 { O 1 bit } a_1_q0 { I 32 vector } a_1_address1 { O 8 vector } a_1_ce1 { O 1 bit } a_1_q1 { I 32 vector } } \
+    ports { b_address0 { O 9 vector } b_ce0 { O 1 bit } b_q0 { I 32 vector } b_address1 { O 9 vector } b_ce1 { O 1 bit } b_q1 { I 32 vector } } \
 } "
 } else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'a_1'"
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'b'"
 }
 }
 
@@ -475,74 +305,17 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 70 \
-    name b_0 \
-    reset_level 1 \
-    sync_rst true \
-    dir I \
-    corename b_0 \
-    op interface \
-    ports { b_0_address0 { O 8 vector } b_0_ce0 { O 1 bit } b_0_q0 { I 32 vector } b_0_address1 { O 8 vector } b_0_ce1 { O 1 bit } b_0_q1 { I 32 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'b_0'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 71 \
-    name b_1 \
-    reset_level 1 \
-    sync_rst true \
-    dir I \
-    corename b_1 \
-    op interface \
-    ports { b_1_address0 { O 8 vector } b_1_ce0 { O 1 bit } b_1_q0 { I 32 vector } b_1_address1 { O 8 vector } b_1_ce1 { O 1 bit } b_1_q1 { I 32 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'b_1'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 72 \
-    name c_0 \
+    id 6 \
+    name c \
     reset_level 1 \
     sync_rst true \
     dir O \
-    corename c_0 \
+    corename c \
     op interface \
-    ports { c_0_address0 { O 8 vector } c_0_ce0 { O 1 bit } c_0_we0 { O 1 bit } c_0_d0 { O 32 vector } c_0_address1 { O 8 vector } c_0_ce1 { O 1 bit } c_0_we1 { O 1 bit } c_0_d1 { O 32 vector } } \
+    ports { c_address0 { O 9 vector } c_ce0 { O 1 bit } c_we0 { O 1 bit } c_d0 { O 32 vector } c_address1 { O 9 vector } c_ce1 { O 1 bit } c_we1 { O 1 bit } c_d1 { O 32 vector } } \
 } "
 } else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'c_0'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 73 \
-    name c_1 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename c_1 \
-    op interface \
-    ports { c_1_address0 { O 8 vector } c_1_ce0 { O 1 bit } c_1_we0 { O 1 bit } c_1_d0 { O 32 vector } c_1_address1 { O 8 vector } c_1_ce1 { O 1 bit } c_1_we1 { O 1 bit } c_1_d1 { O 32 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'c_1'"
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'c'"
 }
 }
 
