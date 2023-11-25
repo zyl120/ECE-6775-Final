@@ -6,15 +6,15 @@
 #define MM_MULT_H
 
 #ifndef M
-#define M 20
+#define M 10
 #endif
 
 #ifndef N
-#define N 20
+#define N 10
 #endif
 
 #ifndef O
-#define O 20
+#define O 10
 #endif
 
 
@@ -23,9 +23,9 @@
 #define C_MATRIX_SIZE M*O
 
 
-void matrix_mult(int a[A_MATRIX_SIZE],
-                 int b[B_MATRIX_SIZE],
-                 int c[C_MATRIX_SIZE]);
+void matrix_mult(short a[A_MATRIX_SIZE],
+                 short b[B_MATRIX_SIZE],
+                 short c[C_MATRIX_SIZE]);
 
 
 #endif 

@@ -13,12 +13,12 @@ int main(void) {
   bool correct = true;
 
   // Reference output
-  int c_ref[M][O];
+  short c_ref[M][O];
 
   // Input and output array initialization
-  int a[A_MATRIX_SIZE];
-  int b[B_MATRIX_SIZE];
-  int c[C_MATRIX_SIZE];
+  short a[A_MATRIX_SIZE];
+  short b[B_MATRIX_SIZE];
+  short c[C_MATRIX_SIZE];
   for (int m = 0; m < M; m++) {
     for (int n = 0; n < N; n++) {
       a[m * N + n] = rand_r(&globalSeed) % 1024 - 512;
@@ -47,8 +47,8 @@ int main(void) {
       for (int n = 0; n < N; n++) {
         c_ref[m][o] += a[m * N + n] * b[n * O + o];
       }
+      printf("%d, %d, %d, %d\n", c_ref[m][o], c[m*O+o], m, o);
       if (c_ref[m][o] != c[m * O + o]) {
-        printf("%d, %d, %d, %d\n", c_ref[m][o], c[m*O+o], m, o);
         correct = false;
         break;
       }

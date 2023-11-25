@@ -4,32 +4,17 @@
 
 #include "./mm_mult.h"
 
-// A simple Processing Element (PE) that multiplies and accumulates
-struct PE {
-    int accumulate(int a, int b, int acc) {
-        return a * b + acc;
-    }
-};
+void matrix_mult(short a[A_MATRIX_SIZE],
+                 short b[B_MATRIX_SIZE],
+                 short c[C_MATRIX_SIZE]) {
 
-void matrix_mult(int a[A_MATRIX_SIZE],
-                 int b[B_MATRIX_SIZE],
-                 int c[C_MATRIX_SIZE]) {
+    short a_buff[M][N];
+    short b_buff[N][O];
+    short c_buff[M][O] = {0}; // Initialize to zero
 
-    int a_buff[M][N];
-    int b_buff[N][O];
-    int c_buff[M][O] = {0}; // Initialize to zero
-
-    // Systolic array: Array of Processing Elements (PEs)
-    PE pe[M][O];
-
-    #pragma HLS ARRAY_PARTITION variable=a_buff dim=1 block factor=2
-    #pragma HLS ARRAY_PARTITION variable=b_buff dim=1 block factor=2
-    #pragma HLS ARRAY_PARTITION variable=c_buff dim=1 block factor=2
-    #pragma HLS ARRAY_PARTITION variable=a dim=1 block factor=2
-    #pragma HLS ARRAY_PARTITION variable=b dim=1 block factor=2
-    #pragma HLS ARRAY_PARTITION variable=c dim=1 block factor=2
-
-
+    #pragma HLS ARRAY_PARTITION variable=a_buff dim=2 complete
+    #pragma HLS ARRAY_PARTITION variable=b_buff dim=1 complete
+    #pragma HLS ARRAY_PARTITION variable=c_buff dim=0 complete
 
     // Load A & B
     for (int i = 0; i < M; ++i) {
@@ -47,32 +32,24 @@ void matrix_mult(int a[A_MATRIX_SIZE],
     }
 
     // Systolic Array for Matrix Multiplication
-    int time_steps = M + N + O - 2;
-    for (int step = 0; step < time_steps; step++) {
-        for (int m = 0; m < M; m++) {
-            //#pragma HLS pipeline II=1
-            for (int o = 0; o < O; o++) {
+systolic1:
+    for (int k = 0; k < N; k++) {
+    //    #pragma HLS LOOP_TRIPCOUNT min=30 max=30
+       #pragma HLS PIPELINE II=1
+    systolic2:
+        for (int i = 0; i < N; i++) {
+        systolic3:
+            for (int j = 0; j < N; j++) {
+                short last = (k == 0) ? 0 : c_buff[i][j];
+                short a_val = (i < N && k < N) ? a_buff[i][k] : 0;
+                short b_val = (k < N && j < N) ? b_buff[k][j] : 0;
+                short result = last + a_val * b_val;
 
-                #pragma HLS pipeline II=1
-                int a_val = (step - m >= 0 && step - m < N) ? a_buff[m][step - m] : 0;
-                int b_val = (step - o >= 0 && step - o < N) ? b_buff[step - o][o] : 0;
-                c_buff[m][o] = pe[m][o].accumulate(a_val, b_val, c_buff[m][o]);
+                c_buff[i][j] = result;
             }
         }
     }
 
-    // // Matrix Multiplication
-    // for (int m = 0; m < M; m++) {
-    //     //#pragma HLS pipeline II=1
-    //     for (int o = 0; o < O; o++) {
-    //         #pragma HLS pipeline II=1
-    //         c_buff[m][o] = 0;
-    //         for (int n = 0; n < N; n++) {
-    //             // #pragma HLS pipeline II=1
-    //             c_buff[m][o] += a_buff[m][n] * b_buff[n][o];
-    //         }
-    //     }
-    // }
 
     // Store C
     for (int i = 0; i < M; ++i) {
