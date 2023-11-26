@@ -1,34 +1,47 @@
 #include "block_mmult.h"
 
-void block_mmul(
-    hls::stream<blockvector> &ARows,
-    hls::stream<blockvector> &BCols,
-    blockmatrix &abPartialSum,
-    DTYPE iteration
-){
-    int counter = iteration % (SIZE/BLOCK_SIZE);
-    static DTYPE A[BLOCK_SIZE][SIZE];
-    #pragma HLS ARRAY_PARTITION variable=A dim=1 complete
-    // #pragma HLS DATAFLOW
-    if(counter == 0){
-        loadA: for(int i=0; i<SIZE; i++){
-            #pragma HLS PIPELINE II=1
-            blockvector tempA = ARows.read();
-            for(int j=0; j<BLOCK_SIZE; j++){
-                A[j][i] = tempA.a[j];
+void block_mmul_helper(
+    DTYPE A[M][N],
+    DTYPE B[N][O],
+    DTYPE out[M][O],
+    int ii,
+    int jj
+) {
+    for(int k = 0; k < N; k++){
+        #pragma HLS PIPELINE II=1
+        for(int i = ii; i < ii+M_BLOCK_SIZE; i++) {
+            for(int j = jj; j < jj+O_BLOCK_SIZE; j++) {
+                out[i][j] += A[i][k] * B[k][j];
             }
         }
     }
+}
 
-    DTYPE AB[BLOCK_SIZE][BLOCK_SIZE] = {0};
-    #pragma HLS ARRAY_PARTITION variable=AB dim=1 complete
-    partialsum: for(int k=0; k<SIZE; k++){
-        #pragma HLS PIPELINE II=1
-        blockvector tempB = BCols.read();
-        for(int i = 0; i<BLOCK_SIZE;i++){
-            for(int j = 0; j<BLOCK_SIZE; j++){
-                AB[i][j] = AB[i][j] + A[i][k] * tempB.a[j];
-            }
+void block_mmul(
+    DTYPE A[M][N],
+    DTYPE B[N][O],
+    DTYPE out[M][O]
+){
+    // static DTYPE A[M_BLOCK_SIZE][N];
+    // #pragma HLS ARRAY_PARTITION variable=A dim=1 complete
+    // // #pragma HLS DATAFLOW
+    // if(counter == 0){
+    //     loadA: for(int i=0; i<N; i++){
+    //         #pragma HLS PIPELINE II=1
+    //         blockvector tempA = ARows.read();
+    //         for(int j=0; j<M_BLOCK_SIZE; j++){
+    //             A[j][i] = tempA.a[j];
+    //         }
+    //     }
+    // }
+
+    // DTYPE AB[M_BLOCK_SIZE][O_BLOCK_SIZE] = {0};
+    // #pragma HLS ARRAY_PARTITION variable=AB dim=1 complete
+    // partialsum:
+    
+    for(int ii = 0; ii < M; ii += M_BLOCK_SIZE) {
+        for(int jj = 0; jj < O; jj += O_BLOCK_SIZE) {
+            block_mmul_helper(A,B,out,ii,jj);
         }
     }
 
@@ -50,10 +63,49 @@ void block_mmul(
     // }
 
     
-    writeoutput: for(int i = 0; i<BLOCK_SIZE; i++){
-        #pragma HLS PIPELINE II=1
-        for(int j=0; j<BLOCK_SIZE; j++){
-            abPartialSum.out[i][j] = AB[i][j];
+    // writeoutput: for(int i = 0; i<M_BLOCK_SIZE; i++){
+    //     #pragma HLS PIPELINE II=1
+    //     for(int j=0; j<O_BLOCK_SIZE; j++){
+    //         abPartialSum.out[i][j] = AB[i][j];
+    //     }
+    // }
+}
+
+
+void dut(
+    hls::stream<a_matrix> &A_in,
+    hls::stream<b_matrix> &B_in,
+    hls::stream<out_matrix> &C_out
+){
+    a_matrix A_MATRIX = A_in.read();
+    b_matrix B_MATRIX = B_in.read();
+    out_matrix out_MATRIX;
+    for(int i = 0; i < M; i++){
+        for(int j = 0; j < O; j++){
+            out_MATRIX.out[i][j] = 0;
         }
     }
+    block_mmul(A_MATRIX.a, B_MATRIX.b, out_MATRIX.out);
+    C_out.write(out_MATRIX);
 }
+
+// void dut(hls::stream<bit32_t> &strm_in, hls::stream<bit32_t> &strm_out) {
+//   bit input[1][I_WIDTH1][I_WIDTH1];
+//   bit32_t input_l;
+//   bit32_t output;
+
+//   // read one test image into digit
+//   int bitcount = 0;
+//   for (int i = 0; i < I_WIDTH1 * I_WIDTH1 / BUS_WIDTH; i++) {
+//     input_l = strm_in.read();
+//     for (int j = 0; j < BUS_WIDTH; j++) {
+//       input[0][bitcount / I_WIDTH1][bitcount % I_WIDTH1] = input_l(j, j);
+//       bitcount++;
+//     }
+//   }
+//   // call bnn
+//   output = bnn_xcel(input);
+
+//   // write out the result
+//   strm_out.write(output);
+// }
