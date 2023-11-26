@@ -2,30 +2,30 @@
 <Messages>
 	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_631" tag="SCHEDULE" content="Option &apos;relax_ii_for_timing&apos; is enabled, will increase II to preserve clock frequency constraints."/>
 	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1312" tag="" content="Analyzing design file &apos;mm_mult.cc&apos; ..."/>
-	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Linking Time (s): cpu = 00:00:10 ; elapsed = 00:00:14 . Memory (MB): peak = 1169.715 ; gain = 527.219 ; free physical = 3826 ; free virtual = 24539"/>
-	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Checking Pragmas Time (s): cpu = 00:00:10 ; elapsed = 00:00:14 . Memory (MB): peak = 1169.715 ; gain = 527.219 ; free physical = 3826 ; free virtual = 24539"/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Linking Time (s): cpu = 00:00:10 ; elapsed = 00:00:15 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 1234 ; free virtual = 24471"/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Checking Pragmas Time (s): cpu = 00:00:10 ; elapsed = 00:00:15 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 1234 ; free virtual = 24472"/>
 	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1467" tag="" content="Starting code transformations ..."/>
-	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Standard Transforms Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 1169.715 ; gain = 527.219 ; free physical = 3820 ; free virtual = 24534"/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Standard Transforms Time (s): cpu = 00:00:11 ; elapsed = 00:00:16 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 1226 ; free virtual = 24463"/>
 	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1472" tag="" content="Checking synthesizability ..."/>
-	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Checking Synthesizability Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 1169.715 ; gain = 527.219 ; free physical = 3824 ; free virtual = 24538"/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Checking Synthesizability Time (s): cpu = 00:00:12 ; elapsed = 00:00:16 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 1226 ; free virtual = 24463"/>
 	<Message severity="INFO" prefix="[XFORM 203-502]" key="XFORM_AUTO_UNROLL_STATUS_246" tag="" content="Unrolling all sub-loops inside loop &apos;Loop-1&apos; (mm_mult.cc:19) in function &apos;matrix_mult&apos; for pipelining."/>
 	<Message severity="INFO" prefix="[XFORM 203-502]" key="XFORM_AUTO_UNROLL_STATUS_246" tag="" content="Unrolling all sub-loops inside loop &apos;Loop-2&apos; (mm_mult.cc:26) in function &apos;matrix_mult&apos; for pipelining."/>
 	<Message severity="INFO" prefix="[XFORM 203-502]" key="XFORM_AUTO_UNROLL_STATUS_246" tag="" content="Unrolling all sub-loops inside loop &apos;Loop-3.1&apos; (mm_mult.cc:36) in function &apos;matrix_mult&apos; for pipelining."/>
 	<Message severity="INFO" prefix="[XFORM 203-502]" key="XFORM_AUTO_UNROLL_STATUS_246" tag="" content="Unrolling all sub-loops inside loop &apos;Loop-4&apos; (mm_mult.cc:48) in function &apos;matrix_mult&apos; for pipelining."/>
-	<Message severity="INFO" prefix="[HLS 200-489]" key="HLS 200-489" tag="" content="Unrolling loop &apos;Loop-1.1&apos; (mm_mult.cc:21) in function &apos;matrix_mult&apos; completely with a factor of 20."/>
-	<Message severity="INFO" prefix="[HLS 200-489]" key="HLS 200-489" tag="" content="Unrolling loop &apos;Loop-2.1&apos; (mm_mult.cc:28) in function &apos;matrix_mult&apos; completely with a factor of 20."/>
-	<Message severity="INFO" prefix="[HLS 200-489]" key="HLS 200-489" tag="" content="Unrolling loop &apos;Loop-3.1.1&apos; (mm_mult.cc:39) in function &apos;matrix_mult&apos; completely with a factor of 20."/>
-	<Message severity="INFO" prefix="[HLS 200-489]" key="HLS 200-489" tag="" content="Unrolling loop &apos;Loop-4.1&apos; (mm_mult.cc:50) in function &apos;matrix_mult&apos; completely with a factor of 20."/>
+	<Message severity="INFO" prefix="[HLS 200-489]" key="HLS 200-489" tag="" content="Unrolling loop &apos;Loop-1.1&apos; (mm_mult.cc:21) in function &apos;matrix_mult&apos; completely with a factor of 100."/>
+	<Message severity="INFO" prefix="[HLS 200-489]" key="HLS 200-489" tag="" content="Unrolling loop &apos;Loop-2.1&apos; (mm_mult.cc:28) in function &apos;matrix_mult&apos; completely with a factor of 100."/>
+	<Message severity="INFO" prefix="[HLS 200-489]" key="HLS 200-489" tag="" content="Unrolling loop &apos;Loop-3.1.1&apos; (mm_mult.cc:39) in function &apos;matrix_mult&apos; completely with a factor of 100."/>
+	<Message severity="INFO" prefix="[HLS 200-489]" key="HLS 200-489" tag="" content="Unrolling loop &apos;Loop-4.1&apos; (mm_mult.cc:50) in function &apos;matrix_mult&apos; completely with a factor of 100."/>
 	<Message severity="INFO" prefix="[XFORM 203-131]" key="XFORM_RESHAPE_STATUS_126" tag="" content="Reshaping array &apos;a_buff&apos; (mm_mult.cc:11) in dimension 2 with a block factor of 2."/>
 	<Message severity="INFO" prefix="[XFORM 203-131]" key="XFORM_RESHAPE_STATUS_126" tag="" content="Reshaping array &apos;b_buff&apos; (mm_mult.cc:12) in dimension 1 with a block factor of 2."/>
 	<Message severity="INFO" prefix="[XFORM 203-102]" key="XFORM_AUTO_PARTITION_STATUS_121" tag="" content="Partitioning array &apos;a_buff&apos; (mm_mult.cc:11) in dimension 2 automatically."/>
-	<Message severity="INFO" prefix="[XFORM 203-11]" key="XFORM_EXPR_BALANCE_STATUS_178" tag="" content="Balancing expressions in function &apos;matrix_mult&apos; (mm_mult.cc:7)...19 expression(s) balanced."/>
-	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Pre-synthesis Time (s): cpu = 00:00:11 ; elapsed = 00:00:16 . Memory (MB): peak = 1169.715 ; gain = 527.219 ; free physical = 3797 ; free virtual = 24511"/>
+	<Message severity="INFO" prefix="[XFORM 203-11]" key="XFORM_EXPR_BALANCE_STATUS_178" tag="" content="Balancing expressions in function &apos;matrix_mult&apos; (mm_mult.cc:7)...99 expression(s) balanced."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Pre-synthesis Time (s): cpu = 00:00:19 ; elapsed = 00:00:24 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 1201 ; free virtual = 24439"/>
 	<Message severity="INFO" prefix="[XFORM 203-541]" key="XFORM_LOOPFLAT_STATUS_218" tag="" content="Flattening a loop nest &apos;Loop-3&apos; (mm_mult.cc:34:19) in function &apos;matrix_mult&apos;."/>
 	<Message severity="INFO" prefix="[HLS 200-472]" key="HLS 200-472" tag="" content="Inferring partial write operation for &apos;a_buff[0]&apos; (mm_mult.cc:22:13)"/>
 	<Message severity="INFO" prefix="[HLS 200-472]" key="HLS 200-472" tag="" content="Inferring partial write operation for &apos;b_buff&apos; (mm_mult.cc:29:13)"/>
 	<Message severity="INFO" prefix="[HLS 200-472]" key="HLS 200-472" tag="" content="Inferring partial write operation for &apos;c_buff&apos; (mm_mult.cc:43:13)"/>
-	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Architecture Synthesis Time (s): cpu = 00:00:12 ; elapsed = 00:00:16 . Memory (MB): peak = 1169.715 ; gain = 527.219 ; free physical = 3803 ; free virtual = 24517"/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished Architecture Synthesis Time (s): cpu = 00:00:26 ; elapsed = 00:00:31 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 1180 ; free virtual = 24417"/>
 	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1317" tag="" content="Starting hardware synthesis ..."/>
 	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1385" tag="" content="Synthesizing &apos;matrix_mult&apos; ..."/>
 	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1477" tag="" content="----------------------------------------------------------------"/>
@@ -34,24 +34,30 @@
 	<Message severity="INFO" prefix="[SCHED 204-11]" key="SCHED_SCHED_STATUS_597" tag="" content="Starting scheduling ..."/>
 	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_41" tag="" content="Pipelining loop &apos;Loop 1&apos;."/>
 	<Message severity="WARNING" prefix="[SCHED 204-69]" key="SCHED_RESOURCE_CONSTRAINT_NOT_MET_38" tag="SDX_KERNEL,SCHEDULE" content="Unable to schedule &apos;load&apos; operation (&apos;a_load_2&apos;, mm_mult.cc:22) on array &apos;a&apos; due to limited memory ports. Please consider using a memory core with more ports or partitioning the array &apos;a&apos;."/>
-	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_44" tag="" content="Pipelining result : Target II = 1, Final II = 10, Depth = 11."/>
+	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_44" tag="" content="Pipelining result : Target II = 1, Final II = 50, Depth = 51."/>
 	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_41" tag="" content="Pipelining loop &apos;Loop 2&apos;."/>
 	<Message severity="WARNING" prefix="[SCHED 204-69]" key="SCHED_RESOURCE_CONSTRAINT_NOT_MET_38" tag="SDX_KERNEL,SCHEDULE" content="Unable to schedule &apos;load&apos; operation (&apos;b_load_2&apos;, mm_mult.cc:29) on array &apos;b&apos; due to limited memory ports. Please consider using a memory core with more ports or partitioning the array &apos;b&apos;."/>
-	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_44" tag="" content="Pipelining result : Target II = 1, Final II = 10, Depth = 12."/>
+	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_44" tag="" content="Pipelining result : Target II = 1, Final II = 50, Depth = 52."/>
 	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_41" tag="" content="Pipelining loop &apos;Loop 3&apos;."/>
-	<Message severity="WARNING" prefix="[SCHED 204-69]" key="SCHED_RESOURCE_CONSTRAINT_NOT_MET_38" tag="SDX_KERNEL,SCHEDULE" content="Unable to schedule &apos;load&apos; operation (&apos;b_buff_load_3&apos;, mm_mult.cc:41) on array &apos;b_buff&apos;, mm_mult.cc:12 due to limited memory ports. Please consider using a memory core with more ports or partitioning the array &apos;b_buff&apos;."/>
-	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_44" tag="" content="Pipelining result : Target II = 1, Final II = 5, Depth = 9."/>
+	<Message severity="WARNING" prefix="[SCHED 204-69]" key="SCHED_RESOURCE_CONSTRAINT_NOT_MET_38" tag="SDX_KERNEL,SCHEDULE" content="Unable to schedule &apos;load&apos; operation (&apos;b_buff_load_2&apos;, mm_mult.cc:41) on array &apos;b_buff&apos;, mm_mult.cc:12 due to limited memory ports. Please consider using a memory core with more ports or partitioning the array &apos;b_buff&apos;."/>
+	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_44" tag="" content="Pipelining result : Target II = 1, Final II = 25, Depth = 30."/>
 	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_41" tag="" content="Pipelining loop &apos;Loop 4&apos;."/>
 	<Message severity="WARNING" prefix="[SCHED 204-69]" key="SCHED_RESOURCE_CONSTRAINT_NOT_MET_38" tag="SDX_KERNEL,SCHEDULE" content="Unable to schedule &apos;load&apos; operation (&apos;c_buff_load_2&apos;, mm_mult.cc:51) on array &apos;c_buff&apos;, mm_mult.cc:13 due to limited memory ports. Please consider using a memory core with more ports or partitioning the array &apos;c_buff&apos;."/>
-	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_44" tag="" content="Pipelining result : Target II = 1, Final II = 10, Depth = 11."/>
+	<Message severity="INFO" prefix="[SCHED 204-61]" key="SCHED_PIPELINING_STATUS_44" tag="" content="Pipelining result : Target II = 1, Final II = 50, Depth = 51."/>
+	<Message severity="WARNING" prefix="[SCHED 204-21]" key="SCHED_DELAY_EXCEEDED_76" tag="SDX_KERNEL,SCHEDULE" content="Estimated clock period (9.634ns) exceeds the target (target clock period: 10ns, clock uncertainty: 1.25ns, effective delay budget: 8.75ns)."/>
+	<Message severity="WARNING" prefix="[SCHED 204-21]" key="SCHED_DELAY_EXCEEDED_74" tag="SDX_KERNEL,SCHEDULE" content="The critical path in module &apos;matrix_mult&apos; consists of the following:
+	&apos;mul&apos; operation of DSP[3738] (&apos;mul_ln43&apos;, mm_mult.cc:43) [3467]  (3.36 ns)
+	&apos;add&apos; operation of DSP[3738] (&apos;add_ln43&apos;, mm_mult.cc:43) [3738]  (3.02 ns)
+	&apos;getelementptr&apos; operation (&apos;c_buff_addr_1&apos;, mm_mult.cc:43) [3740]  (0 ns)
+	&apos;store&apos; operation (&apos;c_buff_addr_1_write_ln43&apos;, mm_mult.cc:43) of variable &apos;add_ln41_98&apos;, mm_mult.cc:41 on array &apos;c_buff&apos;, mm_mult.cc:13 [4190]  (3.25 ns)"/>
 	<Message severity="INFO" prefix="[SCHED 204-11]" key="SCHED_SCHED_STATUS_596" tag="" content="Finished scheduling."/>
-	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 18.26 seconds; current allocated memory: 124.742 MB."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 72.31 seconds; current allocated memory: 168.794 MB."/>
 	<Message severity="INFO" prefix="[BIND 205-100]" key="BIND_100_926" tag="" content="Starting micro-architecture generation ..."/>
 	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_698" tag="" content="Performing variable lifetime analysis."/>
 	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_697" tag="" content="Exploring resource sharing."/>
 	<Message severity="INFO" prefix="[BIND 205-101]" key="BIND_101_693" tag="" content="Binding ..."/>
 	<Message severity="INFO" prefix="[BIND 205-100]" key="BIND_100_925" tag="" content="Finished micro-architecture generation."/>
-	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 1.37 seconds; current allocated memory: 128.570 MB."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 11.85 seconds; current allocated memory: 186.546 MB."/>
 	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1483" tag="" content="----------------------------------------------------------------"/>
 	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1484" tag="" content="-- Generating RTL for module &apos;matrix_mult&apos;"/>
 	<Message severity="INFO" prefix="[HLS 200-10]" key="HLS_10_1485" tag="" content="----------------------------------------------------------------"/>
@@ -69,14 +75,56 @@
 	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_7&apos; to &apos;matrix_mult_a_bufibs&apos; due to the length limit 20"/>
 	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_8&apos; to &apos;matrix_mult_a_bufjbC&apos; due to the length limit 20"/>
 	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_9&apos; to &apos;matrix_mult_a_bufkbM&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_10&apos; to &apos;matrix_mult_a_buflbW&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_11&apos; to &apos;matrix_mult_a_bufmb6&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_12&apos; to &apos;matrix_mult_a_bufncg&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_13&apos; to &apos;matrix_mult_a_bufocq&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_14&apos; to &apos;matrix_mult_a_bufpcA&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_15&apos; to &apos;matrix_mult_a_bufqcK&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_16&apos; to &apos;matrix_mult_a_bufrcU&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_17&apos; to &apos;matrix_mult_a_bufsc4&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_18&apos; to &apos;matrix_mult_a_buftde&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_19&apos; to &apos;matrix_mult_a_bufudo&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_20&apos; to &apos;matrix_mult_a_bufvdy&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_21&apos; to &apos;matrix_mult_a_bufwdI&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_22&apos; to &apos;matrix_mult_a_bufxdS&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_23&apos; to &apos;matrix_mult_a_bufyd2&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_24&apos; to &apos;matrix_mult_a_bufzec&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_25&apos; to &apos;matrix_mult_a_bufAem&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_26&apos; to &apos;matrix_mult_a_bufBew&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_27&apos; to &apos;matrix_mult_a_bufCeG&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_28&apos; to &apos;matrix_mult_a_bufDeQ&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_29&apos; to &apos;matrix_mult_a_bufEe0&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_30&apos; to &apos;matrix_mult_a_bufFfa&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_31&apos; to &apos;matrix_mult_a_bufGfk&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_32&apos; to &apos;matrix_mult_a_bufHfu&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_33&apos; to &apos;matrix_mult_a_bufIfE&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_34&apos; to &apos;matrix_mult_a_bufJfO&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_35&apos; to &apos;matrix_mult_a_bufKfY&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_36&apos; to &apos;matrix_mult_a_bufLf8&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_37&apos; to &apos;matrix_mult_a_bufMgi&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_38&apos; to &apos;matrix_mult_a_bufNgs&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_39&apos; to &apos;matrix_mult_a_bufOgC&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_40&apos; to &apos;matrix_mult_a_bufPgM&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_41&apos; to &apos;matrix_mult_a_bufQgW&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_42&apos; to &apos;matrix_mult_a_bufRg6&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_43&apos; to &apos;matrix_mult_a_bufShg&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_44&apos; to &apos;matrix_mult_a_bufThq&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_45&apos; to &apos;matrix_mult_a_bufUhA&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_46&apos; to &apos;matrix_mult_a_bufVhK&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_47&apos; to &apos;matrix_mult_a_bufWhU&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_48&apos; to &apos;matrix_mult_a_bufXh4&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_a_buff_49&apos; to &apos;matrix_mult_a_bufYie&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[SYN 201-210]" key="SYN_210_889" tag="" content="Renamed object name &apos;matrix_mult_mac_muladd_8ns_7ns_7ns_14_1_1&apos; to &apos;matrix_mult_mac_mZio&apos; due to the length limit 20"/>
+	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_855" tag="" content="Generating core module &apos;matrix_mult_mac_mZio&apos;: 1 instance(s)."/>
 	<Message severity="INFO" prefix="[RTGEN 206-100]" key="RTGEN_100_856" tag="" content="Finished creating RTL model for &apos;matrix_mult&apos;."/>
-	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 2.01 seconds; current allocated memory: 135.424 MB."/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="" content=" Elapsed time: 12.33 seconds; current allocated memory: 218.522 MB."/>
 	<Message severity="INFO" prefix="[HLS 200-790]" key="HLS 200-790" tag="LOOP,SDX_LOOP" content="**** Loop Constraint Status: All loop constraints were NOT satisfied."/>
-	<Message severity="INFO" prefix="[HLS 200-789]" key="HLS 200-789" tag="THROUGHPUT,SDX_KERNEL" content="**** Estimated Fmax: 114.39 MHz"/>
+	<Message severity="INFO" prefix="[HLS 200-789]" key="HLS 200-789" tag="THROUGHPUT,SDX_KERNEL" content="**** Estimated Fmax: 103.80 MHz"/>
 	<Message severity="INFO" prefix="[RTMG 210-278]" key="RTMG_278_1790" tag="" content="Implementing memory &apos;matrix_mult_a_bufbkb_ram (RAM)&apos; using block RAMs."/>
 	<Message severity="INFO" prefix="[RTMG 210-278]" key="RTMG_278_1790" tag="" content="Implementing memory &apos;matrix_mult_b_buff_ram (RAM)&apos; using block RAMs."/>
 	<Message severity="INFO" prefix="[RTMG 210-278]" key="RTMG_278_1790" tag="" content="Implementing memory &apos;matrix_mult_c_buff_ram (RAM)&apos; using block RAMs."/>
-	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished generating all RTL models Time (s): cpu = 00:00:19 ; elapsed = 00:00:29 . Memory (MB): peak = 1169.715 ; gain = 527.219 ; free physical = 3744 ; free virtual = 24473"/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_965" tag="" content="Finished generating all RTL models Time (s): cpu = 00:01:40 ; elapsed = 00:02:07 . Memory (MB): peak = 1249.723 ; gain = 607.230 ; free physical = 951 ; free virtual = 24265"/>
 	<Message severity="INFO" prefix="[VHDL 208-304]" key="VHDL_304_1066" tag="" content="Generating VHDL RTL for matrix_mult."/>
 	<Message severity="INFO" prefix="[VLOG 209-307]" key="VLOG_307_1067" tag="" content="Generating Verilog RTL for matrix_mult."/>
 </Messages>

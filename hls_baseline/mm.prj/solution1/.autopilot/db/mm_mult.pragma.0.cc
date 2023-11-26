@@ -2463,44 +2463,44 @@ extern char *basename (const char *__filename) throw () __attribute__ ((__nonnul
 
 # 1 "././mm_mult.h" 1
 # 26 "././mm_mult.h"
-void matrix_mult(int a[20*20],
-                 int b[20*20],
-                 int c[20*20]);
+void matrix_mult(int a[100*100],
+                 int b[100*100],
+                 int c[100*100]);
 # 6 "mm_mult.cc" 2
 
-void matrix_mult(int a[20*20],
-                 int b[20*20],
-                 int c[20*20]) {_ssdm_SpecArrayDimSize(a, 400);_ssdm_SpecArrayDimSize(b, 400);_ssdm_SpecArrayDimSize(c, 400);
+void matrix_mult(int a[100*100],
+                 int b[100*100],
+                 int c[100*100]) {_ssdm_SpecArrayDimSize(a, 10000);_ssdm_SpecArrayDimSize(b, 10000);_ssdm_SpecArrayDimSize(c, 10000);
 
-    int a_buff[20][20];
-    int b_buff[20][20];
-    int c_buff[20][20];
+    int a_buff[100][100];
+    int b_buff[100][100];
+    int c_buff[100][100];
 
 #pragma HLS ARRAY_RESHAPE variable=&a_buff block dim=2 factor=2
 #pragma HLS ARRAY_RESHAPE variable=&b_buff block dim=1 factor=2
 
 
- for (int i = 0; i < 20; ++i) {
+ for (int i = 0; i < 100; ++i) {
 #pragma HLS PIPELINE II=1
- for (int j = 0; j < 20; ++j) {
-            a_buff[i][j] = a[i * 20 + j];
+ for (int j = 0; j < 100; ++j) {
+            a_buff[i][j] = a[i * 100 + j];
         }
     }
 
-    for (int i = 0; i < 20; ++i) {
+    for (int i = 0; i < 100; ++i) {
 #pragma HLS pipeline II=1
- for (int j = 0; j < 20; ++j) {
-            b_buff[i][j] = b[i * 20 + j];
+ for (int j = 0; j < 100; ++j) {
+            b_buff[i][j] = b[i * 100 + j];
         }
     }
 
 
-    for (int m = 0; m < 20; m++) {
+    for (int m = 0; m < 100; m++) {
 
-        for (int o = 0; o < 20; o++) {
+        for (int o = 0; o < 100; o++) {
 #pragma HLS pipeline II=1
  int accum = 0;
-            for (int n = 0; n < 20; n++) {
+            for (int n = 0; n < 100; n++) {
 
                 accum += a_buff[m][n] * b_buff[n][o];
             }
@@ -2509,10 +2509,10 @@ void matrix_mult(int a[20*20],
     }
 
 
-    for (int i = 0; i < 20; ++i) {
+    for (int i = 0; i < 100; ++i) {
 #pragma HLS pipeline II=1
- for (int j = 0; j < 20; ++j) {
-            c[i * 20 + j] = c_buff[i][j];
+ for (int j = 0; j < 100; ++j) {
+            c[i * 100 + j] = c_buff[i][j];
         }
     }
 }

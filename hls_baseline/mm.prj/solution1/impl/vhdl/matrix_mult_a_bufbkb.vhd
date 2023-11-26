@@ -11,8 +11,8 @@ entity matrix_mult_a_bufbkb_ram is
     generic(
             MEM_TYPE    : string := "block"; 
             DWIDTH     : integer := 64; 
-            AWIDTH     : integer := 5; 
-            MEM_SIZE    : integer := 20
+            AWIDTH     : integer := 7; 
+            MEM_SIZE    : integer := 100
     ); 
     port (
           addr0     : in std_logic_vector(AWIDTH-1 downto 0); 
@@ -72,8 +72,8 @@ use IEEE.std_logic_1164.all;
 entity matrix_mult_a_bufbkb is
     generic (
         DataWidth : INTEGER := 64;
-        AddressRange : INTEGER := 20;
-        AddressWidth : INTEGER := 5);
+        AddressRange : INTEGER := 100;
+        AddressWidth : INTEGER := 7);
     port (
         reset : IN STD_LOGIC;
         clk : IN STD_LOGIC;

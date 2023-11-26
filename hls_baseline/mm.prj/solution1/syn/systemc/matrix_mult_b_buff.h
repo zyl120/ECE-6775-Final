@@ -19,8 +19,8 @@ using namespace sc_dt;
 struct matrix_mult_b_buff_ram : public sc_core::sc_module {
 
   static const unsigned DataWidth = 64;
-  static const unsigned AddressRange = 200;
-  static const unsigned AddressWidth = 8;
+  static const unsigned AddressRange = 5000;
+  static const unsigned AddressWidth = 13;
 
 //latency = 1
 //input_reg = 1
@@ -109,8 +109,8 @@ SC_MODULE(matrix_mult_b_buff) {
 
 
 static const unsigned DataWidth = 64;
-static const unsigned AddressRange = 200;
-static const unsigned AddressWidth = 8;
+static const unsigned AddressRange = 5000;
+static const unsigned AddressWidth = 13;
 
 sc_core::sc_in <sc_lv<AddressWidth> > address0;
 sc_core::sc_in<sc_logic> ce0;

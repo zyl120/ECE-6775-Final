@@ -37,14 +37,15 @@ systolic1:
     //    #pragma HLS LOOP_TRIPCOUNT min=30 max=30
        #pragma HLS PIPELINE II=1
     systolic2:
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < M; i++) {
         systolic3:
-            for (int j = 0; j < N; j++) {
+            for (int j = 0; j < O; j++) {
                 short last = (k == 0) ? 0 : c_buff[i][j];
-                short a_val = (i < N && k < N) ? a_buff[i][k] : 0;
-                short b_val = (k < N && j < N) ? b_buff[k][j] : 0;
+                short a_val = (i < M && k < N) ? a_buff[i][k] : 0;
+                short b_val = (k < N && j < O) ? b_buff[k][j] : 0;
+                // short a_val = a_buff[i][k];
+                // short b_val = b_buff[k][j];
                 short result = last + a_val * b_val;
-
                 c_buff[i][j] = result;
             }
         }

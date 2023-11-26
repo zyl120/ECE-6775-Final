@@ -6,15 +6,15 @@
 #define MM_MULT_H
 
 #ifndef M
-#define M 20
+#define M 100
 #endif
 
 #ifndef N
-#define N 20
+#define N 100
 #endif
 
 #ifndef O
-#define O 20
+#define O 100
 #endif
 
 

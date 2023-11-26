@@ -22,7 +22,7 @@
         "kinds": ["array"],
         "dataType": "int",
         "dataWidth": "32",
-        "arraySizes": ["400"],
+        "arraySizes": ["10000"],
         "multiInterfaceRef": [
           "a_address0",
           "a_address1",
@@ -37,7 +37,7 @@
         "kinds": ["array"],
         "dataType": "int",
         "dataWidth": "32",
-        "arraySizes": ["400"],
+        "arraySizes": ["10000"],
         "multiInterfaceRef": [
           "b_address0",
           "b_address1",
@@ -52,7 +52,7 @@
         "kinds": ["array"],
         "dataType": "int",
         "dataWidth": "32",
-        "arraySizes": ["400"],
+        "arraySizes": ["10000"],
         "multiInterfaceRef": [
           "c_address0",
           "c_address1",
@@ -70,7 +70,7 @@
     "ClockPeriod": "10",
     "IsCombLogic": "0",
     "II": "x",
-    "Latency": "2612",
+    "Latency": "265013",
     "Uncertainty": "1.25"
   },
   "Xdc": {"OocClocks": ["create_clock -name ap_clk -period 10.000 [get_ports ap_clk]"]},
@@ -91,12 +91,14 @@
       "impl\/vhdl\/matrix_mult_a_bufbkb.vhd",
       "impl\/vhdl\/matrix_mult_b_buff.vhd",
       "impl\/vhdl\/matrix_mult_c_buff.vhd",
+      "impl\/vhdl\/matrix_mult_mac_mZio.vhd",
       "impl\/vhdl\/matrix_mult.vhd"
     ],
     "Verilog": [
       "impl\/verilog\/matrix_mult_a_bufbkb.v",
       "impl\/verilog\/matrix_mult_b_buff.v",
       "impl\/verilog\/matrix_mult_c_buff.v",
+      "impl\/verilog\/matrix_mult_mac_mZio.v",
       "impl\/verilog\/matrix_mult.v"
     ],
     "Misc": ["impl\/misc\/logo.png"],
@@ -113,10 +115,10 @@
     "a_address0": {
       "type": "data",
       "dir": "out",
-      "width": "9",
+      "width": "14",
       "ctype": {"DATA": {
           "Type": "null",
-          "Width": "9"
+          "Width": "14"
         }},
       "bundle_name": "a",
       "bundle_role": "address0"
@@ -124,10 +126,10 @@
     "a_address1": {
       "type": "data",
       "dir": "out",
-      "width": "9",
+      "width": "14",
       "ctype": {"DATA": {
           "Type": "null",
-          "Width": "9"
+          "Width": "14"
         }},
       "bundle_name": "a",
       "bundle_role": "address1"
@@ -181,10 +183,10 @@
     "b_address0": {
       "type": "data",
       "dir": "out",
-      "width": "9",
+      "width": "14",
       "ctype": {"DATA": {
           "Type": "null",
-          "Width": "9"
+          "Width": "14"
         }},
       "bundle_name": "b",
       "bundle_role": "address0"
@@ -192,10 +194,10 @@
     "b_address1": {
       "type": "data",
       "dir": "out",
-      "width": "9",
+      "width": "14",
       "ctype": {"DATA": {
           "Type": "null",
-          "Width": "9"
+          "Width": "14"
         }},
       "bundle_name": "b",
       "bundle_role": "address1"
@@ -225,10 +227,10 @@
     "c_address0": {
       "type": "data",
       "dir": "out",
-      "width": "9",
+      "width": "14",
       "ctype": {"DATA": {
           "Type": "null",
-          "Width": "9"
+          "Width": "14"
         }},
       "bundle_name": "c",
       "bundle_role": "address0"
@@ -236,10 +238,10 @@
     "c_address1": {
       "type": "data",
       "dir": "out",
-      "width": "9",
+      "width": "14",
       "ctype": {"DATA": {
           "Type": "null",
-          "Width": "9"
+          "Width": "14"
         }},
       "bundle_name": "c",
       "bundle_role": "address1"
@@ -294,7 +296,7 @@
     },
     "a_address0": {
       "dir": "out",
-      "width": "9"
+      "width": "14"
     },
     "a_ce0": {
       "dir": "out",
@@ -306,7 +308,7 @@
     },
     "a_address1": {
       "dir": "out",
-      "width": "9"
+      "width": "14"
     },
     "a_ce1": {
       "dir": "out",
@@ -318,7 +320,7 @@
     },
     "b_address0": {
       "dir": "out",
-      "width": "9"
+      "width": "14"
     },
     "b_ce0": {
       "dir": "out",
@@ -330,7 +332,7 @@
     },
     "b_address1": {
       "dir": "out",
-      "width": "9"
+      "width": "14"
     },
     "b_ce1": {
       "dir": "out",
@@ -342,7 +344,7 @@
     },
     "c_address0": {
       "dir": "out",
-      "width": "9"
+      "width": "14"
     },
     "c_ce0": {
       "dir": "out",
@@ -358,7 +360,7 @@
     },
     "c_address1": {
       "dir": "out",
-      "width": "9"
+      "width": "14"
     },
     "c_ce1": {
       "dir": "out",
@@ -384,53 +386,53 @@
       }},
     "Metrics": {"matrix_mult": {
         "Latency": {
-          "LatencyBest": "2612",
-          "LatencyAvg": "2612",
-          "LatencyWorst": "2612",
-          "PipelineII": "2613",
+          "LatencyBest": "265013",
+          "LatencyAvg": "265013",
+          "LatencyWorst": "265013",
+          "PipelineII": "265014",
           "PipelineDepth": "",
           "PipelineType": "none"
         },
         "Timing": {
           "Target": "10.00",
           "Uncertainty": "1.25",
-          "Estimate": "8.742"
+          "Estimate": "9.634"
         },
         "Loops": [
           {
             "Name": "Loop 1",
-            "TripCount": "20",
-            "Latency": "200",
-            "PipelineII": "10",
-            "PipelineDepth": "11"
+            "TripCount": "100",
+            "Latency": "5000",
+            "PipelineII": "50",
+            "PipelineDepth": "51"
           },
           {
             "Name": "Loop 2",
-            "TripCount": "20",
-            "Latency": "201",
-            "PipelineII": "10",
-            "PipelineDepth": "12"
+            "TripCount": "100",
+            "Latency": "5001",
+            "PipelineII": "50",
+            "PipelineDepth": "52"
           },
           {
             "Name": "Loop 3",
-            "TripCount": "400",
-            "Latency": "2003",
-            "PipelineII": "5",
-            "PipelineDepth": "9"
+            "TripCount": "10000",
+            "Latency": "250004",
+            "PipelineII": "25",
+            "PipelineDepth": "30"
           },
           {
             "Name": "Loop 4",
-            "TripCount": "20",
-            "Latency": "200",
-            "PipelineII": "10",
-            "PipelineDepth": "11"
+            "TripCount": "100",
+            "Latency": "5000",
+            "PipelineII": "50",
+            "PipelineDepth": "51"
           }
         ],
         "Area": {
-          "BRAM_18K": "26",
-          "DSP48E": "60",
-          "FF": "5010",
-          "LUT": "19889",
+          "BRAM_18K": "164",
+          "DSP48E": "301",
+          "FF": "24432",
+          "LUT": "99702",
           "URAM": "0"
         }
       }}
@@ -445,7 +447,7 @@
   },
   "GenData": {
     "DataVersion": "0.2",
-    "Time": "2023-11-25 00:18:45 EST",
+    "Time": "2023-11-25 23:13:33 EST",
     "ToolName": "vivado_hls",
     "ToolVersion": "2019.2.1"
   }

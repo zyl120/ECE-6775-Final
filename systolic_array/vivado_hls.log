@@ -1,0 +1,188 @@
+
+****** Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+  **** SW Build 2729669 on Thu Dec  5 04:48:12 MST 2019
+  **** IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+source /opt/xilinx/Xilinx_Vivado_vitis_2019.2/Vivado/2019.2/scripts/vivado_hls/hls.tcl -notrace
+INFO: Applying HLS Y2K22 patch v1.2 for IP revision
+INFO: [HLS 200-10] Running '/opt/xilinx/Xilinx_Vivado_vitis_2019.2/Vivado/2019.2/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'yz2797' on host 'en-ec-ecelinux-08.coecis.cornell.edu' (Linux_x86_64 version 3.10.0-1160.92.1.el7.x86_64) on Sat Nov 25 23:35:42 EST 2023
+INFO: [HLS 200-10] On os "CentOS Linux release 7.9.2009 (Core)"
+INFO: [HLS 200-10] In directory '/home/yz2797/ECE-6775-Final/systolic_array'
+Sourcing Tcl script 'run.tcl'
+INFO: [HLS 200-10] Opening and resetting project '/home/yz2797/ECE-6775-Final/systolic_array/mm.prj'.
+INFO: [HLS 200-10] Adding design file 'mm_mult.cc' to the project
+INFO: [HLS 200-10] Adding test bench file 'mm_mult_test.cc' to the project
+INFO: [HLS 200-10] Opening and resetting solution '/home/yz2797/ECE-6775-Final/systolic_array/mm.prj/solution1'.
+INFO: [HLS 200-10] Cleaning up the solution database.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../mm_mult_test.cc in release mode
+   Compiling ../../../../mm_mult.cc in release mode
+   Generating csim.exe
+-9818, -9818, 0, 0
+-21646, -21646, 0, 1
+-15467, -15467, 0, 2
+-14798, -14798, 0, 3
+4566, 4566, 0, 4
+6559, 6559, 0, 5
+-22225, -22225, 0, 6
+-10789, -10789, 0, 7
+-20748, -20748, 0, 8
+-10029, -10029, 0, 9
+13757, 13757, 0, 10
+-14711, -14711, 0, 11
+-28793, -28793, 0, 12
+21240, 21240, 0, 13
+21355, 21355, 0, 14
+-991, -991, 1, 0
+13708, 13708, 1, 1
+17169, 17169, 1, 2
+-6577, -6577, 1, 3
+-30931, -30931, 1, 4
+-32645, -32645, 1, 5
+-9099, -9099, 1, 6
+-8022, -8022, 1, 7
+-19457, -19457, 1, 8
+-6979, -6979, 1, 9
+-22214, -22214, 1, 10
+-21982, -21982, 1, 11
+213, 213, 1, 12
+2517, 2517, 1, 13
+29467, 29467, 1, 14
+-7164, -7164, 2, 0
+19620, 19620, 2, 1
+10819, 10819, 2, 2
+3065, 3065, 2, 3
+-23547, -23547, 2, 4
+15768, 15768, 2, 5
+-26652, -26652, 2, 6
+4996, 4996, 2, 7
+13282, 13282, 2, 8
+-19920, -19920, 2, 9
+10991, 10991, 2, 10
+23884, 23884, 2, 11
+9039, 9039, 2, 12
+11969, 11969, 2, 13
+-28783, -28783, 2, 14
+25340, 25340, 3, 0
+-2051, -2051, 3, 1
+12744, 12744, 3, 2
+-14392, -14392, 3, 3
+12873, 12873, 3, 4
+-19314, -19314, 3, 5
+9193, 9193, 3, 6
+-16070, -16070, 3, 7
+-21389, -21389, 3, 8
+20417, 20417, 3, 9
+2380, 2380, 3, 10
+-14154, -14154, 3, 11
+-11365, -11365, 3, 12
+724, 724, 3, 13
+-9047, -9047, 3, 14
+-241, -241, 4, 0
+-4768, -4768, 4, 1
+-18208, -18208, 4, 2
+11788, 11788, 4, 3
+-278, -278, 4, 4
+15136, 15136, 4, 5
+10339, 10339, 4, 6
+-19915, -19915, 4, 7
+9624, 9624, 4, 8
+26491, 26491, 4, 9
+-485, -485, 4, 10
+-25978, -25978, 4, 11
+-18270, -18270, 4, 12
+3000, 3000, 4, 13
+8463, 8463, 4, 14
+Test successful
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'mm_mult.cc' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:10 ; elapsed = 00:00:14 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 882 ; free virtual = 24160
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:10 ; elapsed = 00:00:14 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 882 ; free virtual = 24160
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 881 ; free virtual = 24160
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 882 ; free virtual = 24160
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-2' (mm_mult.cc:20) in function 'matrix_mult' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-3' (mm_mult.cc:27) in function 'matrix_mult' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'systolic1' (mm_mult.cc:36) in function 'matrix_mult' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-5' (mm_mult.cc:57) in function 'matrix_mult' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Loop-2.1' (mm_mult.cc:22) in function 'matrix_mult' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'Loop-3.1' (mm_mult.cc:29) in function 'matrix_mult' completely with a factor of 15.
+INFO: [HLS 200-489] Unrolling loop 'systolic2' (mm_mult.cc:40) in function 'matrix_mult' completely with a factor of 5.
+INFO: [HLS 200-489] Unrolling loop 'systolic3' (mm_mult.cc:42) in function 'matrix_mult' completely with a factor of 15.
+INFO: [HLS 200-489] Unrolling loop 'Loop-5.1' (mm_mult.cc:59) in function 'matrix_mult' completely with a factor of 15.
+INFO: [XFORM 203-101] Partitioning array 'a_buff' (mm_mult.cc:11) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'b_buff' (mm_mult.cc:12) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'c_buff' (mm_mult.cc:13) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'c_buff' (mm_mult.cc:13) in dimension 2 completely.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (mm_mult.cc:36:35) to (mm_mult.cc:36:29) in function 'matrix_mult'... converting 85 basic blocks.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:12 ; elapsed = 00:00:17 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 857 ; free virtual = 24135
+INFO: [HLS 200-472] Inferring partial write operation for 'a_buff[0]' (mm_mult.cc:23:13)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:13 ; elapsed = 00:00:18 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 845 ; free virtual = 24124
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'matrix_mult' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'matrix_mult' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 2'.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('a_load_2', mm_mult.cc:23) on array 'a' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'a'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 5, Depth = 6.
+INFO: [SCHED 204-61] Pipelining loop 'Loop 3'.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('b_load_2', mm_mult.cc:30) on array 'b' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'b'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 8, Depth = 9.
+INFO: [SCHED 204-61] Pipelining loop 'systolic1'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 3.
+INFO: [SCHED 204-61] Pipelining loop 'Loop 5'.
+WARNING: [SCHED 204-69] Unable to schedule 'store' operation ('c_addr_2_write_ln60', mm_mult.cc:60) of variable 'tmp_25', mm_mult.cc:60 on array 'c' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'c'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 8, Depth = 8.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 34.13 seconds; current allocated memory: 141.288 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 1.71 seconds; current allocated memory: 154.706 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'matrix_mult' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrix_mult/a' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrix_mult/b' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrix_mult/c' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'matrix_mult' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_0' to 'matrix_mult_a_bufbkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_1' to 'matrix_mult_a_bufcud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_2' to 'matrix_mult_a_bufdEe' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_3' to 'matrix_mult_a_bufeOg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_4' to 'matrix_mult_a_buffYi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_5' to 'matrix_mult_a_bufg8j' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_6' to 'matrix_mult_a_bufhbi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_7' to 'matrix_mult_a_bufibs' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_8' to 'matrix_mult_a_bufjbC' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_9' to 'matrix_mult_a_bufkbM' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_mux_104_16_1_1' to 'matrix_mult_mux_1lbW' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_mux_53_16_1_1' to 'matrix_mult_mux_5mb6' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_mac_muladd_16s_16s_16ns_16_1_1' to 'matrix_mult_mac_mncg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_mul_mul_16s_16s_16_1_1' to 'matrix_mult_mul_mocq' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'matrix_mult_mac_mncg': 47 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrix_mult_mul_mocq': 28 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrix_mult_mux_1lbW': 20 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrix_mult_mux_5mb6': 15 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'matrix_mult'.
+INFO: [HLS 200-111]  Elapsed time: 4.35 seconds; current allocated memory: 174.891 MB.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 142.07 MHz
+INFO: [RTMG 210-278] Implementing memory 'matrix_mult_a_bufbkb_ram (RAM)' using distributed RAMs.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:37 ; elapsed = 00:00:49 . Memory (MB): peak = 1236.680 ; gain = 594.188 ; free physical = 1195 ; free virtual = 24520
+INFO: [VHDL 208-304] Generating VHDL RTL for matrix_mult.
+INFO: [VLOG 209-307] Generating Verilog RTL for matrix_mult.
+INFO: [HLS 200-112] Total elapsed time: 49.08 seconds; peak allocated memory: 174.891 MB.
+INFO: [Common 17-206] Exiting vivado_hls at Sat Nov 25 23:36:30 2023...

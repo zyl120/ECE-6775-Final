@@ -11,8 +11,8 @@ entity matrix_mult_b_buff_ram is
     generic(
             MEM_TYPE    : string := "block"; 
             DWIDTH     : integer := 64; 
-            AWIDTH     : integer := 8; 
-            MEM_SIZE    : integer := 200;
+            AWIDTH     : integer := 13; 
+            MEM_SIZE    : integer := 5000;
             COL_WIDTH    : integer := 8;
             NUM_COL      : integer := 8
     ); 
@@ -108,8 +108,8 @@ use IEEE.std_logic_1164.all;
 entity matrix_mult_b_buff is
     generic (
         DataWidth : INTEGER := 64;
-        AddressRange : INTEGER := 200;
-        AddressWidth : INTEGER := 8);
+        AddressRange : INTEGER := 5000;
+        AddressWidth : INTEGER := 13);
     port (
         reset : IN STD_LOGIC;
         clk : IN STD_LOGIC;
