@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'block_mmul'" level="0">
-<item name = "Date">Sat Nov 25 23:19:46 2023
+<item name = "Date">Sun Nov 26 01:56:44 2023
 </item>
 <item name = "Version">2019.2.1 (Build 2724168 on Thu Dec 05 05:19:09 MST 2019)</item>
 <item name = "Project">mm.prj</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">10.00 ns, 8.702 ns, 1.25 ns</column>
+<column name="ap_clk">10.00 ns, 6.380 ns, 1.25 ns</column>
 </table>
 </item>
 </section>
@@ -24,22 +24,20 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">10189, 11190, 0.102 ms, 0.112 ms, 10189, 11190, none</column>
+<column name="">841, 841, 8.410 us, 8.410 us, 841, 841, none</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_block_mmul_helper_fu_56">block_mmul_helper, 50, 50, 0.500 us, 0.500 us, 50, 50, none</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- loadA">1000, 1000, 2, 1, 1, 1000, yes</column>
-<column name="- memset_AB">109, 109, 11, -, -, 10, no</column>
-<column name=" + memset_AB">9, 9, 1, -, -, 10, no</column>
-<column name="- partialsum">10000, 10000, 10, 10, 1, 1000, yes</column>
-<column name="- writeoutput">50, 50, 5, 5, 1, 10, yes</column>
+<column name="- Loop 1">840, 840, 210, -, -, 4, no</column>
+<column name=" + Loop 1.1">208, 208, 52, -, -, 4, no</column>
 </table>
 </item>
 </section>

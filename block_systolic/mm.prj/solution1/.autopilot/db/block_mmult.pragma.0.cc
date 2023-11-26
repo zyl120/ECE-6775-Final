@@ -30758,61 +30758,93 @@ namespace std __attribute__ ((__visibility__ ("default")))
 using namespace std;
 
 typedef short DTYPE;
-const int SIZE = 1000;
-const int BLOCK_SIZE = 10;
+
+
+
+
+
+
 
 typedef struct{
-    DTYPE a[BLOCK_SIZE];
-}blockvector;
+    DTYPE out[16][12];
+}out_matrix;
 
 typedef struct{
-    DTYPE out[BLOCK_SIZE][BLOCK_SIZE];
-}blockmatrix;
+    DTYPE a[16][4];
+}a_matrix;
+
+typedef struct{
+    DTYPE b[4][12];
+}b_matrix;
 
 void block_mmul(
-    hls::stream<blockvector> &ARows,
-    hls::stream<blockvector> &BCols,
-    blockmatrix &abPartialSum,
-    DTYPE iteration
+    DTYPE A[16][4],
+    DTYPE B[4][12],
+    DTYPE out[16][12]
+);
+
+void block_mmul_helper(
+    DTYPE A[16][4],
+    DTYPE B[4][12],
+    DTYPE out[16][12],
+    int ii,
+    int jj
+);
+
+void dut(
+    hls::stream<a_matrix> &A_in,
+    hls::stream<b_matrix> &B_in,
+    hls::stream<out_matrix> &C_out
 );
 # 2 "block_mmult.cc" 2
 
+void block_mmul_helper(
+    DTYPE A[16][4],
+    DTYPE B[4][12],
+    DTYPE out[16][12],
+    int ii,
+    int jj
+) {_ssdm_SpecArrayDimSize(A, 16);_ssdm_SpecArrayDimSize(B, 4);_ssdm_SpecArrayDimSize(out, 16);
+    for(int k = 0; k < 4; k++){
+#pragma HLS PIPELINE II=1
+ for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 3; j++) {
+                DTYPE last = (k == 0) ? 0 : out[i+ii][j+jj];
+                DTYPE a_val = (i+ii < 16 && k < 4) ? A[i+ii][k] : 0;
+                DTYPE b_val = (k < 4 && j+jj < 12) ? B[k][j+jj] : 0;
+                DTYPE result = last + a_val * b_val;
+                out[i+ii][j+jj] = result;
+            }
+        }
+    }
+}
+
 void block_mmul(
-    hls::stream<blockvector> &ARows,
-    hls::stream<blockvector> &BCols,
-    blockmatrix &abPartialSum,
-    DTYPE iteration
+    DTYPE A[16][4],
+    DTYPE B[4][12],
+    DTYPE out[16][12]
+){_ssdm_SpecArrayDimSize(A, 16);_ssdm_SpecArrayDimSize(B, 4);_ssdm_SpecArrayDimSize(out, 16);
+    for(int ii = 0; ii < 16; ii += 4) {
+        for(int jj = 0; jj < 12; jj += 3) {
+            block_mmul_helper(A,B,out,ii,jj);
+        }
+    }
+}
+
+
+void dut(
+    hls::stream<a_matrix> &A_in,
+    hls::stream<b_matrix> &B_in,
+    hls::stream<out_matrix> &C_out
 ){
-    int counter = iteration % (SIZE/BLOCK_SIZE);
-    static DTYPE A[BLOCK_SIZE][SIZE];
-#pragma HLS ARRAY_PARTITION variable=&A dim=1 complete
-
- if(counter == 0){
-        loadA: for(int i=0; i<SIZE; i++){
-#pragma HLS PIPELINE II=1
- blockvector tempA = ARows.read();
-            for(int j=0; j<BLOCK_SIZE; j++){
-                A[j][i] = tempA.a[j];
-            }
+    a_matrix A_MATRIX = A_in.read();
+    b_matrix B_MATRIX = B_in.read();
+    out_matrix out_MATRIX;
+    for(int i = 0; i < 16; i++){
+        for(int j = 0; j < 12; j++){
+            out_MATRIX.out[i][j] = 0;
         }
     }
-
-    DTYPE AB[BLOCK_SIZE][BLOCK_SIZE] = {0};
-#pragma HLS ARRAY_PARTITION variable=&AB dim=1 complete
- partialsum: for(int k=0; k<SIZE; k++){
-#pragma HLS PIPELINE II=1
- blockvector tempB = BCols.read();
-        for(int i = 0; i<BLOCK_SIZE;i++){
-            for(int j = 0; j<BLOCK_SIZE; j++){
-                AB[i][j] = AB[i][j] + A[i][k] * tempB.a[j];
-            }
-        }
-    }
-# 53 "block_mmult.cc"
-    writeoutput: for(int i = 0; i<BLOCK_SIZE; i++){
-#pragma HLS PIPELINE II=1
- for(int j=0; j<BLOCK_SIZE; j++){
-            abPartialSum.out[i][j] = AB[i][j];
-        }
-    }
+    block_mmul(A_MATRIX.a, B_MATRIX.b, out_MATRIX.out);
+    C_out.write(out_MATRIX);
 }

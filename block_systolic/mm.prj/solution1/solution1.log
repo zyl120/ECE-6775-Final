@@ -530,4 +530,19 @@ INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_9' to
 INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/abPartialSum_out' to 'ap_memory'.
 INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/iteration' to 'ap_none'.
 INFO: [RTGEN 206-500] Setting interface mode on function 'block_mmul' to 'ap_ctrl_hs'.
-INFO
+INFO==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================

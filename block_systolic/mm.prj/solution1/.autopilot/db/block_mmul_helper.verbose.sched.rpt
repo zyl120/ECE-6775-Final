@@ -1,0 +1,435 @@
+
+
+================================================================
+== Vivado HLS Report for 'block_mmul_helper'
+================================================================
+* Date:           Sun Nov 26 01:56:43 2023
+
+* Version:        2019.2.1 (Build 2724168 on Thu Dec 05 05:19:09 MST 2019)
+* Project:        mm.prj
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020-clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  | 10.00 ns | 6.380 ns |   1.25 ns  |
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       50|       50| 0.500 us | 0.500 us |   50|   50|   none  |
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |          |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name|   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |- Loop 1  |       48|       48|        12|         12|          1|     4|    yes   |
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 12, depth = 12
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 14
+* Pipeline : 1
+  Pipeline-0 : II = 12, D = 12, States = { 2 3 4 5 6 7 8 9 10 11 12 13 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 14 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 13 
+13 --> 2 
+14 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 5.42>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%jj_read = call i4 @_ssdm_op_Read.ap_auto.i4(i4 %jj)" [block_mmult.cc:4]   --->   Operation 15 'read' 'jj_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%ii_read = call i5 @_ssdm_op_Read.ap_auto.i5(i5 %ii)" [block_mmult.cc:4]   --->   Operation 16 'read' 'ii_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%tmp_3 = call i1 @_ssdm_op_BitSelect.i1.i5.i32(i5 %ii_read, i32 4)" [block_mmult.cc:15]   --->   Operation 17 'bitselect' 'tmp_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%tmp_1 = call i7 @_ssdm_op_BitConcatenate.i7.i5.i2(i5 %ii_read, i2 0)" [block_mmult.cc:15]   --->   Operation 18 'bitconcatenate' 'tmp_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%zext_ln18 = zext i7 %tmp_1 to i8" [block_mmult.cc:18]   --->   Operation 19 'zext' 'zext_ln18' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%zext_ln18_1 = zext i7 %tmp_1 to i9" [block_mmult.cc:18]   --->   Operation 20 'zext' 'zext_ln18_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%tmp_2 = call i9 @_ssdm_op_BitConcatenate.i9.i5.i4(i5 %ii_read, i4 0)" [block_mmult.cc:18]   --->   Operation 21 'bitconcatenate' 'tmp_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (1.82ns)   --->   "%sub_ln18 = sub i9 %tmp_2, %zext_ln18_1" [block_mmult.cc:18]   --->   Operation 22 'sub' 'sub_ln18' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%zext_ln18_2 = zext i4 %jj_read to i7" [block_mmult.cc:18]   --->   Operation 23 'zext' 'zext_ln18_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%zext_ln18_3 = zext i4 %jj_read to i9" [block_mmult.cc:18]   --->   Operation 24 'zext' 'zext_ln18_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (1.82ns)   --->   "%add_ln18 = add i9 %sub_ln18, %zext_ln18_3" [block_mmult.cc:18]   --->   Operation 25 'add' 'add_ln18' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%sext_ln18 = sext i9 %add_ln18 to i64" [block_mmult.cc:18]   --->   Operation 26 'sext' 'sext_ln18' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%out_addr = getelementptr [192 x i16]* %out_r, i64 0, i64 %sext_ln18" [block_mmult.cc:18]   --->   Operation 27 'getelementptr' 'out_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 28 [1/1] (1.73ns)   --->   "%add_ln16 = add i4 %jj_read, 1" [block_mmult.cc:16]   --->   Operation 28 'add' 'add_ln16' <Predicate = true> <Delay = 1.73> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 29 [1/1] (1.30ns)   --->   "%icmp_ln16 = icmp ult i4 %add_ln16, -4" [block_mmult.cc:16]   --->   Operation 29 'icmp' 'icmp_ln16' <Predicate = true> <Delay = 1.30> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.30> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 30 [1/1] (0.00ns)   --->   "%zext_ln18_4 = zext i4 %add_ln16 to i7" [block_mmult.cc:18]   --->   Operation 30 'zext' 'zext_ln18_4' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%zext_ln18_5 = zext i4 %add_ln16 to i9" [block_mmult.cc:18]   --->   Operation 31 'zext' 'zext_ln18_5' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 32 [1/1] (1.82ns)   --->   "%add_ln18_1 = add i9 %sub_ln18, %zext_ln18_5" [block_mmult.cc:18]   --->   Operation 32 'add' 'add_ln18_1' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 33 [1/1] (0.00ns)   --->   "%sext_ln18_1 = sext i9 %add_ln18_1 to i64" [block_mmult.cc:18]   --->   Operation 33 'sext' 'sext_ln18_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 34 [1/1] (0.00ns)   --->   "%out_addr_1 = getelementptr [192 x i16]* %out_r, i64 0, i64 %sext_ln18_1" [block_mmult.cc:18]   --->   Operation 34 'getelementptr' 'out_addr_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 35 [1/1] (1.73ns)   --->   "%add_ln16_1 = add i4 %jj_read, 2" [block_mmult.cc:16]   --->   Operation 35 'add' 'add_ln16_1' <Predicate = true> <Delay = 1.73> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 36 [1/1] (1.30ns)   --->   "%icmp_ln16_1 = icmp ult i4 %add_ln16_1, -4" [block_mmult.cc:16]   --->   Operation 36 'icmp' 'icmp_ln16_1' <Predicate = true> <Delay = 1.30> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.30> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 37 [1/1] (0.00ns)   --->   "%zext_ln18_6 = zext i4 %add_ln16_1 to i7" [block_mmult.cc:18]   --->   Operation 37 'zext' 'zext_ln18_6' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 38 [1/1] (0.00ns)   --->   "%zext_ln18_7 = zext i4 %add_ln16_1 to i9" [block_mmult.cc:18]   --->   Operation 38 'zext' 'zext_ln18_7' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 39 [1/1] (1.82ns)   --->   "%add_ln18_2 = add i9 %sub_ln18, %zext_ln18_7" [block_mmult.cc:18]   --->   Operation 39 'add' 'add_ln18_2' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 40 [1/1] (0.00ns)   --->   "%sext_ln18_2 = sext i9 %add_ln18_2 to i64" [block_mmult.cc:18]   --->   Operation 40 'sext' 'sext_ln18_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 41 [1/1] (0.00ns)   --->   "%out_addr_2 = getelementptr [192 x i16]* %out_r, i64 0, i64 %sext_ln18_2" [block_mmult.cc:18]   --->   Operation 41 'getelementptr' 'out_addr_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 42 [1/1] (1.78ns)   --->   "%add_ln15 = add i5 %ii_read, 1" [block_mmult.cc:15]   --->   Operation 42 'add' 'add_ln15' <Predicate = true> <Delay = 1.78> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 43 [1/1] (0.00ns)   --->   "%tmp_6 = call i1 @_ssdm_op_BitSelect.i1.i5.i32(i5 %add_ln15, i32 4)" [block_mmult.cc:15]   --->   Operation 43 'bitselect' 'tmp_6' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 44 [1/1] (0.00ns)   --->   "%tmp_4 = call i7 @_ssdm_op_BitConcatenate.i7.i5.i2(i5 %add_ln15, i2 0)" [block_mmult.cc:15]   --->   Operation 44 'bitconcatenate' 'tmp_4' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 45 [1/1] (0.00ns)   --->   "%zext_ln18_8 = zext i7 %tmp_4 to i8" [block_mmult.cc:18]   --->   Operation 45 'zext' 'zext_ln18_8' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 46 [1/1] (0.00ns)   --->   "%zext_ln18_9 = zext i7 %tmp_4 to i9" [block_mmult.cc:18]   --->   Operation 46 'zext' 'zext_ln18_9' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 47 [1/1] (0.00ns)   --->   "%tmp_5 = call i9 @_ssdm_op_BitConcatenate.i9.i5.i4(i5 %add_ln15, i4 0)" [block_mmult.cc:18]   --->   Operation 47 'bitconcatenate' 'tmp_5' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 48 [1/1] (1.82ns)   --->   "%sub_ln18_1 = sub i9 %tmp_5, %zext_ln18_9" [block_mmult.cc:18]   --->   Operation 48 'sub' 'sub_ln18_1' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 49 [1/1] (1.82ns)   --->   "%add_ln18_3 = add i9 %sub_ln18_1, %zext_ln18_3" [block_mmult.cc:18]   --->   Operation 49 'add' 'add_ln18_3' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 50 [1/1] (0.00ns)   --->   "%sext_ln18_3 = sext i9 %add_ln18_3 to i64" [block_mmult.cc:18]   --->   Operation 50 'sext' 'sext_ln18_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 51 [1/1] (0.00ns)   --->   "%out_addr_3 = getelementptr [192 x i16]* %out_r, i64 0, i64 %sext_ln18_3" [block_mmult.cc:18]   --->   Operation 51 'getelementptr' 'out_addr_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 52 [1/1] (1.82ns)   --->   "%add_ln18_4 = add i9 %sub_ln18_1, %zext_ln18_5" [block_mmult.cc:18]   --->   Operation 52 'add' 'add_ln18_4' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 53 [1/1] (0.00ns)   --->   "%sext_ln18_4 = sext i9 %add_ln18_4 to i64" [block_mmult.cc:18]   --->   Operation 53 'sext' 'sext_ln18_4' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 54 [1/1] (0.00ns)   --->   "%out_addr_4 = getelementptr [192 x i16]* %out_r, i64 0, i64 %sext_ln18_4" [block_mmult.cc:18]   --->   Operation 54 'getelementptr' 'out_addr_4' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 55 [1/1] (1.82ns)   --->   "%add_ln18_5 = add i9 %sub_ln18_1, %zext_ln18_7" [block_mmult.cc:18]   --->   Operation 55 'add' 'add_ln18_5' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 56 [1/1] (0.00ns)   --->   "%sext_ln18_5 = sext i9 %add_ln18_5 to i64" [block_mmult.cc:18]   --->   Operation 56 'sext' 'sext_ln18_5' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 57 [1/1] (0.00ns)   --->   "%out_addr_5 = getelementptr [192 x i16]* %out_r, i64 0, i64 %sext_ln18_5" [block_mmult.cc:18]   --->   Operation 57 'getelementptr' 'out_addr_5' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 58 [1/1] (1.78ns)   --->   "%add_ln15_1 = add i5 %ii_read, 2" [block_mmult.cc:15]   --->   Operation 58 'add' 'add_ln15_1' <Predicate = true> <Delay = 1.78> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 59 [1/1] (0.00ns)   --->   "%tmp_9 = call i1 @_ssdm_op_BitSelect.i1.i5.i32(i5 %add_ln15_1, i32 4)" [block_mmult.cc:15]   --->   Operation 59 'bitselect' 'tmp_9' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 60 [1/1] (0.00ns)   --->   "%tmp_7 = call i7 @_ssdm_op_BitConcatenate.i7.i5.i2(i5 %add_ln15_1, i2 0)" [block_mmult.cc:15]   --->   Operation 60 'bitconcatenate' 'tmp_7' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 61 [1/1] (0.00ns)   --->   "%zext_ln18_10 = zext i7 %tmp_7 to i8" [block_mmult.cc:18]   --->   Operation 61 'zext' 'zext_ln18_10' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 62 [1/1] (0.00ns)   --->   "%zext_ln18_11 = zext i7 %tmp_7 to i9" [block_mmult.cc:18]   --->   Operation 62 'zext' 'zext_ln18_11' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 63 [1/1] (0.00ns)   --->   "%tmp_8 = call i9 @_ssdm_op_BitConcatenate.i9.i5.i4(i5 %add_ln15_1, i4 0)" [block_mmult.cc:18]   --->   Operation 63 'bitconcatenate' 'tmp_8' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 64 [1/1] (1.82ns)   --->   "%sub_ln18_2 = sub i9 %tmp_8, %zext_ln18_11" [block_mmult.cc:18]   --->   Operation 64 'sub' 'sub_ln18_2' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 65 [1/1] (1.82ns)   --->   "%add_ln18_6 = add i9 %sub_ln18_2, %zext_ln18_3" [block_mmult.cc:18]   --->   Operation 65 'add' 'add_ln18_6' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 66 [1/1] (0.00ns)   --->   "%sext_ln18_6 = sext i9 %add_ln18_6 to i64" [block_mmult.cc:18]   --->   Operation 66 'sext' 'sext_ln18_6' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 67 [1/1] (0.00ns)   --->   "%out_addr_6 = getelementptr [192 x i16]* %out_r, i64 0, i64 %sext_ln18_6" [block_mmult.cc:18]   --->   Operation 67 'getelementptr' 'out_addr_6' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 68 [1/1] (1.82ns)   --->   "%add_ln18_7 = add i9 %sub_ln18_2, %zext_ln18_5" [block_mmult.cc:18]   --->   Operation 68 'add' 'add_ln18_7' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 69 [1/1] (0.00ns)   --->   "%sext_ln18_7 = sext i9 %add_ln18_7 to i64" [block_mmult.cc:18]   --->   Operation 69 'sext' 'sext_ln18_7' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 70 [1/1] (0.00ns)   --->   "%out_addr_7 = getelementptr [192 x i16]* %out_r, i64 0, i64 %sext_ln18_7" [block_mmult.cc:18]   --->   Operation 70 'getelementptr' 'out_addr_7' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 71 [1/1] (1.82ns)   --->   "%add_ln18_8 = add i9 %sub_ln18_2, %zext_ln18_7" [block_mmult.cc:18]   --->   Operation 71 'add' 'add_ln18_8' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 72 [1/1] (0.00ns)   --->   "%sext_ln18_8 = sext i9 %add_ln18_8 to i64" [block_mmult.cc:18]   --->   Operation 72 'sext' 'sext_ln18_8' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 73 [1/1] (0.00ns)   --->   "%out_addr_8 = getelementptr [192 x i16]* %out_r, i64 0, i64 %sext_ln18_8" [block_mmult.cc:18]   --->   Operation 73 'getelementptr' 'out_addr_8' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 74 [1/1] (1.78ns)   --->   "%add_ln15_2 = add i5 %ii_read, 3" [block_mmult.cc:15]   --->   Operation 74 'add' 'add_ln15_2' <Predicate = true> <Delay = 1.78> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 75 [1/1] (0.00ns)   --->   "%tmp_12 = call i1 @_ssdm_op_BitSelect.i1.i5.i32(i5 %add_ln15_2, i32 4)" [block_mmult.cc:15]   --->   Operation 75 'bitselect' 'tmp_12' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 76 [1/1] (0.00ns)   --->   "%tmp_s = call i7 @_ssdm_op_BitConcatenate.i7.i5.i2(i5 %add_ln15_2, i2 0)" [block_mmult.cc:15]   --->   Operation 76 'bitconcatenate' 'tmp_s' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 77 [1/1] (0.00ns)   --->   "%zext_ln18_12 = zext i7 %tmp_s to i8" [block_mmult.cc:18]   --->   Operation 77 'zext' 'zext_ln18_12' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 78 [1/1] (0.00ns)   --->   "%zext_ln18_13 = zext i7 %tmp_s to i9" [block_mmult.cc:18]   --->   Operation 78 'zext' 'zext_ln18_13' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 79 [1/1] (0.00ns)   --->   "%tmp_10 = call i9 @_ssdm_op_BitConcatenate.i9.i5.i4(i5 %add_ln15_2, i4 0)" [block_mmult.cc:18]   --->   Operation 79 'bitconcatenate' 'tmp_10' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 80 [1/1] (1.82ns)   --->   "%sub_ln18_3 = sub i9 %tmp_10, %zext_ln18_13" [block_mmult.cc:18]   --->   Operation 80 'sub' 'sub_ln18_3' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 81 [1/1] (1.82ns)   --->   "%add_ln18_9 = add i9 %sub_ln18_3, %zext_ln18_3" [block_mmult.cc:18]   --->   Operation 81 'add' 'add_ln18_9' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 82 [1/1] (0.00ns)   --->   "%sext_ln18_9 = sext i9 %add_ln18_9 to i64" [block_mmult.cc:18]   --->   Operation 82 'sext' 'sext_ln18_9' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 83 [1/1] (0.00ns)   --->   "%out_addr_9 = getelementptr [192 x i16]* %out_r, i64 0, i64 %sext_ln18_9" [block_mmult.cc:18]   --->   Operation 83 'getelementptr' 'out_addr_9' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 84 [1/1] (1.82ns)   --->   "%add_ln18_10 = add i9 %sub_ln18_3, %zext_ln18_5" [block_mmult.cc:18]   --->   Operation 84 'add' 'add_ln18_10' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 85 [1/1] (0.00ns)   --->   "%sext_ln18_10 = sext i9 %add_ln18_10 to i64" [block_mmult.cc:18]   --->   Operation 85 'sext' 'sext_ln18_10' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 86 [1/1] (0.00ns)   --->   "%out_addr_10 = getelementptr [192 x i16]* %out_r, i64 0, i64 %sext_ln18_10" [block_mmult.cc:18]   --->   Operation 86 'getelementptr' 'out_addr_10' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 87 [1/1] (1.82ns)   --->   "%add_ln18_11 = add i9 %sub_ln18_3, %zext_ln18_7" [block_mmult.cc:18]   --->   Operation 87 'add' 'add_ln18_11' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 88 [1/1] (0.00ns)   --->   "%sext_ln18_11 = sext i9 %add_ln18_11 to i64" [block_mmult.cc:18]   --->   Operation 88 'sext' 'sext_ln18_11' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 89 [1/1] (0.00ns)   --->   "%out_addr_11 = getelementptr [192 x i16]* %out_r, i64 0, i64 %sext_ln18_11" [block_mmult.cc:18]   --->   Operation 89 'getelementptr' 'out_addr_11' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 90 [1/1] (1.76ns)   --->   "br label %1" [block_mmult.cc:10]   --->   Operation 90 'br' <Predicate = true> <Delay = 1.76>
+
+State 2 <SV = 1> <Delay = 6.06>
+ST_2 : Operation 91 [1/1] (0.00ns)   --->   "%k_0 = phi i3 [ 0, %0 ], [ %k, %hls_label_0 ]"   --->   Operation 91 'phi' 'k_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 92 [1/1] (1.13ns)   --->   "%icmp_ln10 = icmp eq i3 %k_0, -4" [block_mmult.cc:10]   --->   Operation 92 'icmp' 'icmp_ln10' <Predicate = true> <Delay = 1.13> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.30> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 93 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4)"   --->   Operation 93 'speclooptripcount' 'empty' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 94 [1/1] (1.65ns)   --->   "%k = add i3 %k_0, 1" [block_mmult.cc:10]   --->   Operation 94 'add' 'k' <Predicate = true> <Delay = 1.65> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 95 [1/1] (0.00ns)   --->   "br i1 %icmp_ln10, label %2, label %hls_label_0" [block_mmult.cc:10]   --->   Operation 95 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 96 [1/1] (1.13ns)   --->   "%icmp_ln14 = icmp eq i3 %k_0, 0" [block_mmult.cc:14]   --->   Operation 96 'icmp' 'icmp_ln14' <Predicate = (!icmp_ln10)> <Delay = 1.13> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.30> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 97 [1/1] (0.00ns)   --->   "%zext_ln15 = zext i3 %k_0 to i8" [block_mmult.cc:15]   --->   Operation 97 'zext' 'zext_ln15' <Predicate = (!icmp_ln10)> <Delay = 0.00>
+ST_2 : Operation 98 [1/1] (1.87ns)   --->   "%add_ln15_3 = add i8 %zext_ln18, %zext_ln15" [block_mmult.cc:15]   --->   Operation 98 'add' 'add_ln15_3' <Predicate = (!icmp_ln10 & !tmp_3)> <Delay = 1.87> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 99 [1/1] (0.00ns)   --->   "%zext_ln15_1 = zext i8 %add_ln15_3 to i64" [block_mmult.cc:15]   --->   Operation 99 'zext' 'zext_ln15_1' <Predicate = (!icmp_ln10 & !tmp_3)> <Delay = 0.00>
+ST_2 : Operation 100 [1/1] (0.00ns)   --->   "%A_addr = getelementptr [64 x i16]* %A, i64 0, i64 %zext_ln15_1" [block_mmult.cc:15]   --->   Operation 100 'getelementptr' 'A_addr' <Predicate = (!icmp_ln10 & !tmp_3)> <Delay = 0.00>
+ST_2 : Operation 101 [1/1] (1.87ns)   --->   "%add_ln15_4 = add i8 %zext_ln18_8, %zext_ln15" [block_mmult.cc:15]   --->   Operation 101 'add' 'add_ln15_4' <Predicate = (!icmp_ln10 & !tmp_6)> <Delay = 1.87> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 102 [1/1] (0.00ns)   --->   "%zext_ln15_2 = zext i8 %add_ln15_4 to i64" [block_mmult.cc:15]   --->   Operation 102 'zext' 'zext_ln15_2' <Predicate = (!icmp_ln10 & !tmp_6)> <Delay = 0.00>
+ST_2 : Operation 103 [1/1] (0.00ns)   --->   "%A_addr_1 = getelementptr [64 x i16]* %A, i64 0, i64 %zext_ln15_2" [block_mmult.cc:15]   --->   Operation 103 'getelementptr' 'A_addr_1' <Predicate = (!icmp_ln10 & !tmp_6)> <Delay = 0.00>
+ST_2 : Operation 104 [1/1] (1.87ns)   --->   "%add_ln15_5 = add i8 %zext_ln18_10, %zext_ln15" [block_mmult.cc:15]   --->   Operation 104 'add' 'add_ln15_5' <Predicate = (!icmp_ln10 & !tmp_9)> <Delay = 1.87> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 105 [1/1] (1.87ns)   --->   "%add_ln15_6 = add i8 %zext_ln18_12, %zext_ln15" [block_mmult.cc:15]   --->   Operation 105 'add' 'add_ln15_6' <Predicate = (!icmp_ln10 & !tmp_12)> <Delay = 1.87> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 106 [1/1] (0.00ns)   --->   "%tmp_11 = call i7 @_ssdm_op_BitConcatenate.i7.i3.i4(i3 %k_0, i4 0)" [block_mmult.cc:16]   --->   Operation 106 'bitconcatenate' 'tmp_11' <Predicate = (!icmp_ln10)> <Delay = 0.00>
+ST_2 : Operation 107 [1/1] (0.00ns)   --->   "%tmp_13 = call i5 @_ssdm_op_BitConcatenate.i5.i3.i2(i3 %k_0, i2 0)" [block_mmult.cc:16]   --->   Operation 107 'bitconcatenate' 'tmp_13' <Predicate = (!icmp_ln10)> <Delay = 0.00>
+ST_2 : Operation 108 [1/1] (0.00ns)   --->   "%zext_ln16 = zext i5 %tmp_13 to i7" [block_mmult.cc:16]   --->   Operation 108 'zext' 'zext_ln16' <Predicate = (!icmp_ln10)> <Delay = 0.00>
+ST_2 : Operation 109 [1/1] (1.87ns)   --->   "%sub_ln16 = sub i7 %tmp_11, %zext_ln16" [block_mmult.cc:16]   --->   Operation 109 'sub' 'sub_ln16' <Predicate = (!icmp_ln10)> <Delay = 1.87> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 110 [1/1] (1.87ns)   --->   "%add_ln16_2 = add i7 %sub_ln16, %zext_ln18_2" [block_mmult.cc:16]   --->   Operation 110 'add' 'add_ln16_2' <Predicate = (!icmp_ln10)> <Delay = 1.87> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 111 [1/1] (0.00ns)   --->   "%sext_ln16 = sext i7 %add_ln16_2 to i64" [block_mmult.cc:16]   --->   Operation 111 'sext' 'sext_ln16' <Predicate = (!icmp_ln10)> <Delay = 0.00>
+ST_2 : Operation 112 [1/1] (0.00ns)   --->   "%B_addr = getelementptr [48 x i16]* %B, i64 0, i64 %sext_ln16" [block_mmult.cc:16]   --->   Operation 112 'getelementptr' 'B_addr' <Predicate = (!icmp_ln10)> <Delay = 0.00>
+ST_2 : Operation 113 [1/1] (1.87ns)   --->   "%add_ln16_3 = add i7 %sub_ln16, %zext_ln18_4" [block_mmult.cc:16]   --->   Operation 113 'add' 'add_ln16_3' <Predicate = (!icmp_ln10 & icmp_ln16)> <Delay = 1.87> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 114 [1/1] (0.00ns)   --->   "%sext_ln16_1 = sext i7 %add_ln16_3 to i64" [block_mmult.cc:16]   --->   Operation 114 'sext' 'sext_ln16_1' <Predicate = (!icmp_ln10 & icmp_ln16)> <Delay = 0.00>
+ST_2 : Operation 115 [1/1] (0.00ns)   --->   "%B_addr_1 = getelementptr [48 x i16]* %B, i64 0, i64 %sext_ln16_1" [block_mmult.cc:16]   --->   Operation 115 'getelementptr' 'B_addr_1' <Predicate = (!icmp_ln10 & icmp_ln16)> <Delay = 0.00>
+ST_2 : Operation 116 [1/1] (1.87ns)   --->   "%add_ln16_4 = add i7 %sub_ln16, %zext_ln18_6" [block_mmult.cc:16]   --->   Operation 116 'add' 'add_ln16_4' <Predicate = (!icmp_ln10 & icmp_ln16_1)> <Delay = 1.87> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 117 [2/2] (3.25ns)   --->   "%out_load = load i16* %out_addr, align 2" [block_mmult.cc:14]   --->   Operation 117 'load' 'out_load' <Predicate = (!icmp_ln10)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_2 : Operation 118 [2/2] (3.25ns)   --->   "%A_load = load i16* %A_addr, align 2" [block_mmult.cc:15]   --->   Operation 118 'load' 'A_load' <Predicate = (!icmp_ln10 & !tmp_3)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_2 : Operation 119 [2/2] (2.32ns)   --->   "%B_load = load i16* %B_addr, align 2" [block_mmult.cc:16]   --->   Operation 119 'load' 'B_load' <Predicate = (!icmp_ln10)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_2 : Operation 120 [2/2] (3.25ns)   --->   "%out_load_1 = load i16* %out_addr_1, align 2" [block_mmult.cc:14]   --->   Operation 120 'load' 'out_load_1' <Predicate = (!icmp_ln10)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_2 : Operation 121 [2/2] (2.32ns)   --->   "%B_load_1 = load i16* %B_addr_1, align 2" [block_mmult.cc:16]   --->   Operation 121 'load' 'B_load_1' <Predicate = (!icmp_ln10 & icmp_ln16)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_2 : Operation 122 [2/2] (3.25ns)   --->   "%A_load_1 = load i16* %A_addr_1, align 2" [block_mmult.cc:15]   --->   Operation 122 'load' 'A_load_1' <Predicate = (!icmp_ln10 & !tmp_6)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+
+State 3 <SV = 2> <Delay = 4.05>
+ST_3 : Operation 123 [1/1] (0.00ns)   --->   "%zext_ln15_3 = zext i8 %add_ln15_5 to i64" [block_mmult.cc:15]   --->   Operation 123 'zext' 'zext_ln15_3' <Predicate = (!tmp_9)> <Delay = 0.00>
+ST_3 : Operation 124 [1/1] (0.00ns)   --->   "%A_addr_2 = getelementptr [64 x i16]* %A, i64 0, i64 %zext_ln15_3" [block_mmult.cc:15]   --->   Operation 124 'getelementptr' 'A_addr_2' <Predicate = (!tmp_9)> <Delay = 0.00>
+ST_3 : Operation 125 [1/1] (0.00ns)   --->   "%zext_ln15_4 = zext i8 %add_ln15_6 to i64" [block_mmult.cc:15]   --->   Operation 125 'zext' 'zext_ln15_4' <Predicate = (!tmp_12)> <Delay = 0.00>
+ST_3 : Operation 126 [1/1] (0.00ns)   --->   "%A_addr_3 = getelementptr [64 x i16]* %A, i64 0, i64 %zext_ln15_4" [block_mmult.cc:15]   --->   Operation 126 'getelementptr' 'A_addr_3' <Predicate = (!tmp_12)> <Delay = 0.00>
+ST_3 : Operation 127 [1/1] (0.00ns)   --->   "%sext_ln16_2 = sext i7 %add_ln16_4 to i64" [block_mmult.cc:16]   --->   Operation 127 'sext' 'sext_ln16_2' <Predicate = (icmp_ln16_1)> <Delay = 0.00>
+ST_3 : Operation 128 [1/1] (0.00ns)   --->   "%B_addr_2 = getelementptr [48 x i16]* %B, i64 0, i64 %sext_ln16_2" [block_mmult.cc:16]   --->   Operation 128 'getelementptr' 'B_addr_2' <Predicate = (icmp_ln16_1)> <Delay = 0.00>
+ST_3 : Operation 129 [1/2] (3.25ns)   --->   "%out_load = load i16* %out_addr, align 2" [block_mmult.cc:14]   --->   Operation 129 'load' 'out_load' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_3 : Operation 130 [1/2] (3.25ns)   --->   "%A_load = load i16* %A_addr, align 2" [block_mmult.cc:15]   --->   Operation 130 'load' 'A_load' <Predicate = (!tmp_3)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_3 : Operation 131 [1/1] (0.80ns)   --->   "%select_ln15 = select i1 %tmp_3, i16 0, i16 %A_load" [block_mmult.cc:15]   --->   Operation 131 'select' 'select_ln15' <Predicate = true> <Delay = 0.80> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 132 [1/2] (2.32ns)   --->   "%B_load = load i16* %B_addr, align 2" [block_mmult.cc:16]   --->   Operation 132 'load' 'B_load' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_3 : Operation 133 [1/2] (3.25ns)   --->   "%out_load_1 = load i16* %out_addr_1, align 2" [block_mmult.cc:14]   --->   Operation 133 'load' 'out_load_1' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_3 : Operation 134 [1/2] (2.32ns)   --->   "%B_load_1 = load i16* %B_addr_1, align 2" [block_mmult.cc:16]   --->   Operation 134 'load' 'B_load_1' <Predicate = (icmp_ln16)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_3 : Operation 135 [1/1] (0.80ns)   --->   "%select_ln16 = select i1 %icmp_ln16, i16 %B_load_1, i16 0" [block_mmult.cc:16]   --->   Operation 135 'select' 'select_ln16' <Predicate = true> <Delay = 0.80> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 136 [2/2] (3.25ns)   --->   "%out_load_2 = load i16* %out_addr_2, align 2" [block_mmult.cc:14]   --->   Operation 136 'load' 'out_load_2' <Predicate = (!icmp_ln14)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_3 : Operation 137 [2/2] (2.32ns)   --->   "%B_load_2 = load i16* %B_addr_2, align 2" [block_mmult.cc:16]   --->   Operation 137 'load' 'B_load_2' <Predicate = (icmp_ln16_1)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_3 : Operation 138 [2/2] (3.25ns)   --->   "%out_load_3 = load i16* %out_addr_3, align 2" [block_mmult.cc:14]   --->   Operation 138 'load' 'out_load_3' <Predicate = (!icmp_ln14)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_3 : Operation 139 [1/2] (3.25ns)   --->   "%A_load_1 = load i16* %A_addr_1, align 2" [block_mmult.cc:15]   --->   Operation 139 'load' 'A_load_1' <Predicate = (!tmp_6)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_3 : Operation 140 [1/1] (0.80ns)   --->   "%select_ln15_1 = select i1 %tmp_6, i16 0, i16 %A_load_1" [block_mmult.cc:15]   --->   Operation 140 'select' 'select_ln15_1' <Predicate = true> <Delay = 0.80> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 141 [2/2] (3.25ns)   --->   "%A_load_2 = load i16* %A_addr_2, align 2" [block_mmult.cc:15]   --->   Operation 141 'load' 'A_load_2' <Predicate = (!tmp_9)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_3 : Operation 142 [2/2] (3.25ns)   --->   "%A_load_3 = load i16* %A_addr_3, align 2" [block_mmult.cc:15]   --->   Operation 142 'load' 'A_load_3' <Predicate = (!tmp_12)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+
+State 4 <SV = 3> <Delay = 6.38>
+ST_4 : Operation 143 [1/1] (0.80ns)   --->   "%select_ln14 = select i1 %icmp_ln14, i16 0, i16 %out_load" [block_mmult.cc:14]   --->   Operation 143 'select' 'select_ln14' <Predicate = true> <Delay = 0.80> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_4 : Operation 144 [1/1] (3.36ns) (grouped into DSP with root node add_ln17)   --->   "%mul_ln17 = mul i16 %select_ln15, %B_load" [block_mmult.cc:17]   --->   Operation 144 'mul' 'mul_ln17' <Predicate = true> <Delay = 3.36> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_4 : Operation 145 [1/1] (3.02ns) (root node of the DSP)   --->   "%add_ln17 = add i16 %select_ln14, %mul_ln17" [block_mmult.cc:17]   --->   Operation 145 'add' 'add_ln17' <Predicate = true> <Delay = 3.02> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_4 : Operation 146 [1/1] (0.80ns)   --->   "%select_ln14_1 = select i1 %icmp_ln14, i16 0, i16 %out_load_1" [block_mmult.cc:14]   --->   Operation 146 'select' 'select_ln14_1' <Predicate = true> <Delay = 0.80> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_4 : Operation 147 [1/1] (3.36ns) (grouped into DSP with root node add_ln17_1)   --->   "%mul_ln17_1 = mul i16 %select_ln15, %select_ln16" [block_mmult.cc:17]   --->   Operation 147 'mul' 'mul_ln17_1' <Predicate = true> <Delay = 3.36> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_4 : Operation 148 [1/1] (3.02ns) (root node of the DSP)   --->   "%add_ln17_1 = add i16 %select_ln14_1, %mul_ln17_1" [block_mmult.cc:17]   --->   Operation 148 'add' 'add_ln17_1' <Predicate = true> <Delay = 3.02> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_4 : Operation 149 [1/2] (3.25ns)   --->   "%out_load_2 = load i16* %out_addr_2, align 2" [block_mmult.cc:14]   --->   Operation 149 'load' 'out_load_2' <Predicate = (!icmp_ln14)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_4 : Operation 150 [1/2] (2.32ns)   --->   "%B_load_2 = load i16* %B_addr_2, align 2" [block_mmult.cc:16]   --->   Operation 150 'load' 'B_load_2' <Predicate = (icmp_ln16_1)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_4 : Operation 151 [1/1] (0.80ns)   --->   "%select_ln16_1 = select i1 %icmp_ln16_1, i16 %B_load_2, i16 0" [block_mmult.cc:16]   --->   Operation 151 'select' 'select_ln16_1' <Predicate = true> <Delay = 0.80> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_4 : Operation 152 [1/2] (3.25ns)   --->   "%out_load_3 = load i16* %out_addr_3, align 2" [block_mmult.cc:14]   --->   Operation 152 'load' 'out_load_3' <Predicate = (!icmp_ln14)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_4 : Operation 153 [2/2] (3.25ns)   --->   "%out_load_4 = load i16* %out_addr_4, align 2" [block_mmult.cc:14]   --->   Operation 153 'load' 'out_load_4' <Predicate = (!icmp_ln14)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_4 : Operation 154 [2/2] (3.25ns)   --->   "%out_load_5 = load i16* %out_addr_5, align 2" [block_mmult.cc:14]   --->   Operation 154 'load' 'out_load_5' <Predicate = (!icmp_ln14)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_4 : Operation 155 [1/2] (3.25ns)   --->   "%A_load_2 = load i16* %A_addr_2, align 2" [block_mmult.cc:15]   --->   Operation 155 'load' 'A_load_2' <Predicate = (!tmp_9)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_4 : Operation 156 [1/1] (0.80ns)   --->   "%select_ln15_2 = select i1 %tmp_9, i16 0, i16 %A_load_2" [block_mmult.cc:15]   --->   Operation 156 'select' 'select_ln15_2' <Predicate = true> <Delay = 0.80> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_4 : Operation 157 [1/2] (3.25ns)   --->   "%A_load_3 = load i16* %A_addr_3, align 2" [block_mmult.cc:15]   --->   Operation 157 'load' 'A_load_3' <Predicate = (!tmp_12)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_4 : Operation 158 [1/1] (0.80ns)   --->   "%select_ln15_3 = select i1 %tmp_12, i16 0, i16 %A_load_3" [block_mmult.cc:15]   --->   Operation 158 'select' 'select_ln15_3' <Predicate = true> <Delay = 0.80> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 6.38>
+ST_5 : Operation 159 [1/1] (0.80ns)   --->   "%select_ln14_2 = select i1 %icmp_ln14, i16 0, i16 %out_load_2" [block_mmult.cc:14]   --->   Operation 159 'select' 'select_ln14_2' <Predicate = true> <Delay = 0.80> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_5 : Operation 160 [1/1] (3.36ns) (grouped into DSP with root node add_ln17_2)   --->   "%mul_ln17_2 = mul i16 %select_ln15, %select_ln16_1" [block_mmult.cc:17]   --->   Operation 160 'mul' 'mul_ln17_2' <Predicate = true> <Delay = 3.36> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_5 : Operation 161 [1/1] (3.02ns) (root node of the DSP)   --->   "%add_ln17_2 = add i16 %select_ln14_2, %mul_ln17_2" [block_mmult.cc:17]   --->   Operation 161 'add' 'add_ln17_2' <Predicate = true> <Delay = 3.02> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_5 : Operation 162 [1/1] (0.80ns)   --->   "%select_ln14_3 = select i1 %icmp_ln14, i16 0, i16 %out_load_3" [block_mmult.cc:14]   --->   Operation 162 'select' 'select_ln14_3' <Predicate = true> <Delay = 0.80> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_5 : Operation 163 [1/1] (3.36ns) (grouped into DSP with root node add_ln17_3)   --->   "%mul_ln17_3 = mul i16 %select_ln15_1, %B_load" [block_mmult.cc:17]   --->   Operation 163 'mul' 'mul_ln17_3' <Predicate = true> <Delay = 3.36> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_5 : Operation 164 [1/1] (3.02ns) (root node of the DSP)   --->   "%add_ln17_3 = add i16 %select_ln14_3, %mul_ln17_3" [block_mmult.cc:17]   --->   Operation 164 'add' 'add_ln17_3' <Predicate = true> <Delay = 3.02> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_5 : Operation 165 [1/2] (3.25ns)   --->   "%out_load_4 = load i16* %out_addr_4, align 2" [block_mmult.cc:14]   --->   Operation 165 'load' 'out_load_4' <Predicate = (!icmp_ln14)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_5 : Operation 166 [1/2] (3.25ns)   --->   "%out_load_5 = load i16* %out_addr_5, align 2" [block_mmult.cc:14]   --->   Operation 166 'load' 'out_load_5' <Predicate = (!icmp_ln14)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_5 : Operation 167 [2/2] (3.25ns)   --->   "%out_load_6 = load i16* %out_addr_6, align 2" [block_mmult.cc:14]   --->   Operation 167 'load' 'out_load_6' <Predicate = (!icmp_ln14)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_5 : Operation 168 [2/2] (3.25ns)   --->   "%out_load_7 = load i16* %out_addr_7, align 2" [block_mmult.cc:14]   --->   Operation 168 'load' 'out_load_7' <Predicate = (!icmp_ln14)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+
+State 6 <SV = 5> <Delay = 6.38>
+ST_6 : Operation 169 [1/1] (0.80ns)   --->   "%select_ln14_4 = select i1 %icmp_ln14, i16 0, i16 %out_load_4" [block_mmult.cc:14]   --->   Operation 169 'select' 'select_ln14_4' <Predicate = true> <Delay = 0.80> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_6 : Operation 170 [1/1] (3.36ns) (grouped into DSP with root node add_ln17_4)   --->   "%mul_ln17_4 = mul i16 %select_ln15_1, %select_ln16" [block_mmult.cc:17]   --->   Operation 170 'mul' 'mul_ln17_4' <Predicate = true> <Delay = 3.36> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_6 : Operation 171 [1/1] (3.02ns) (root node of the DSP)   --->   "%add_ln17_4 = add i16 %select_ln14_4, %mul_ln17_4" [block_mmult.cc:17]   --->   Operation 171 'add' 'add_ln17_4' <Predicate = true> <Delay = 3.02> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_6 : Operation 172 [1/1] (0.80ns)   --->   "%select_ln14_5 = select i1 %icmp_ln14, i16 0, i16 %out_load_5" [block_mmult.cc:14]   --->   Operation 172 'select' 'select_ln14_5' <Predicate = true> <Delay = 0.80> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_6 : Operation 173 [1/1] (3.36ns) (grouped into DSP with root node add_ln17_5)   --->   "%mul_ln17_5 = mul i16 %select_ln15_1, %select_ln16_1" [block_mmult.cc:17]   --->   Operation 173 'mul' 'mul_ln17_5' <Predicate = true> <Delay = 3.36> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_6 : Operation 174 [1/1] (3.02ns) (root node of the DSP)   --->   "%add_ln17_5 = add i16 %select_ln14_5, %mul_ln17_5" [block_mmult.cc:17]   --->   Operation 174 'add' 'add_ln17_5' <Predicate = true> <Delay = 3.02> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_6 : Operation 175 [1/2] (3.25ns)   --->   "%out_load_6 = load i16* %out_addr_6, align 2" [block_mmult.cc:14]   --->   Operation 175 'load' 'out_load_6' <Predicate = (!icmp_ln14)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_6 : Operation 176 [1/2] (3.25ns)   --->   "%out_load_7 = load i16* %out_addr_7, align 2" [block_mmult.cc:14]   --->   Operation 176 'load' 'out_load_7' <Predicate = (!icmp_ln14)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_6 : Operation 177 [2/2] (3.25ns)   --->   "%out_load_8 = load i16* %out_addr_8, align 2" [block_mmult.cc:14]   --->   Operation 177 'load' 'out_load_8' <Predicate = (!icmp_ln14)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_6 : Operation 178 [2/2] (3.25ns)   --->   "%out_load_9 = load i16* %out_addr_9, align 2" [block_mmult.cc:14]   --->   Operation 178 'load' 'out_load_9' <Predicate = (!icmp_ln14)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+
+State 7 <SV = 6> <Delay = 6.38>
+ST_7 : Operation 179 [1/1] (0.80ns)   --->   "%select_ln14_6 = select i1 %icmp_ln14, i16 0, i16 %out_load_6" [block_mmult.cc:14]   --->   Operation 179 'select' 'select_ln14_6' <Predicate = true> <Delay = 0.80> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_7 : Operation 180 [1/1] (3.36ns) (grouped into DSP with root node add_ln17_6)   --->   "%mul_ln17_6 = mul i16 %select_ln15_2, %B_load" [block_mmult.cc:17]   --->   Operation 180 'mul' 'mul_ln17_6' <Predicate = true> <Delay = 3.36> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_7 : Operation 181 [1/1] (3.02ns) (root node of the DSP)   --->   "%add_ln17_6 = add i16 %select_ln14_6, %mul_ln17_6" [block_mmult.cc:17]   --->   Operation 181 'add' 'add_ln17_6' <Predicate = true> <Delay = 3.02> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_7 : Operation 182 [1/1] (0.80ns)   --->   "%select_ln14_7 = select i1 %icmp_ln14, i16 0, i16 %out_load_7" [block_mmult.cc:14]   --->   Operation 182 'select' 'select_ln14_7' <Predicate = true> <Delay = 0.80> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_7 : Operation 183 [1/1] (3.36ns) (grouped into DSP with root node add_ln17_7)   --->   "%mul_ln17_7 = mul i16 %select_ln15_2, %select_ln16" [block_mmult.cc:17]   --->   Operation 183 'mul' 'mul_ln17_7' <Predicate = true> <Delay = 3.36> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_7 : Operation 184 [1/1] (3.02ns) (root node of the DSP)   --->   "%add_ln17_7 = add i16 %select_ln14_7, %mul_ln17_7" [block_mmult.cc:17]   --->   Operation 184 'add' 'add_ln17_7' <Predicate = true> <Delay = 3.02> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_7 : Operation 185 [1/2] (3.25ns)   --->   "%out_load_8 = load i16* %out_addr_8, align 2" [block_mmult.cc:14]   --->   Operation 185 'load' 'out_load_8' <Predicate = (!icmp_ln14)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_7 : Operation 186 [1/2] (3.25ns)   --->   "%out_load_9 = load i16* %out_addr_9, align 2" [block_mmult.cc:14]   --->   Operation 186 'load' 'out_load_9' <Predicate = (!icmp_ln14)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_7 : Operation 187 [2/2] (3.25ns)   --->   "%out_load_10 = load i16* %out_addr_10, align 2" [block_mmult.cc:14]   --->   Operation 187 'load' 'out_load_10' <Predicate = (!icmp_ln14)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_7 : Operation 188 [2/2] (3.25ns)   --->   "%out_load_11 = load i16* %out_addr_11, align 2" [block_mmult.cc:14]   --->   Operation 188 'load' 'out_load_11' <Predicate = (!icmp_ln14)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+
+State 8 <SV = 7> <Delay = 6.38>
+ST_8 : Operation 189 [1/1] (3.25ns)   --->   "store i16 %add_ln17, i16* %out_addr, align 2" [block_mmult.cc:18]   --->   Operation 189 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_8 : Operation 190 [1/1] (3.25ns)   --->   "store i16 %add_ln17_1, i16* %out_addr_1, align 2" [block_mmult.cc:18]   --->   Operation 190 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_8 : Operation 191 [1/1] (0.80ns)   --->   "%select_ln14_8 = select i1 %icmp_ln14, i16 0, i16 %out_load_8" [block_mmult.cc:14]   --->   Operation 191 'select' 'select_ln14_8' <Predicate = true> <Delay = 0.80> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_8 : Operation 192 [1/1] (3.36ns) (grouped into DSP with root node add_ln17_8)   --->   "%mul_ln17_8 = mul i16 %select_ln15_2, %select_ln16_1" [block_mmult.cc:17]   --->   Operation 192 'mul' 'mul_ln17_8' <Predicate = true> <Delay = 3.36> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_8 : Operation 193 [1/1] (3.02ns) (root node of the DSP)   --->   "%add_ln17_8 = add i16 %select_ln14_8, %mul_ln17_8" [block_mmult.cc:17]   --->   Operation 193 'add' 'add_ln17_8' <Predicate = true> <Delay = 3.02> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_8 : Operation 194 [1/1] (0.80ns)   --->   "%select_ln14_9 = select i1 %icmp_ln14, i16 0, i16 %out_load_9" [block_mmult.cc:14]   --->   Operation 194 'select' 'select_ln14_9' <Predicate = true> <Delay = 0.80> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_8 : Operation 195 [1/1] (3.36ns) (grouped into DSP with root node add_ln17_9)   --->   "%mul_ln17_9 = mul i16 %select_ln15_3, %B_load" [block_mmult.cc:17]   --->   Operation 195 'mul' 'mul_ln17_9' <Predicate = true> <Delay = 3.36> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_8 : Operation 196 [1/1] (3.02ns) (root node of the DSP)   --->   "%add_ln17_9 = add i16 %select_ln14_9, %mul_ln17_9" [block_mmult.cc:17]   --->   Operation 196 'add' 'add_ln17_9' <Predicate = true> <Delay = 3.02> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_8 : Operation 197 [1/2] (3.25ns)   --->   "%out_load_10 = load i16* %out_addr_10, align 2" [block_mmult.cc:14]   --->   Operation 197 'load' 'out_load_10' <Predicate = (!icmp_ln14)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_8 : Operation 198 [1/1] (0.80ns)   --->   "%select_ln14_10 = select i1 %icmp_ln14, i16 0, i16 %out_load_10" [block_mmult.cc:14]   --->   Operation 198 'select' 'select_ln14_10' <Predicate = true> <Delay = 0.80> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_8 : Operation 199 [1/2] (3.25ns)   --->   "%out_load_11 = load i16* %out_addr_11, align 2" [block_mmult.cc:14]   --->   Operation 199 'load' 'out_load_11' <Predicate = (!icmp_ln14)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_8 : Operation 200 [1/1] (0.80ns)   --->   "%select_ln14_11 = select i1 %icmp_ln14, i16 0, i16 %out_load_11" [block_mmult.cc:14]   --->   Operation 200 'select' 'select_ln14_11' <Predicate = true> <Delay = 0.80> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+
+State 9 <SV = 8> <Delay = 6.38>
+ST_9 : Operation 201 [1/1] (3.25ns)   --->   "store i16 %add_ln17_2, i16* %out_addr_2, align 2" [block_mmult.cc:18]   --->   Operation 201 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_9 : Operation 202 [1/1] (3.25ns)   --->   "store i16 %add_ln17_3, i16* %out_addr_3, align 2" [block_mmult.cc:18]   --->   Operation 202 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_9 : Operation 203 [1/1] (3.36ns) (grouped into DSP with root node add_ln17_10)   --->   "%mul_ln17_10 = mul i16 %select_ln15_3, %select_ln16" [block_mmult.cc:17]   --->   Operation 203 'mul' 'mul_ln17_10' <Predicate = true> <Delay = 3.36> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_9 : Operation 204 [1/1] (3.02ns) (root node of the DSP)   --->   "%add_ln17_10 = add i16 %select_ln14_10, %mul_ln17_10" [block_mmult.cc:17]   --->   Operation 204 'add' 'add_ln17_10' <Predicate = true> <Delay = 3.02> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_9 : Operation 205 [1/1] (3.36ns) (grouped into DSP with root node add_ln17_11)   --->   "%mul_ln17_11 = mul i16 %select_ln15_3, %select_ln16_1" [block_mmult.cc:17]   --->   Operation 205 'mul' 'mul_ln17_11' <Predicate = true> <Delay = 3.36> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_9 : Operation 206 [1/1] (3.02ns) (root node of the DSP)   --->   "%add_ln17_11 = add i16 %select_ln14_11, %mul_ln17_11" [block_mmult.cc:17]   --->   Operation 206 'add' 'add_ln17_11' <Predicate = true> <Delay = 3.02> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 10 <SV = 9> <Delay = 3.25>
+ST_10 : Operation 207 [1/1] (3.25ns)   --->   "store i16 %add_ln17_4, i16* %out_addr_4, align 2" [block_mmult.cc:18]   --->   Operation 207 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_10 : Operation 208 [1/1] (3.25ns)   --->   "store i16 %add_ln17_5, i16* %out_addr_5, align 2" [block_mmult.cc:18]   --->   Operation 208 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+
+State 11 <SV = 10> <Delay = 3.25>
+ST_11 : Operation 209 [1/1] (3.25ns)   --->   "store i16 %add_ln17_6, i16* %out_addr_6, align 2" [block_mmult.cc:18]   --->   Operation 209 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_11 : Operation 210 [1/1] (3.25ns)   --->   "store i16 %add_ln17_7, i16* %out_addr_7, align 2" [block_mmult.cc:18]   --->   Operation 210 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+
+State 12 <SV = 11> <Delay = 3.25>
+ST_12 : Operation 211 [1/1] (3.25ns)   --->   "store i16 %add_ln17_8, i16* %out_addr_8, align 2" [block_mmult.cc:18]   --->   Operation 211 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_12 : Operation 212 [1/1] (3.25ns)   --->   "store i16 %add_ln17_9, i16* %out_addr_9, align 2" [block_mmult.cc:18]   --->   Operation 212 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+
+State 13 <SV = 12> <Delay = 3.25>
+ST_13 : Operation 213 [1/1] (0.00ns)   --->   "%tmp = call i32 (...)* @_ssdm_op_SpecRegionBegin([12 x i8]* @p_str)" [block_mmult.cc:10]   --->   Operation 213 'specregionbegin' 'tmp' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 214 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind" [block_mmult.cc:11]   --->   Operation 214 'specpipeline' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 215 [1/1] (3.25ns)   --->   "store i16 %add_ln17_10, i16* %out_addr_10, align 2" [block_mmult.cc:18]   --->   Operation 215 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_13 : Operation 216 [1/1] (3.25ns)   --->   "store i16 %add_ln17_11, i16* %out_addr_11, align 2" [block_mmult.cc:18]   --->   Operation 216 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 192> <RAM>
+ST_13 : Operation 217 [1/1] (0.00ns)   --->   "%empty_2 = call i32 (...)* @_ssdm_op_SpecRegionEnd([12 x i8]* @p_str, i32 %tmp)" [block_mmult.cc:21]   --->   Operation 217 'specregionend' 'empty_2' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 218 [1/1] (0.00ns)   --->   "br label %1" [block_mmult.cc:10]   --->   Operation 218 'br' <Predicate = true> <Delay = 0.00>
+
+State 14 <SV = 2> <Delay = 0.00>
+ST_14 : Operation 219 [1/1] (0.00ns)   --->   "ret void" [block_mmult.cc:22]   --->   Operation 219 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 5.43ns
+The critical path consists of the following:
+	wire read on port 'ii' (block_mmult.cc:4) [7]  (0 ns)
+	'add' operation ('add_ln15', block_mmult.cc:15) [33]  (1.78 ns)
+	'sub' operation ('sub_ln18_1', block_mmult.cc:18) [39]  (1.82 ns)
+	'add' operation ('add_ln18_3', block_mmult.cc:18) [40]  (1.82 ns)
+
+ <State 2>: 6.06ns
+The critical path consists of the following:
+	'phi' operation ('k') with incoming values : ('k', block_mmult.cc:10) [83]  (0 ns)
+	'sub' operation ('sub_ln16', block_mmult.cc:16) [108]  (1.87 ns)
+	'add' operation ('add_ln16_2', block_mmult.cc:16) [109]  (1.87 ns)
+	'getelementptr' operation ('B_addr', block_mmult.cc:16) [111]  (0 ns)
+	'load' operation ('B_load', block_mmult.cc:16) on array 'B' [122]  (2.32 ns)
+
+ <State 3>: 4.06ns
+The critical path consists of the following:
+	'load' operation ('A_load', block_mmult.cc:15) on array 'A' [120]  (3.25 ns)
+	'select' operation ('select_ln15', block_mmult.cc:15) [121]  (0.805 ns)
+
+ <State 4>: 6.38ns
+The critical path consists of the following:
+	'mul' operation of DSP[124] ('mul_ln17', block_mmult.cc:17) [123]  (3.36 ns)
+	'add' operation of DSP[124] ('add_ln17', block_mmult.cc:17) [124]  (3.02 ns)
+
+ <State 5>: 6.38ns
+The critical path consists of the following:
+	'mul' operation of DSP[138] ('mul_ln17_2', block_mmult.cc:17) [137]  (3.36 ns)
+	'add' operation of DSP[138] ('add_ln17_2', block_mmult.cc:17) [138]  (3.02 ns)
+
+ <State 6>: 6.38ns
+The critical path consists of the following:
+	'mul' operation of DSP[150] ('mul_ln17_4', block_mmult.cc:17) [149]  (3.36 ns)
+	'add' operation of DSP[150] ('add_ln17_4', block_mmult.cc:17) [150]  (3.02 ns)
+
+ <State 7>: 6.38ns
+The critical path consists of the following:
+	'mul' operation of DSP[162] ('mul_ln17_6', block_mmult.cc:17) [161]  (3.36 ns)
+	'add' operation of DSP[162] ('add_ln17_6', block_mmult.cc:17) [162]  (3.02 ns)
+
+ <State 8>: 6.38ns
+The critical path consists of the following:
+	'mul' operation of DSP[172] ('mul_ln17_8', block_mmult.cc:17) [171]  (3.36 ns)
+	'add' operation of DSP[172] ('add_ln17_8', block_mmult.cc:17) [172]  (3.02 ns)
+
+ <State 9>: 6.38ns
+The critical path consists of the following:
+	'mul' operation of DSP[184] ('mul_ln17_10', block_mmult.cc:17) [183]  (3.36 ns)
+	'add' operation of DSP[184] ('add_ln17_10', block_mmult.cc:17) [184]  (3.02 ns)
+
+ <State 10>: 3.25ns
+The critical path consists of the following:
+	'store' operation ('store_ln18', block_mmult.cc:18) of variable 'add_ln17_4', block_mmult.cc:17 on array 'out_r' [151]  (3.25 ns)
+
+ <State 11>: 3.25ns
+The critical path consists of the following:
+	'store' operation ('store_ln18', block_mmult.cc:18) of variable 'add_ln17_6', block_mmult.cc:17 on array 'out_r' [163]  (3.25 ns)
+
+ <State 12>: 3.25ns
+The critical path consists of the following:
+	'store' operation ('store_ln18', block_mmult.cc:18) of variable 'add_ln17_8', block_mmult.cc:17 on array 'out_r' [173]  (3.25 ns)
+
+ <State 13>: 3.25ns
+The critical path consists of the following:
+	'store' operation ('store_ln18', block_mmult.cc:18) of variable 'add_ln17_10', block_mmult.cc:17 on array 'out_r' [185]  (3.25 ns)
+
+ <State 14>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
