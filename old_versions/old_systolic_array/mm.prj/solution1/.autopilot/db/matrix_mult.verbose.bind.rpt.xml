@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'matrix_mult'" level="0">
-<item name = "Date">Sat Nov 25 23:36:17 2023
+<item name = "Date">Sun Nov 26 23:17:24 2023
 </item>
 <item name = "Version">2019.2.1 (Build 2724168 on Thu Dec 05 05:19:09 MST 2019)</item>
 <item name = "Project">mm.prj</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">10.00 ns, 7.039 ns, 1.25 ns</column>
+<column name="ap_clk">10.00 ns, 8.547 ns, 1.25 ns</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">247, 247, 2.470 us, 2.470 us, 247, 247, none</column>
+<column name="">284, 284, 2.840 us, 2.840 us, 284, 284, none</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,12 +35,12 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- memset_c_buff">79, 79, 16, -, -, 5, no</column>
-<column name=" + memset_c_buff">14, 14, 1, -, -, 15, no</column>
-<column name="- Loop 2">25, 25, 6, 5, 1, 5, yes</column>
-<column name="- Loop 3">80, 80, 9, 8, 1, 10, yes</column>
+<column name="- memset_c_buff">109, 109, 11, -, -, 10, no</column>
+<column name=" + memset_c_buff">9, 9, 1, -, -, 10, no</column>
+<column name="- Loop 2">50, 50, 6, 5, 1, 10, yes</column>
+<column name="- Loop 3">50, 50, 6, 5, 1, 10, yes</column>
 <column name="- systolic1">11, 11, 3, 1, 1, 10, yes</column>
-<column name="- Loop 5">40, 40, 8, 8, 1, 5, yes</column>
+<column name="- Loop 5">50, 50, 5, 5, 1, 10, yes</column>
 </table>
 </item>
 </section>

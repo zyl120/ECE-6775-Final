@@ -6,7 +6,7 @@
 #define MM_MULT_H
 
 #ifndef M
-#define M 5
+#define M 10
 #endif
 
 #ifndef N
@@ -14,7 +14,7 @@
 #endif
 
 #ifndef O
-#define O 15
+#define O 10
 #endif
 
 

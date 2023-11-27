@@ -2463,25 +2463,25 @@ extern char *basename (const char *__filename) throw () __attribute__ ((__nonnul
 
 # 1 "././mm_mult.h" 1
 # 26 "././mm_mult.h"
-void matrix_mult(short a[5*10],
-                 short b[15*10],
-                 short c[5*15]);
+void matrix_mult(short a[10*10],
+                 short b[10*10],
+                 short c[10*10]);
 # 6 "mm_mult.cc" 2
 
-void matrix_mult(short a[5*10],
-                 short b[15*10],
-                 short c[5*15]) {_ssdm_SpecArrayDimSize(a, 50);_ssdm_SpecArrayDimSize(b, 150);_ssdm_SpecArrayDimSize(c, 75);
+void matrix_mult(short a[10*10],
+                 short b[10*10],
+                 short c[10*10]) {_ssdm_SpecArrayDimSize(a, 100);_ssdm_SpecArrayDimSize(b, 100);_ssdm_SpecArrayDimSize(c, 100);
 
-    short a_buff[5][10];
-    short b_buff[10][15];
-    short c_buff[5][15] = {0};
+    short a_buff[10][10];
+    short b_buff[10][10];
+    short c_buff[10][10] = {0};
 
 _ssdm_SpecArrayPartition( a_buff, 2, "COMPLETE", 0, "");
 _ssdm_SpecArrayPartition( b_buff, 1, "COMPLETE", 0, "");
 _ssdm_SpecArrayPartition( c_buff, 0, "COMPLETE", 0, "");
 
 
- for (int i = 0; i < 5; ++i) {
+ for (int i = 0; i < 10; ++i) {
 _ssdm_op_SpecPipeline(1, 1, 1, 0, "");
  for (int j = 0; j < 10; ++j) {
             a_buff[i][j] = a[i * 10 + j];
@@ -2490,8 +2490,8 @@ _ssdm_op_SpecPipeline(1, 1, 1, 0, "");
 
     for (int i = 0; i < 10; ++i) {
 _ssdm_op_SpecPipeline(1, 1, 1, 0, "");
- for (int j = 0; j < 15; ++j) {
-            b_buff[i][j] = b[i * 15 + j];
+ for (int j = 0; j < 10; ++j) {
+            b_buff[i][j] = b[i * 10 + j];
         }
     }
 
@@ -2501,16 +2501,15 @@ systolic1:
 
 _ssdm_op_SpecPipeline(1, 1, 1, 0, "");
  systolic2:
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
         systolic3:
-            for (int j = 0; j < 15; j++) {
+            for (int j = 0; j < 10; j++) {
                 short last = (k == 0) ? 0 : c_buff[i][j];
+                short a_val = (i < 10 && k < 10) ? a_buff[i][k] : 0;
+                short b_val = (k < 10 && j < 10) ? b_buff[k][j] : 0;
 
 
-                short a_val = a_buff[i][k];
-                short b_val = b_buff[k][j];
                 short result = last + a_val * b_val;
-
                 c_buff[i][j] = result;
             }
         }
@@ -2518,10 +2517,10 @@ _ssdm_op_SpecPipeline(1, 1, 1, 0, "");
 
 
 
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < 10; ++i) {
 _ssdm_op_SpecPipeline(1, 1, 1, 0, "");
- for (int j = 0; j < 15; ++j) {
-            c[i * 15 + j] = c_buff[i][j];
+ for (int j = 0; j < 10; ++j) {
+            c[i * 10 + j] = c_buff[i][j];
         }
     }
 }

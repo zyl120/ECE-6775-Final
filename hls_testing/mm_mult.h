@@ -11,11 +11,11 @@
 using namespace std;
 
 typedef short DTYPE;
-#define M 100
-#define O 100
-#define N 100
-#define M_BLOCK_SIZE 4
-#define O_BLOCK_SIZE 4
+#define M 10
+#define O 10
+#define N 10
+#define M_BLOCK_SIZE 2
+#define O_BLOCK_SIZE 2
 
 typedef struct {
     DTYPE a[M][N];

@@ -42,7 +42,7 @@ set SCTraceOption all
 set TargetInfo xc7z020:-clg484:-1
 set SourceFiles {sc {} c ../../mm_mult.cc}
 set SourceFlags {sc {} c {{ -std=c++11} {}}}
-set DirectiveFile /home/yz2797/ECE-6775-Final/systolic_array/mm.prj/solution1/solution1.directive
+set DirectiveFile /home/yz2797/ECE-6775-Final/old_versions/old_systolic_array/mm.prj/solution1/solution1.directive
 set TBFiles {verilog ../../mm_mult_test.cc bc ../../mm_mult_test.cc sc ../../mm_mult_test.cc vhdl ../../mm_mult_test.cc c {} cas ../../mm_mult_test.cc}
 set SpecLanguage C
 set TVInFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}

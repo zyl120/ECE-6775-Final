@@ -1,3 +1,0 @@
-mm_mult_mul_mul_1bkb
-mm_mult_mac_muladcud
-mm_mult

@@ -12,7 +12,7 @@ set hls_prj mm.prj
 open_project ${hls_prj} -reset
 
 # Top function of the design is "dut"
-set_top mm_mult
+set_top dut
 
 # Add design and testbench files
 add_files mm_mult.cc -cflags "-std=c++11"

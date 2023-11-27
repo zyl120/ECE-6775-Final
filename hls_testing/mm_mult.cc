@@ -27,6 +27,9 @@ void mm_mult_tiling_systolic (
     DTYPE   b[N][O],
     DTYPE out[M][O]
 ){ 
+    #pragma HLS ARRAY_PARTITION variable=a dim=2 complete
+    #pragma HLS ARRAY_PARTITION variable=b dim=1 complete
+    #pragma HLS ARRAY_PARTITION variable=out dim=0 complete
     for(int ii = 0; ii < M; ii += M_BLOCK_SIZE) {
         for(int jj = 0; jj < O; jj += O_BLOCK_SIZE) {
             tiling_systolic_helper(a,b,out,ii,jj);
@@ -40,6 +43,9 @@ void mm_mult_systolic (
     DTYPE   b[N][O],
     DTYPE out[M][O]
 ){ 
+    #pragma HLS ARRAY_PARTITION variable=a dim=2 complete
+    #pragma HLS ARRAY_PARTITION variable=b dim=1 complete
+    #pragma HLS ARRAY_PARTITION variable=out dim=0 complete
     systolic1:
     for (int k = 0; k < N; k++) {
     //    #pragma HLS LOOP_TRIPCOUNT min=30 max=30
@@ -48,12 +54,10 @@ void mm_mult_systolic (
         for (int i = 0; i < M; i++) {
             systolic3:
             for (int j = 0; j < O; j++) {
-                short last = (k == 0) ? 0 : out[i][j];
-                short a_val = (i < M && k < N) ? a[i][k] : 0;
-                short b_val = (k < N && j < O) ? b[k][j] : 0;
-                // short a_val = a_buff[i][k];
-                // short b_val = b_buff[k][j];
-                short result = last + a_val * b_val;
+                DTYPE last = (k == 0) ? 0 : out[i][j];
+                DTYPE a_val = (i < M && k < N) ? a[i][k] : 0;
+                DTYPE b_val = (k < N && j < O) ? b[k][j] : 0;
+                DTYPE result = last + a_val * b_val;
                 out[i][j] = result;
             }
         }
@@ -66,14 +70,20 @@ void mm_mult_tiling (
     DTYPE   b[N][O],
     DTYPE out[M][O]
 ){ 
-    for(int k = 0; k < N; k++){
-        for(int ii = 0; ii < M; ii += M_BLOCK_SIZE) {
-            for(int jj = 0; jj < O; jj += O_BLOCK_SIZE) {
-                #pragma HLS PIPELINE II=1
-                for(int i = 0; i < M_BLOCK_SIZE; i++) {
-                    for(int j = 0; j < O_BLOCK_SIZE; j++) { 
-                        out[i+ii][j+jj] += a[i+ii][k] * b[k][j+jj];
+    #pragma HLS ARRAY_PARTITION variable=a dim=2 complete
+    #pragma HLS ARRAY_PARTITION variable=b dim=1 complete
+    #pragma HLS ARRAY_PARTITION variable=out dim=0 complete
+    
+    for(int ii = 0; ii < M; ii += M_BLOCK_SIZE) {
+        for(int jj = 0; jj < O; jj += O_BLOCK_SIZE) {
+            #pragma HLS PIPELINE II=1
+            for(int i = 0; i < M_BLOCK_SIZE; i++) {
+                for(int j = 0; j < O_BLOCK_SIZE; j++) {
+                    DTYPE accum = 0;
+                    for(int k = 0; k < N; k++){
+                        accum += a[i+ii][k] * b[k][j+jj];
                     }
+                    out[i+ii][j+jj] = accum;
                 }
             }
         }
@@ -87,12 +97,9 @@ void mm_mult (
     DTYPE out[M][O]
 ){ 
     for (int m = 0; m < M; m++) {
-        //#pragma HLS pipeline II=1
         for (int o = 0; o < O; o++) {
-            #pragma HLS pipeline II=1
-            int accum = 0;
+            DTYPE accum = 0;
             for (int n = 0; n < N; n++) {
-                // #pragma HLS pipeline II=1
                 accum += a[m][n] * b[n][o];
             }
             out[m][o] = accum;
@@ -112,18 +119,12 @@ void dut (
 
     OUT_MATRIX_T Out;
 
-    // Initialize the output matrix with all 0.
-    for(int i = 0; i < M; i++){
-        for(int j = 0; j < O; j++){
-            Out.out[i][j] = 0;
-        }
-    }
-
-    // Call mm_mult function.
+    //-----------Call mm_mult function---------------//
+    //uncomment the one under tests
     // mm_mult(A.a, B.b, Out.out);
     // mm_mult_tiling(A.a, B.b, Out.out);
-    mm_mult_systolic(A.a, B.b, Out.out);
-    // mm_mult_tiling_systolic(A.a, B.b, Out.out);
+    // mm_mult_systolic(A.a, B.b, Out.out);
+    mm_mult_tiling_systolic(A.a, B.b, Out.out);
 
 
     // write out the result.

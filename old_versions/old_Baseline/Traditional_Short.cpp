@@ -112,8 +112,7 @@ public:
 int main()
 {
     cout << "Size: " << sizeof(short) << endl;
-    array<int, 10> test = {1000, 2000, 3000, 4000, 5000,
-                           6000, 7000, 8000, 9000, 10000};
+    array<int, 10> test = {10};
     cout << "Traditional, no SIMD" << endl;
     cout << "Test Size: " << endl;
     for (auto it = test.begin(); it != test.end(); ++it)

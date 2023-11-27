@@ -255,3 +255,178 @@ INFO: [RTGEN 206-100] Generating core module 'matrix_mult_mul_mocq': 28 instance
 INFO: [RTGEN 206-100] Generating core module 'matrix_mult_mux_1lbW': 20 instance(s).
 INFO: [RTGEN 206-100] Generating core module 'matrix_mult_mux_5mb6': 15 instance(s).
 INFO: [RTGEN 206-100] Finished creating RTL model for 'matrix_mult'.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'mm_mult.cc' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:10 ; elapsed = 00:00:15 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 5545 ; free virtual = 25235
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:10 ; elapsed = 00:00:15 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 5552 ; free virtual = 25242
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:11 ; elapsed = 00:00:16 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 5543 ; free virtual = 25233
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:11 ; elapsed = 00:00:16 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 5548 ; free virtual = 25238
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-2' (mm_mult.cc:20) in function 'matrix_mult' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-3' (mm_mult.cc:27) in function 'matrix_mult' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'systolic1' (mm_mult.cc:36) in function 'matrix_mult' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-5' (mm_mult.cc:56) in function 'matrix_mult' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Loop-2.1' (mm_mult.cc:22) in function 'matrix_mult' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'Loop-3.1' (mm_mult.cc:29) in function 'matrix_mult' completely with a factor of 15.
+INFO: [HLS 200-489] Unrolling loop 'systolic2' (mm_mult.cc:40) in function 'matrix_mult' completely with a factor of 5.
+INFO: [HLS 200-489] Unrolling loop 'systolic3' (mm_mult.cc:42) in function 'matrix_mult' completely with a factor of 15.
+INFO: [HLS 200-489] Unrolling loop 'Loop-5.1' (mm_mult.cc:58) in function 'matrix_mult' completely with a factor of 15.
+INFO: [XFORM 203-101] Partitioning array 'a_buff' (mm_mult.cc:11) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'b_buff' (mm_mult.cc:12) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'c_buff' (mm_mult.cc:13) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'c_buff' (mm_mult.cc:13) in dimension 2 completely.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (mm_mult.cc:36:35) to (mm_mult.cc:36:29) in function 'matrix_mult'... converting 85 basic blocks.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:13 ; elapsed = 00:00:17 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 5517 ; free virtual = 25207
+INFO: [HLS 200-472] Inferring partial write operation for 'a_buff[0]' (mm_mult.cc:23:13)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:14 ; elapsed = 00:00:19 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 5505 ; free virtual = 25195
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'matrix_mult' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'matrix_mult' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 2'.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('a_load_2', mm_mult.cc:23) on array 'a' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'a'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 5, Depth = 6.
+INFO: [SCHED 204-61] Pipelining loop 'Loop 3'.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('b_load_2', mm_mult.cc:30) on array 'b' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'b'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 8, Depth = 9.
+INFO: [SCHED 204-61] Pipelining loop 'systolic1'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 3.
+INFO: [SCHED 204-61] Pipelining loop 'Loop 5'.
+WARNING: [SCHED 204-69] Unable to schedule 'store' operation ('c_addr_2_write_ln59', mm_mult.cc:59) of variable 'tmp_25', mm_mult.cc:59 on array 'c' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'c'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 8, Depth = 8.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 35.57 seconds; current allocated memory: 141.325 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 1.77 seconds; current allocated memory: 154.741 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'matrix_mult' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrix_mult/a' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrix_mult/b' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrix_mult/c' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'matrix_mult' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_0' to 'matrix_mult_a_bufbkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_1' to 'matrix_mult_a_bufcud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_2' to 'matrix_mult_a_bufdEe' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_3' to 'matrix_mult_a_bufeOg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_4' to 'matrix_mult_a_buffYi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_5' to 'matrix_mult_a_bufg8j' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_6' to 'matrix_mult_a_bufhbi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_7' to 'matrix_mult_a_bufibs' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_8' to 'matrix_mult_a_bufjbC' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_9' to 'matrix_mult_a_bufkbM' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_mux_104_16_1_1' to 'matrix_mult_mux_1lbW' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_mux_53_16_1_1' to 'matrix_mult_mux_5mb6' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_mac_muladd_16s_16s_16ns_16_1_1' to 'matrix_mult_mac_mncg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_mul_mul_16s_16s_16_1_1' to 'matrix_mult_mul_mocq' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'matrix_mult_mac_mncg': 47 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrix_mult_mul_mocq': 28 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrix_mult_mux_1lbW': 20 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrix_mult_mux_5mb6': 15 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'matrix_mult'.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'mm_mult.cc' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 813 ; free virtual = 23275
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 813 ; free virtual = 23275
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 813 ; free virtual = 23275
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 812 ; free virtual = 23275
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-2' (mm_mult.cc:20) in function 'matrix_mult' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-3' (mm_mult.cc:27) in function 'matrix_mult' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'systolic1' (mm_mult.cc:36) in function 'matrix_mult' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-5' (mm_mult.cc:56) in function 'matrix_mult' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Loop-2.1' (mm_mult.cc:22) in function 'matrix_mult' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'Loop-3.1' (mm_mult.cc:29) in function 'matrix_mult' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'systolic2' (mm_mult.cc:40) in function 'matrix_mult' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'systolic3' (mm_mult.cc:42) in function 'matrix_mult' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'Loop-5.1' (mm_mult.cc:58) in function 'matrix_mult' completely with a factor of 10.
+INFO: [XFORM 203-101] Partitioning array 'a_buff' (mm_mult.cc:11) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'b_buff' (mm_mult.cc:12) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'c_buff' (mm_mult.cc:13) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'c_buff' (mm_mult.cc:13) in dimension 2 completely.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (mm_mult.cc:13:31) to (mm_mult.cc:13:31) in function 'matrix_mult'... converting 122 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (mm_mult.cc:36:35) to (mm_mult.cc:36:29) in function 'matrix_mult'... converting 109 basic blocks.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:13 ; elapsed = 00:00:16 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 777 ; free virtual = 23240
+INFO: [HLS 200-472] Inferring partial write operation for 'a_buff[0]' (mm_mult.cc:23:13)
+INFO: [HLS 200-472] Inferring partial write operation for 'b_buff[0]' (mm_mult.cc:30:13)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:14 ; elapsed = 00:00:18 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 751 ; free virtual = 23214
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'matrix_mult' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'matrix_mult' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 2'.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('a_load_2', mm_mult.cc:23) on array 'a' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'a'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 5, Depth = 6.
+INFO: [SCHED 204-61] Pipelining loop 'Loop 3'.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('b_load_2', mm_mult.cc:30) on array 'b' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'b'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 5, Depth = 6.
+INFO: [SCHED 204-61] Pipelining loop 'systolic1'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 3.
+INFO: [SCHED 204-61] Pipelining loop 'Loop 5'.
+WARNING: [SCHED 204-69] Unable to schedule 'store' operation ('c_addr_2_write_ln59', mm_mult.cc:59) of variable 'tmp_25', mm_mult.cc:59 on array 'c' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'c'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 5, Depth = 5.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 24.81 seconds; current allocated memory: 144.368 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 3.46 seconds; current allocated memory: 155.491 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'matrix_mult' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrix_mult/a' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrix_mult/b' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrix_mult/c' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'matrix_mult' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_0' to 'matrix_mult_a_bufbkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_1' to 'matrix_mult_a_bufcud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_2' to 'matrix_mult_a_bufdEe' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_3' to 'matrix_mult_a_bufeOg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_4' to 'matrix_mult_a_buffYi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_5' to 'matrix_mult_a_bufg8j' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_6' to 'matrix_mult_a_bufhbi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_7' to 'matrix_mult_a_bufibs' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_8' to 'matrix_mult_a_bufjbC' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_a_buff_9' to 'matrix_mult_a_bufkbM' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_b_buff_0' to 'matrix_mult_b_buflbW' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_b_buff_1' to 'matrix_mult_b_bufmb6' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_b_buff_2' to 'matrix_mult_b_bufncg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_b_buff_3' to 'matrix_mult_b_bufocq' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_b_buff_4' to 'matrix_mult_b_bufpcA' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrix_mult_b_buff_5' to 'matrix_mult_b_bufqcK' due to the length limit 20

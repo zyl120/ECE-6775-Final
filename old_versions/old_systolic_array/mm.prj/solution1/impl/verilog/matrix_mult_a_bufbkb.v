@@ -6,8 +6,8 @@
 module matrix_mult_a_bufbkb_ram (addr0, ce0, d0, we0, q0, addr1, ce1, q1,  clk);
 
 parameter DWIDTH = 16;
-parameter AWIDTH = 3;
-parameter MEM_SIZE = 5;
+parameter AWIDTH = 4;
+parameter MEM_SIZE = 10;
 
 input[AWIDTH-1:0] addr0;
 input ce0;
@@ -58,8 +58,8 @@ module matrix_mult_a_bufbkb(
     q1);
 
 parameter DataWidth = 32'd16;
-parameter AddressRange = 32'd5;
-parameter AddressWidth = 32'd3;
+parameter AddressRange = 32'd10;
+parameter AddressWidth = 32'd4;
 input reset;
 input clk;
 input[AddressWidth - 1:0] address0;
