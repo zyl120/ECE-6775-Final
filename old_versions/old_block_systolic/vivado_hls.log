@@ -7,14 +7,14 @@
 source /opt/xilinx/Xilinx_Vivado_vitis_2019.2/Vivado/2019.2/scripts/vivado_hls/hls.tcl -notrace
 INFO: Applying HLS Y2K22 patch v1.2 for IP revision
 INFO: [HLS 200-10] Running '/opt/xilinx/Xilinx_Vivado_vitis_2019.2/Vivado/2019.2/bin/unwrapped/lnx64.o/vivado_hls'
-INFO: [HLS 200-10] For user 'ks977' on host 'en-ec-ecelinux-06.coecis.cornell.edu' (Linux_x86_64 version 3.10.0-1160.92.1.el7.x86_64) on Sun Nov 26 21:11:07 EST 2023
+INFO: [HLS 200-10] For user 'zw543' on host 'en-ec-ecelinux-06.coecis.cornell.edu' (Linux_x86_64 version 3.10.0-1160.92.1.el7.x86_64) on Mon Nov 27 13:38:39 EST 2023
 INFO: [HLS 200-10] On os "CentOS Linux release 7.9.2009 (Core)"
-INFO: [HLS 200-10] In directory '/home/ks977/ECE-6775-Final/block_systolic'
+INFO: [HLS 200-10] In directory '/home/zw543/ece6775/ECE-6775-Final/old_versions/old_block_systolic'
 Sourcing Tcl script 'run.tcl'
-INFO: [HLS 200-10] Creating and opening project '/home/ks977/ECE-6775-Final/block_systolic/mm.prj'.
+INFO: [HLS 200-10] Opening and resetting project '/home/zw543/ece6775/ECE-6775-Final/old_versions/old_block_systolic/mm.prj'.
 INFO: [HLS 200-10] Adding design file 'block_mmult.cc' to the project
 INFO: [HLS 200-10] Adding test bench file 'block_mmult_testbench.cc' to the project
-INFO: [HLS 200-10] Creating and opening solution '/home/ks977/ECE-6775-Final/block_systolic/mm.prj/solution1'.
+INFO: [HLS 200-10] Opening and resetting solution '/home/zw543/ece6775/ECE-6775-Final/old_versions/old_block_systolic/mm.prj/solution1'.
 INFO: [HLS 200-10] Cleaning up the solution database.
 INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
 INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
@@ -10028,70 +10028,24 @@ INFO: [SIM 211-1] CSim done with 0 errors.
 INFO: [SIM 211-3] *************** CSIM finish ***************
 INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
 INFO: [HLS 200-10] Analyzing design file 'block_mmult.cc' ... 
-INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:14 ; elapsed = 00:00:18 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 11966 ; free virtual = 26325
-INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:14 ; elapsed = 00:00:18 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 11966 ; free virtual = 26325
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:13 ; elapsed = 00:00:17 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 14242 ; free virtual = 29164
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:13 ; elapsed = 00:00:17 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 14242 ; free virtual = 29165
 INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:15 ; elapsed = 00:00:19 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 11961 ; free virtual = 26321
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:26 ; elapsed = 00:00:31 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 14172 ; free virtual = 29098
 INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:15 ; elapsed = 00:00:19 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 11957 ; free virtual = 26317
+INFO: [XFORM 203-602] Inlining function 'block_mmul' into 'dut' (block_mmult.cc:50) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:01:15 ; elapsed = 00:01:19 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 14166 ; free virtual = 29094
 INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-1' (block_mmult.cc:10) in function 'block_mmul_helper' for pipelining.
 INFO: [HLS 200-489] Unrolling loop 'Loop-1.1' (block_mmult.cc:12) in function 'block_mmul_helper' completely with a factor of 4.
 INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1' (block_mmult.cc:13) in function 'block_mmul_helper' completely with a factor of 4.
-INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (block_mmult.cc:10:34) to (block_mmult.cc:10:29) in function 'block_mmul_helper'... converting 97 basic blocks.
-INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:16 ; elapsed = 00:00:20 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 11937 ; free virtual = 26297
-INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:16 ; elapsed = 00:00:20 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 11928 ; free virtual = 26289
-INFO: [HLS 200-10] Starting hardware synthesis ...
-INFO: [HLS 200-10] Synthesizing 'block_mmul' ...
-WARNING: [SYN 201-107] Renaming port name 'block_mmul/out' to 'block_mmul/out_r' to avoid the conflict with HDL keywords or other object names.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'block_mmul_helper' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
-WARNING: [SCHED 204-68] The II Violation in module 'block_mmul_helper' (Loop: Loop 1): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1)
-   between 'store' operation ('out_addr_write_ln18', block_mmult.cc:18) of variable 'add_ln17', block_mmult.cc:17 on array 'out_r' and 'load' operation ('out_load', block_mmult.cc:14) on array 'out_r'.
-WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('out_load_4', block_mmult.cc:14) on array 'out_r' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'out_r'.
-INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 16, Depth = 16.
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 20.63 seconds; current allocated memory: 135.885 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.36 seconds; current allocated memory: 136.777 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'block_mmul' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.39 seconds; current allocated memory: 136.916 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.12 seconds; current allocated memory: 137.010 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'block_mmul_helper' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SYN 201-210] Renamed object name 'block_mmul_mac_muladd_16s_16s_16ns_16_1_1' to 'block_mmul_mac_mubkb' due to the length limit 20
-INFO: [RTGEN 206-100] Generating core module 'block_mmul_mac_mubkb': 16 instance(s).
-INFO: [RTGEN 206-100] Finished creating RTL model for 'block_mmul_helper'.
-INFO: [HLS 200-111]  Elapsed time: 0.27 seconds; current allocated memory: 138.415 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'block_mmul' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/A' to 'ap_memory'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/B' to 'ap_memory'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/out_r' to 'ap_memory'.
-INFO: [RTGEN 206-500] Setting interface mode on function 'block_mmul' to 'ap_ctrl_hs'.
-INFO: [RTGEN 206-100] Finished creating RTL model for 'block_mmul'.
-INFO: [HLS 200-111]  Elapsed time: 0.95 seconds; current allocated memory: 142.010 MB.
-INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
-INFO: [HLS 200-789] **** Estimated Fmax: 127.36 MHz
-INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:18 ; elapsed = 00:00:25 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 11917 ; free virtual = 26281
-INFO: [VHDL 208-304] Generating VHDL RTL for block_mmul.
-INFO: [VLOG 209-307] Generating Verilog RTL for block_mmul.
-INFO: [HLS 200-112] Total elapsed time: 25.08 seconds; peak allocated memory: 142.010 MB.
-INFO: [Common 17-206] Exiting vivado_hls at Sun Nov 26 21:11:31 2023...
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'A_in.V.a' (block_mmult.cc:38) .
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'B_in.V.b' (block_mmult.cc:39) .
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'C_out.V.out' (block_mmult.cc:40) .
+INFO: [XFORM 203-101] Partitioning array 'A_in.V.a' (block_mmult.cc:38) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'B_in.V.b' (block_mmult.cc:39) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'C_out.V.out' (block_mmult.cc:40) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'A_in.V.a' (block_mmult.cc:38) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'B_in.V.b' (block_mmult.cc:39) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'C_out.V.out' (block_mmult.cc:40) in dimension 2 completely.
+WARNING: [XFORM 203-104] Completely partitioning array 'tmp.a' accessed through non-constant indices on dimension 1 (block_mmult.cc:15:71), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead.
+WARNING: [XFORM 203-104] Completely partitioning array 'tmp.b' accessed through non-constant indices on dimension 1 (block_mmult.cc:16:71), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead.

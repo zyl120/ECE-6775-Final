@@ -1,3 +1,0 @@
-block_mmul_mac_mubkb
-block_mmul_helper
-block_mmul
