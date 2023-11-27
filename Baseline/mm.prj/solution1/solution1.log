@@ -1,0 +1,1039 @@
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'block_mmult.cc' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:13 ; elapsed = 00:00:32 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 1102 ; free virtual = 24282
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:13 ; elapsed = 00:00:32 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 1103 ; free virtual = 24283
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:15 ; elapsed = 00:00:33 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 1104 ; free virtual = 24284
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:15 ; elapsed = 00:00:33 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 1101 ; free virtual = 24283
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'loadA' (block_mmult.cc:14) in function 'block_mmul' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'partialsum' (block_mmult.cc:25) in function 'block_mmul' for pipelining.
+WARNING: [XFORM 203-505] Ignored pipeline directive for loop 'Loop-3.1' (block_mmult.cc:28) because its parent loop or function is pipelined.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'writeoutput' (block_mmult.cc:54) in function 'block_mmul' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1' (block_mmult.cc:17) in function 'block_mmul' completely with a factor of 20.
+INFO: [HLS 200-489] Unrolling loop 'Loop-3.1' (block_mmult.cc:28) in function 'block_mmul' completely with a factor of 20.
+INFO: [HLS 200-489] Unrolling loop 'Loop-3.1.1' (block_mmult.cc:30) in function 'block_mmul' completely with a factor of 20.
+INFO: [HLS 200-489] Unrolling loop 'Loop-4.1' (block_mmult.cc:56) in function 'block_mmul' completely with a factor of 20.
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'ARows.V.a' (block_mmult.cc:4) .
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'BCols.V.a' (block_mmult.cc:5) .
+INFO: [XFORM 203-101] Partitioning array 'A'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'tmp.a' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'AB' (block_mmult.cc:23) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'tmp.a.1' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'ARows.V.a' (block_mmult.cc:4) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'BCols.V.a' (block_mmult.cc:5) in dimension 1 completely.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:17 ; elapsed = 00:00:36 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 1068 ; free virtual = 24250
+INFO: [HLS 200-472] Inferring partial write operation for 'A.0' (block_mmult.cc:18:17)
+INFO: [HLS 200-472] Inferring partial write operation for 'AB[0]' (block_mmult.cc:31:17)
+INFO: [HLS 200-472] Inferring partial write operation for 'AB[0]' (block_mmult.cc:23:43)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:20 ; elapsed = 00:00:38 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 1054 ; free virtual = 24236
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'block_mmul' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'block_mmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'loadA'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+INFO: [SCHED 204-61] Pipelining loop 'partialsum'.
+WARNING: [SCHED 204-68] The II Violation in module 'block_mmul' (Loop: partialsum): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1)
+   between 'store' operation ('AB_0_addr_1_write_ln31', block_mmult.cc:31) of variable 'add_ln31', block_mmult.cc:31 on array 'AB[0]', block_mmult.cc:23 and 'load' operation ('AB_0_load', block_mmult.cc:31) on array 'AB[0]', block_mmult.cc:23.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('AB_0_load_4', block_mmult.cc:31) on array 'AB[0]', block_mmult.cc:23 due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'AB_0'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 20, Depth = 20.
+INFO: [SCHED 204-61] Pipelining loop 'writeoutput'.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('AB_0_load_22', block_mmult.cc:57) on array 'AB[0]', block_mmult.cc:23 due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'AB_0'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 10, Depth = 11.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 105.94 seconds; current allocated memory: 157.059 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 7.06 seconds; current allocated memory: 168.165 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'block_mmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_10' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_11' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_12' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_13' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_14' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_15' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_16' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_17' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_18' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_19' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_1' to 'ap_fifo'.
+INFO==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'block_mmult.cc' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:13 ; elapsed = 00:00:20 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1048 ; free virtual = 24237
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:13 ; elapsed = 00:00:20 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1048 ; free virtual = 24238
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:14 ; elapsed = 00:00:21 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1043 ; free virtual = 24234
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:14 ; elapsed = 00:00:21 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1041 ; free virtual = 24233
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'loadA' (block_mmult.cc:14) in function 'block_mmul' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'partialsum' (block_mmult.cc:25) in function 'block_mmul' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'writeoutput' (block_mmult.cc:54) in function 'block_mmul' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1' (block_mmult.cc:17) in function 'block_mmul' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'Loop-3.1' (block_mmult.cc:28) in function 'block_mmul' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'Loop-3.1.1' (block_mmult.cc:30) in function 'block_mmul' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'Loop-4.1' (block_mmult.cc:56) in function 'block_mmul' completely with a factor of 10.
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'ARows.V.a' (block_mmult.cc:4) .
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'BCols.V.a' (block_mmult.cc:5) .
+INFO: [XFORM 203-101] Partitioning array 'A'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'tmp.a' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'AB' (block_mmult.cc:23) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'tmp.a.1' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'ARows.V.a' (block_mmult.cc:4) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'BCols.V.a' (block_mmult.cc:5) in dimension 1 completely.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:15 ; elapsed = 00:00:22 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1017 ; free virtual = 24209
+INFO: [HLS 200-472] Inferring partial write operation for 'A.0' (block_mmult.cc:18:17)
+INFO: [HLS 200-472] Inferring partial write operation for 'AB[0]' (block_mmult.cc:31:17)
+INFO: [HLS 200-472] Inferring partial write operation for 'AB[0]' (block_mmult.cc:23:43)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:15 ; elapsed = 00:00:23 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1017 ; free virtual = 24209
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'block_mmul' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'block_mmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'loadA'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+INFO: [SCHED 204-61] Pipelining loop 'partialsum'.
+WARNING: [SCHED 204-68] The II Violation in module 'block_mmul' (Loop: partialsum): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1)
+   between 'store' operation ('AB_0_addr_1_write_ln31', block_mmult.cc:31) of variable 'add_ln31', block_mmult.cc:31 on array 'AB[0]', block_mmult.cc:23 and 'load' operation ('AB_0_load', block_mmult.cc:31) on array 'AB[0]', block_mmult.cc:23.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('AB_0_load_4', block_mmult.cc:31) on array 'AB[0]', block_mmult.cc:23 due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'AB_0'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 10, Depth = 10.
+INFO: [SCHED 204-61] Pipelining loop 'writeoutput'.
+WARNING: [SCHED 204-69] Unable to schedule 'store' operation ('abPartialSum_out_add_2_write_ln57', block_mmult.cc:57) of variable 'tmp_5', block_mmult.cc:57 on array 'abPartialSum_out' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'abPartialSum_out'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 5, Depth = 5.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 26.14 seconds; current allocated memory: 133.259 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 1.89 seconds; current allocated memory: 136.790 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'block_mmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/abPartialSum_out' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/iteration' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'block_mmul' to 'ap_ctrl_hs'.
+INFO==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'block_mmult.cc' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:22 ; elapsed = 00:00:27 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 1240 ; free virtual = 24459
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:22 ; elapsed = 00:00:27 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 1240 ; free virtual = 24460
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:23 ; elapsed = 00:00:28 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 1232 ; free virtual = 24452
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:23 ; elapsed = 00:00:28 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 1233 ; free virtual = 24453
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'loadA' (block_mmult.cc:14) in function 'block_mmul' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'partialsum' (block_mmult.cc:25) in function 'block_mmul' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'writeoutput' (block_mmult.cc:53) in function 'block_mmul' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1' (block_mmult.cc:17) in function 'block_mmul' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'Loop-3.1' (block_mmult.cc:28) in function 'block_mmul' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'Loop-3.1.1' (block_mmult.cc:29) in function 'block_mmul' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'Loop-4.1' (block_mmult.cc:55) in function 'block_mmul' completely with a factor of 10.
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'ARows.V.a' (block_mmult.cc:4) .
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'BCols.V.a' (block_mmult.cc:5) .
+INFO: [XFORM 203-101] Partitioning array 'A'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'tmp.a' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'AB' (block_mmult.cc:23) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'tmp.a.1' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'ARows.V.a' (block_mmult.cc:4) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'BCols.V.a' (block_mmult.cc:5) in dimension 1 completely.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:24 ; elapsed = 00:00:29 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 1198 ; free virtual = 24419
+INFO: [HLS 200-472] Inferring partial write operation for 'A.0' (block_mmult.cc:18:17)
+INFO: [HLS 200-472] Inferring partial write operation for 'AB[0]' (block_mmult.cc:30:17)
+INFO: [HLS 200-472] Inferring partial write operation for 'AB[0]' (block_mmult.cc:23:43)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:24 ; elapsed = 00:00:29 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 1197 ; free virtual = 24418
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'block_mmul' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'block_mmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'loadA'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+INFO: [SCHED 204-61] Pipelining loop 'partialsum'.
+WARNING: [SCHED 204-68] The II Violation in module 'block_mmul' (Loop: partialsum): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1)
+   between 'store' operation ('AB_0_addr_1_write_ln30', block_mmult.cc:30) of variable 'add_ln30', block_mmult.cc:30 on array 'AB[0]', block_mmult.cc:23 and 'load' operation ('AB_0_load', block_mmult.cc:30) on array 'AB[0]', block_mmult.cc:23.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('AB_0_load_4', block_mmult.cc:30) on array 'AB[0]', block_mmult.cc:23 due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'AB_0'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 10, Depth = 10.
+INFO: [SCHED 204-61] Pipelining loop 'writeoutput'.
+WARNING: [SCHED 204-69] Unable to schedule 'store' operation ('abPartialSum_out_add_2_write_ln56', block_mmult.cc:56) of variable 'tmp_5', block_mmult.cc:56 on array 'abPartialSum_out' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'abPartialSum_out'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 5, Depth = 5.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 32.86 seconds; current allocated memory: 133.256 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 1.89 seconds; current allocated memory: 136.787 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'block_mmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/abPartialSum_out' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/iteration' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'block_mmul' to 'ap_ctrl_hs'.
+INFO==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'block_mmult.cc' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:21 ; elapsed = 00:00:26 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 881 ; free virtual = 24189
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:21 ; elapsed = 00:00:26 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 881 ; free virtual = 24189
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:23 ; elapsed = 00:00:27 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 878 ; free virtual = 24187
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:23 ; elapsed = 00:00:28 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 876 ; free virtual = 24185
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'loadA' (block_mmult.cc:14) in function 'block_mmul' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'partialsum' (block_mmult.cc:25) in function 'block_mmul' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'writeoutput' (block_mmult.cc:53) in function 'block_mmul' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1' (block_mmult.cc:17) in function 'block_mmul' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'Loop-3.1' (block_mmult.cc:28) in function 'block_mmul' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'Loop-3.1.1' (block_mmult.cc:29) in function 'block_mmul' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'Loop-4.1' (block_mmult.cc:55) in function 'block_mmul' completely with a factor of 10.
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'ARows.V.a' (block_mmult.cc:4) .
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'BCols.V.a' (block_mmult.cc:5) .
+INFO: [XFORM 203-101] Partitioning array 'A'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'tmp.a' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'AB' (block_mmult.cc:23) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'tmp.a.1' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'ARows.V.a' (block_mmult.cc:4) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'BCols.V.a' (block_mmult.cc:5) in dimension 1 completely.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:23 ; elapsed = 00:00:28 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 852 ; free virtual = 24162
+INFO: [HLS 200-472] Inferring partial write operation for 'A.0' (block_mmult.cc:18:17)
+INFO: [HLS 200-472] Inferring partial write operation for 'AB[0]' (block_mmult.cc:30:17)
+INFO: [HLS 200-472] Inferring partial write operation for 'AB[0]' (block_mmult.cc:23:43)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:24 ; elapsed = 00:00:29 . Memory (MB): peak = 1172.680 ; gain = 530.188 ; free physical = 853 ; free virtual = 24162
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'block_mmul' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'block_mmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'loadA'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+INFO: [SCHED 204-61] Pipelining loop 'partialsum'.
+WARNING: [SCHED 204-68] The II Violation in module 'block_mmul' (Loop: partialsum): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1)
+   between 'store' operation ('AB_0_addr_1_write_ln30', block_mmult.cc:30) of variable 'add_ln30', block_mmult.cc:30 on array 'AB[0]', block_mmult.cc:23 and 'load' operation ('AB_0_load', block_mmult.cc:30) on array 'AB[0]', block_mmult.cc:23.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('AB_0_load_4', block_mmult.cc:30) on array 'AB[0]', block_mmult.cc:23 due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'AB_0'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 10, Depth = 10.
+INFO: [SCHED 204-61] Pipelining loop 'writeoutput'.
+WARNING: [SCHED 204-69] Unable to schedule 'store' operation ('abPartialSum_out_add_2_write_ln56', block_mmult.cc:56) of variable 'tmp_5', block_mmult.cc:56 on array 'abPartialSum_out' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'abPartialSum_out'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 5, Depth = 5.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 32.46 seconds; current allocated memory: 133.257 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 1.87 seconds; current allocated memory: 136.788 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'block_mmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/abPartialSum_out' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/iteration' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'block_mmul' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210]==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'block_mmult.cc' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:02:04 ; elapsed = 00:02:08 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1403 ; free virtual = 24700
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:02:04 ; elapsed = 00:02:08 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1403 ; free virtual = 24701
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:02:05 ; elapsed = 00:02:09 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1404 ; free virtual = 24701
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:02:05 ; elapsed = 00:02:09 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1402 ; free virtual = 24700
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'loadA' (block_mmult.cc:14) in function 'block_mmul' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'partialsum' (block_mmult.cc:25) in function 'block_mmul' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'writeoutput' (block_mmult.cc:53) in function 'block_mmul' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1' (block_mmult.cc:17) in function 'block_mmul' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'Loop-3.1' (block_mmult.cc:28) in function 'block_mmul' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'Loop-3.1.1' (block_mmult.cc:29) in function 'block_mmul' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'Loop-4.1' (block_mmult.cc:55) in function 'block_mmul' completely with a factor of 10.
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'ARows.V.a' (block_mmult.cc:4) .
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'BCols.V.a' (block_mmult.cc:5) .
+INFO: [XFORM 203-101] Partitioning array 'A'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'tmp.a' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'AB' (block_mmult.cc:23) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'tmp.a.1' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'ARows.V.a' (block_mmult.cc:4) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'BCols.V.a' (block_mmult.cc:5) in dimension 1 completely.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:02:06 ; elapsed = 00:02:10 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1372 ; free virtual = 24671
+INFO: [HLS 200-472] Inferring partial write operation for 'A.0' (block_mmult.cc:18:17)
+INFO: [HLS 200-472] Inferring partial write operation for 'AB[0]' (block_mmult.cc:30:17)
+INFO: [HLS 200-472] Inferring partial write operation for 'AB[0]' (block_mmult.cc:23:43)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:02:07 ; elapsed = 00:02:10 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1374 ; free virtual = 24673
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'block_mmul' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'block_mmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'loadA'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+INFO: [SCHED 204-61] Pipelining loop 'partialsum'.
+WARNING: [SCHED 204-68] The II Violation in module 'block_mmul' (Loop: partialsum): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1)
+   between 'store' operation ('AB_0_addr_1_write_ln30', block_mmult.cc:30) of variable 'add_ln30', block_mmult.cc:30 on array 'AB[0]', block_mmult.cc:23 and 'load' operation ('AB_0_load', block_mmult.cc:30) on array 'AB[0]', block_mmult.cc:23.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('AB_0_load_4', block_mmult.cc:30) on array 'AB[0]', block_mmult.cc:23 due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'AB_0'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 10, Depth = 10.
+INFO: [SCHED 204-61] Pipelining loop 'writeoutput'.
+WARNING: [SCHED 204-69] Unable to schedule 'store' operation ('abPartialSum_out_add_2_write_ln56', block_mmult.cc:56) of variable 'tmp_5', block_mmult.cc:56 on array 'abPartialSum_out' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'abPartialSum_out'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 5, Depth = 5.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 134.05 seconds; current allocated memory: 133.231 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 1.87 seconds; current allocated memory: 136.763 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'block_mmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/abPartialSum_out' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/iteration' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'block_mmul' to 'ap_ctrl_hs'.
+INFO==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'block_mmult.cc' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:22 ; elapsed = 00:00:26 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1088 ; free virtual = 24385
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:22 ; elapsed = 00:00:26 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1089 ; free virtual = 24386
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:23 ; elapsed = 00:00:28 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1085 ; free virtual = 24383
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:23 ; elapsed = 00:00:28 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1083 ; free virtual = 24381
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'loadA' (block_mmult.cc:14) in function 'block_mmul' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'partialsum' (block_mmult.cc:25) in function 'block_mmul' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'writeoutput' (block_mmult.cc:53) in function 'block_mmul' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1' (block_mmult.cc:17) in function 'block_mmul' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'Loop-3.1' (block_mmult.cc:28) in function 'block_mmul' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'Loop-3.1.1' (block_mmult.cc:29) in function 'block_mmul' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'Loop-4.1' (block_mmult.cc:55) in function 'block_mmul' completely with a factor of 10.
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'ARows.V.a' (block_mmult.cc:4) .
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'BCols.V.a' (block_mmult.cc:5) .
+INFO: [XFORM 203-101] Partitioning array 'A'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'tmp.a' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'AB' (block_mmult.cc:23) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'tmp.a.1' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'ARows.V.a' (block_mmult.cc:4) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'BCols.V.a' (block_mmult.cc:5) in dimension 1 completely.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:23 ; elapsed = 00:00:29 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1056 ; free virtual = 24355
+INFO: [HLS 200-472] Inferring partial write operation for 'A.0' (block_mmult.cc:18:17)
+INFO: [HLS 200-472] Inferring partial write operation for 'AB[0]' (block_mmult.cc:30:17)
+INFO: [HLS 200-472] Inferring partial write operation for 'AB[0]' (block_mmult.cc:23:43)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:24 ; elapsed = 00:00:29 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1054 ; free virtual = 24353
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'block_mmul' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'block_mmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'loadA'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+INFO: [SCHED 204-61] Pipelining loop 'partialsum'.
+WARNING: [SCHED 204-68] The II Violation in module 'block_mmul' (Loop: partialsum): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1)
+   between 'store' operation ('AB_0_addr_1_write_ln30', block_mmult.cc:30) of variable 'add_ln30', block_mmult.cc:30 on array 'AB[0]', block_mmult.cc:23 and 'load' operation ('AB_0_load', block_mmult.cc:30) on array 'AB[0]', block_mmult.cc:23.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('AB_0_load_4', block_mmult.cc:30) on array 'AB[0]', block_mmult.cc:23 due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'AB_0'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 10, Depth = 10.
+INFO: [SCHED 204-61] Pipelining loop 'writeoutput'.
+WARNING: [SCHED 204-69] Unable to schedule 'store' operation ('abPartialSum_out_add_2_write_ln56', block_mmult.cc:56) of variable 'tmp_5', block_mmult.cc:56 on array 'abPartialSum_out' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'abPartialSum_out'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 5, Depth = 5.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 32.85 seconds; current allocated memory: 133.261 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 1.98 seconds; current allocated memory: 136.792 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'block_mmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/ARows_V_a_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/BCols_V_a_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/abPartialSum_out' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/iteration' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'block_mmul' to 'ap_ctrl_hs'.
+INFO==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'block_mmult.cc' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:14 ; elapsed = 00:00:22 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 1623 ; free virtual = 25030
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:14 ; elapsed = 00:00:22 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 1623 ; free virtual = 25030
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:15 ; elapsed = 00:00:23 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 1615 ; free virtual = 25023
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function 'block_mmul' into 'dut' (block_mmult.cc:45) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:15 ; elapsed = 00:00:24 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 1611 ; free virtual = 25019
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-1' (block_mmult.cc:10) in function 'block_mmul_helper' for pipelining.
+WARNING: [XFORM 203-503] Cannot unroll loop 'Loop-1.1' (block_mmult.cc:12) in function 'block_mmul_helper' completely: variable loop bound.
+WARNING: [XFORM 203-503] Cannot unroll loop 'Loop-1.1.1' (block_mmult.cc:13) in function 'block_mmul_helper' completely: variable loop bound.
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'A_in.V.a' (block_mmult.cc:33) .
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'B_in.V.b' (block_mmult.cc:34) .
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'C_out.V.out' (block_mmult.cc:35) .
+INFO: [XFORM 203-101] Partitioning array 'A_in.V.a' (block_mmult.cc:33) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'B_in.V.b' (block_mmult.cc:34) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'C_out.V.out' (block_mmult.cc:35) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'A_in.V.a' (block_mmult.cc:33) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'B_in.V.b' (block_mmult.cc:34) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'C_out.V.out' (block_mmult.cc:35) in dimension 2 completely.
+INFO: [XFORM 203-602] Inlining function 'block_mmul' into 'dut' (block_mmult.cc:45) automatically.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:19 ; elapsed = 00:00:28 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 1571 ; free virtual = 24980
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-1' (block_mmult.cc:10:18) in function 'block_mmul_helper'.
+INFO: [HLS 200-472] Inferring partial write operation for 'out_MATRIX.out' (block_mmult.cc:42:13)
+INFO: [HLS 200-472] Inferring partial write operation for 'out' (block_mmult.cc:14:17)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:23 ; elapsed = 00:00:32 . Memory (MB): peak = 1169.711 ; gain = 527.219 ; free physical = 1507 ; free virtual = 24917
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'dut' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'block_mmul_helper' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+WARNING: [SCHED 204-65] Unable to satisfy pipeline directive: Loop contains subloop(s) not being unrolled or flattened.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 31.91 seconds; current allocated memory: 156.631 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.21 seconds; current allocated memory: 157.621 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'dut' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.94 seconds; current allocated memory: 160.091 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 1.97 seconds; current allocated memory: 167.010 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'block_mmul_helper' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'dut_mac_muladd_16s_16s_16ns_16_1_1' to 'dut_mac_muladd_16bkb' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'dut_mac_muladd_16bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'dut_mux_486_16_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'dut_mux_647_16_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'block_mmul_helper'.
+INFO: [HLS 200-111]  Elapsed time: 2.16 seconds; current allocated memory: 168.421 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'dut' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_0_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_0_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_0_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_0_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_1_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_1_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_1_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_1_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_2_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_2_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_2_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_2_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_3_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_3_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_3_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_3_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_4_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_4_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_4_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_4_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_5_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_5_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_5_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_5_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_6_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_6_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_6_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_6_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_7_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_7_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_7_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_7_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_8_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_8_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_8_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_8_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_9_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_9_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_9_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_9_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_10_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_10_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_10_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_10_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_11_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_11_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_11_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_11_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_12_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_12_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_12_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_12_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_13_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_13_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_13_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_13_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_14_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_14_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_14_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_14_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_15_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_15_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_15_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/A_in_V_a_15_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_0_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_0_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_0_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_0_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_0_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_0_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_0_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_0_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_0_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_0_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_0_10' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_0_11' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_1_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_1_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_1_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_1_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_1_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_1_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_1_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_1_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_1_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_1_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_1_10' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_1_11' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_2_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_2_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_2_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_2_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_2_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_2_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_2_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_2_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_2_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_2_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_2_10' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_2_11' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_3_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_3_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_3_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_3_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_3_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_3_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_3_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_3_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_3_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_3_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_3_10' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/B_in_V_b_3_11' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_0_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_0_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_0_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_0_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_0_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_0_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_0_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_0_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_0_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_0_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_0_10' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_0_11' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_1_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_1_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_1_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_1_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_1_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_1_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_1_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_1_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_1_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_1_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_1_10' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_1_11' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_2_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_2_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_2_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_2_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_2_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_2_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_2_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_2_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_2_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_2_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_2_10' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_2_11' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_3_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_3_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_3_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_3_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_3_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_3_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_3_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_3_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_3_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_3_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_3_10' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_3_11' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_4_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_4_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_4_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_4_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_4_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_4_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_4_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_4_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_4_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_4_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_4_10' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_4_11' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_5_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_5_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_5_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_5_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_5_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_5_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_5_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_5_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_5_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_5_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_5_10' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_5_11' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_6_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_6_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_6_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_6_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_6_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_6_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_6_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_6_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_6_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_6_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_6_10' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_6_11' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_7_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_7_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_7_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_7_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_7_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_7_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_7_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_7_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_7_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_7_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_7_10' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_7_11' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_8_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_8_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_8_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_8_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_8_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_8_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_8_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_8_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_8_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_8_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_8_10' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_8_11' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_9_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_9_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_9_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_9_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_9_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_9_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_9_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_9_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_9_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_9_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_9_10' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_9_11' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_10_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_10_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_10_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_10_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_10_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_10_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_10_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_10_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_10_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_10_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_10_10' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_10_11' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_11_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_11_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_11_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_11_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_11_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_11_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_11_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_11_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_11_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_11_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_11_10' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_11_11' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_12_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_12_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_12_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_12_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_12_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_12_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_12_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_12_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_12_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_12_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_12_10' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_12_11' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_13_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_13_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_13_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_13_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_13_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_13_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_13_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_13_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_13_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_13_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_13_10' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_13_11' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_14_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_14_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_14_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_14_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_14_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_14_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_14_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_14_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_14_8' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_14_9' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_14_10' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_14_11' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_15_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_15_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_15_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_15_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_15_4' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_15_5' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_15_6' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/C_out_V_out_15_7' to 'ap_fifo'.
+INFO: [RTGEN 206-500]==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'block_mmult.cc' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:13 ; elapsed = 00:00:18 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1420 ; free virtual = 24891
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:13 ; elapsed = 00:00:18 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1420 ; free virtual = 24892
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:14 ; elapsed = 00:00:19 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1415 ; free virtual = 24886
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:14 ; elapsed = 00:00:19 . Memory (MB): peak = 1175.648 ; gain = 533.156 ; free physical = 1413 ; free virtual = 24885
+INFO: [XFORM 203-502] Unrolling all loops for pipelining in function 'block_mmul_helper' (block_mmult.cc:4).
+INFO: [HLS 200-489] Unrolling loop 'Loop-1' (block_mmult.cc:10) in function 'block_mmul_helper' completely with a factor of 4.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1' (block_mmult.cc:12) in function 'block_mmul_helper' completely with a factor of 4.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1' (block_mmult.cc:13) in function 'block_mmul_helper' completely with a factor of 3.
+INFO: [XFORM 203-11] Balancing expressions in function 'block_mmul_helper' (block_mmult.cc:4)...48 expression(s) balanced.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:14 ; elapsed = 00:00:19 . Memory (MB): peak = 1185.711 ; gain = 543.219 ; free physical = 1389 ; free virtual = 24862
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-1' (block_mmult.cc:25:19) in function 'block_mmul'.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:14 ; elapsed = 00:00:19 . Memory (MB): peak = 1185.711 ; gain = 543.219 ; free physical = 1386 ; free virtual = 24859
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'block_mmul' ...
+WARNING: [SYN 201-107] Renaming port name 'block_mmul/out' to 'block_mmul/out_r' to avoid the conflict with HDL keywords or other object names.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'block_mmul_helper' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'block_mmul_helper'.
+WARNING: [SCHED 204-68] The II Violation in module 'block_mmul_helper' (Function: block_mmul_helper): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1)
+   between 'store' operation ('out_addr_write_ln14', block_mmult.cc:14) of variable 'add_ln14_8', block_mmult.cc:14 on array 'out_r' and 'load' operation ('out_load', block_mmult.cc:14) on array 'out_r'.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('A_load', block_mmult.cc:14) on array 'A' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'A'.
+WARNING: [SCHED 204-69] Unable to schedule 'store' operation ('out_addr_10_write_ln14', block_mmult.cc:14) of variable 'add_ln14_48', block_mmult.cc:14 on array 'out_r' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'out_r'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 12, Depth = 12.
+WARNING: [SCHED 204-21] Estimated clock period (11.711ns) exceeds the target (target clock period: 10ns, clock uncertainty: 1.25ns, effective delay budget: 8.75ns).
+WARNING: [SCHED 204-21] The critical path in module 'block_mmul_helper' consists of the following:
+	'mul' operation of DSP[269] ('mul_ln14_7', block_mmult.cc:14) [146]  (3.36 ns)
+	'add' operation of DSP[269] ('add_ln14_33', block_mmult.cc:14) [269]  (3.02 ns)
+	'add' operation ('add_ln14_36', block_mmult.cc:14) [272]  (2.08 ns)
+	'store' operation ('out_addr_7_write_ln14', block_mmult.cc:14) of variable 'add_ln14_36', block_mmult.cc:14 on array 'out_r' [273]  (3.25 ns)
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 20.45 seconds; current allocated memory: 136.587 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.46 seconds; current allocated memory: 137.679 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'block_mmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 12, Depth = 13.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.49 seconds; current allocated memory: 137.838 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.19 seconds; current allocated memory: 138.003 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'block_mmul_helper' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'block_mmul_mac_muladd_16s_16s_16ns_16_1_1' to 'block_mmul_mac_mubkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'block_mmul_mul_mul_16s_16s_16_1_1' to 'block_mmul_mul_mucud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'block_mmul_mac_muladd_16s_16s_16s_16_1_1' to 'block_mmul_mac_mudEe' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'block_mmul_mac_mubkb': 12 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'block_mmul_mac_mudEe': 24 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'block_mmul_mul_mucud': 12 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'block_mmul_helper'.
+INFO: [HLS 200-111]  Elapsed time: 0.31 seconds; current allocated memory: 139.999 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'block_mmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/A' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/B' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'block_mmul/out_r' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'block_mmul' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'block_mmul'.
+INFO: [HLS 200-111]  Elapsed time: 1.02 seconds; current allocated memory: 144.981 MB.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 85.39 MHz
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:18 ; elapsed = 00:00:25 . Memory (MB): peak = 1186.711 ; gain = 544.219 ; free physical = 1368 ; free virtual = 24846
+INFO: [VHDL 208-304] Generating VHDL RTL for block_mmul.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================

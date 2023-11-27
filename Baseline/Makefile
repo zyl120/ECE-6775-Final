@@ -1,65 +1,47 @@
-# Compiler
-CXX = g++
+#==========================================================================
+# Makefile
+#==========================================================================
+# @brief: A makefile the compiles and synthesizes the bnn program
+#
+# @desc: 1. "make" runs csim by default
+#        2. "make csim" compiles & executes the software implementation
+#        3. "make clean" cleans up the directory
 
-# Compiler flags
-CXXFLAGS = -std=c++11 -O2
-AVX2FLAGS = -mavx2
 
-# Executable names
-EXE1 = Traditional_Short
-EXE2 = Traditional_Float
-EXE3 = AVX2_Short
-EXE4 = AVX2_Float
-EXE5 = Neon_Short
-EXE6 = Neon_Float
+# Extract Vivado HLS include path
+XILINX_VIVADO?=/opt/xilinx/Xilinx_Vivado_vitis_2019.2/Vivado/2019.2
+XIL_HLS=source $(XILINX_VIVADO)/settings64.sh; vivado_hls
+VHLS_INC=$(XILINX_VIVADO)/include
+# Specify compilation flags
+CFLAGS=-g -I${VHLS_INC} -std=c++11 
 
-# Build all executables
-all: $(EXE1) $(EXE2) $(EXE3) $(EXE4) $(EXE5) $(EXE6)
+TCL_SCRIPT=run.tcl
 
-# Traditional executables
-$(EXE1): Traditional_Short.cpp
-	$(CXX) $(CXXFLAGS) $^ -o $@
+.PHONY: all mm_mult bitstream clean
 
-$(EXE2): Traditional_Float.cpp
-	$(CXX) $(CXXFLAGS) $^ -o $@
+all: mm_mult
 
-# Optimized executables with AVX2 support
-$(EXE3): AVX2_Short.cpp
-	$(CXX) $(AVX2FLAGS) $(CXXFLAGS)  $^ -o $@
+mm_mult: mm_mult.cc mm_mult_testbench.cc
+	g++ ${CFLAGS} $^ -o $@ -lrt
 
-$(EXE4): AVX2_Float.cpp
-	$(CXX) $(AVX2FLAGS) $(CXXFLAGS)  $^ -o $@
+# result/mm_csim.txt: mm_mult
+# 	@echo "Running mm_mult sim..."
+# 	mkdir -p result
+# 	./$< | tee $@
 
-# Optimized executables with Neon support
-$(EXE5): Neon_Short.cpp
-	$(CXX) $(CXXFLAGS) $^ -o $@
+# csim: result/mm_mult_csim.txt
+# 	@echo "Result recorded to $<"
 
-$(EXE6): Neon_Float.cpp
-	$(CXX) $(CXXFLAGS) $^ -o $@
+xillydemo.bit:
+	@echo "=================================================================" 
+	@echo "Synthesizing mm_mult and creating bitstream with $(TCL_SCRIPT)..."
+	@echo "=================================================================" 
+	$(XIL_HLS) -f $(TCL_SCRIPT)
+	source $(XILINX_VIVADO)/settings64.sh; ./run_bitstream.sh
 
-# Run targets
-run: nopt_short nopt_float avx2_short avx2_float neon_short neon_float
+bitstream: xillydemo.bit
+	@echo "Bitstream saved to $<"
 
-nopt_short: $(EXE1)
-	./$(EXE1)
-
-nopt_float: $(EXE2)
-	./$(EXE2)
-
-avx2_short: $(EXE3)
-	./$(EXE3)
-
-avx2_float: $(EXE4)
-	./$(EXE4)
-
-neon_short: $(EXE5)
-	./$(EXE5)
-
-neon_float: $(EXE6)
-	./$(EXE6)
-
-# Clean up
 clean:
-	rm -f $(EXE1) $(EXE2) $(EXE3) $(EXE4) $(EXE5) $(EXE6)
-
-.PHONY: all run nopt_short nopt_float avx2_short avx2_float neon_short neon_float clean
+	rm -rf mm_mult *.dat *.prj *.log
+	rm -rf zedboard_project* xillydemo.bit

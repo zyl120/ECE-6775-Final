@@ -1,7 +1,12 @@
 {
     "files.associations": {
         "[20220507] Practice 3 Binary Search": "plaintext",
-        "array": "cpp"
+        "array": "cpp",
+        "istream": "cpp",
+        "xiosbase": "cpp",
+        "xlocale": "cpp",
+        "xutility": "cpp",
+        "ostream": "cpp"
     },
     "cmake.configureOnOpen": false
 }
