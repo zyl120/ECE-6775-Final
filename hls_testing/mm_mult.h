@@ -11,9 +11,9 @@
 using namespace std;
 
 typedef short DTYPE;
-#define M 10
-#define O 10
-#define N 10
+#define M 5
+#define O 5
+#define N 5
 #define M_BLOCK_SIZE 2
 #define O_BLOCK_SIZE 2
 

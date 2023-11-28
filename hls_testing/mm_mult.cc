@@ -3,50 +3,111 @@
 template <typename T>
 class PE {
     T accumulatedValue;
+    T tempHorizontalValue;
+    T horizontalValue;
+    T tempVerticalValue;
+    T verticalValue;
 
    public:
-    PE() : accumulatedValue(0) {}
+    PE(){
+        accumulatedValue = 0;
+        tempHorizontalValue = 0;
+        horizontalValue = 0;
+        tempVerticalValue = 0;
+        verticalValue = 0;
+    }
 
     void compute(T inputA, T inputB) {
+        tempHorizontalValue = inputA;
+        tempVerticalValue = inputB;
         accumulatedValue += inputA * inputB;
+        std::cout << "[" << inputA << "*" << inputB << "]" << std::endl;
+        
     }
 
     T getValue() const {
         return accumulatedValue;
     }
 
+
+    T getHorizontalValue() const {
+        std::cout << "hv" << horizontalValue << " " ;
+        return horizontalValue;
+    }
+
+    T getVerticalValue() const {
+        std::cout << "vv" << verticalValue << " " ;
+        return verticalValue;
+    }
+
     void reset() {
         accumulatedValue = 0;
+        tempHorizontalValue = 0;
+        horizontalValue = 0;
+        tempVerticalValue = 0;
+        verticalValue = 0;
+    }
+
+    void update() {
+        horizontalValue = tempHorizontalValue;
+        verticalValue = tempVerticalValue;
     }
 };
 
-template <typename T, size_t N>
+template <typename T, size_t SA_SIZE>
 class SystolicArray {
-    PE<T> array[N][N];
+    PE<T> array[SA_SIZE][SA_SIZE];
 
    public:
-    void multiply(T matrixA[N][N], T matrixB[N][N], T result[N][N]) {
+    void multiply(T matrixA[SA_SIZE][SA_SIZE], T matrixB[SA_SIZE][SA_SIZE], T result[SA_SIZE][SA_SIZE]) {
         // Reset all PEs
-        for (size_t i = 0; i < N; ++i) {
-            for (size_t j = 0; j < N; ++j) {
+        for (size_t i = 0; i < SA_SIZE; ++i) {
+            for (size_t j = 0; j < SA_SIZE; ++j) {
                 array[i][j].reset();
             }
         }
 
         // Perform the matrix multiplication using the systolic approach
-        for (size_t step = 0; step < 2 * N - 1; ++step) {
-            for (size_t i = 0; i < N; ++i) {
-                for (size_t j = 0; j < N; ++j) {
-                    if (step >= i && step - i < N && step >= j && step - j < N) {
-                        array[i][j].compute(matrixA[i][step - i], matrixB[step - j][j]);
+        for (size_t step = 0; step < 2 * SA_SIZE ; ++step) {
+            std::cout << std::endl;
+            std::cout << step << std::endl;
+            for (size_t i = 0; i < SA_SIZE; ++i) {
+                for (size_t j = 0; j < SA_SIZE; ++j) {
+                    // Ensure that we are within the bounds of matrix multiplication
+                    if (i + j <= step  && i + j + SA_SIZE > step) {
+                        // Compute the value for each processing element
+                        printf("i=%d, j=%d ", i, j);
+                        if(i == 0 && j == 0) {
+                            array[i][j].compute(matrixA[i][step-j], matrixB[step-i][j]);
+                        } else if (i == 0 && j != 0) {
+                            array[i][j].compute(array[i][j-1].getHorizontalValue(), matrixB[step-j][j]);
+                        } else if (i != 0 && j == 0) {
+                            array[i][j].compute(matrixA[i][step-i], array[i-1][j].getVerticalValue());
+                        } else {
+                            array[i][j].compute(array[i][j-1].getHorizontalValue(), array[i-1][j].getVerticalValue());
+                        }
                     }
                 }
             }
+            for (size_t i = 0; i < SA_SIZE; ++i) {
+                for (size_t j = 0; j < SA_SIZE; ++j) {
+                    if (i + j <= step  && i + j + SA_SIZE > step){
+                        // Ensure that we are within the bounds of matrix multiplication
+                        array[i][j].update();
+                    }
+                        std::cout << array[i][j].getValue() << " "; 
+                    
+                }
+                std:cout << std::endl;
+            }
+
         }
 
+
+
         // Collect the results
-        for (size_t i = 0; i < N; ++i) {
-            for (size_t j = 0; j < N; ++j) {
+        for (size_t i = 0; i < SA_SIZE; ++i) {
+            for (size_t j = 0; j < SA_SIZE; ++j) {
                 result[i][j] = array[i][j].getValue();
             }
         }
@@ -97,6 +158,20 @@ void mm_mult_systolic(
 #pragma HLS ARRAY_PARTITION variable = b dim = 1 complete
 #pragma HLS ARRAY_PARTITION variable = out dim = 0 complete
     SystolicArray<DTYPE, N> systolicArray;
+    for (size_t i = 0; i < N; ++i) {
+            for (size_t j = 0; j < N; ++j) {
+                std::cout << a[i][j] << " ";
+            }
+            std::cout << std::endl;
+     }
+    std::cout << std::endl;
+
+     for (size_t i = 0; i < N; ++i) {
+            for (size_t j = 0; j < N; ++j) {
+                std::cout << b[i][j] << " ";
+            }
+            std::cout << std::endl;
+     }
     systolicArray.multiply(a, b, out);
 }
 
