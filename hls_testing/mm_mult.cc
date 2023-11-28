@@ -9,7 +9,7 @@ class PE {
     T verticalValue;
 
    public:
-    PE(){
+    PE() {
         accumulatedValue = 0;
         tempHorizontalValue = 0;
         horizontalValue = 0;
@@ -22,21 +22,19 @@ class PE {
         tempVerticalValue = inputB;
         accumulatedValue += inputA * inputB;
         std::cout << "[" << inputA << "*" << inputB << "]" << std::endl;
-        
     }
 
     T getValue() const {
         return accumulatedValue;
     }
 
-
     T getHorizontalValue() const {
-        std::cout << "hv" << horizontalValue << " " ;
+        std::cout << "hv" << horizontalValue << " ";
         return horizontalValue;
     }
 
     T getVerticalValue() const {
-        std::cout << "vv" << verticalValue << " " ;
+        std::cout << "vv" << verticalValue << " ";
         return verticalValue;
     }
 
@@ -68,40 +66,37 @@ class SystolicArray {
         }
 
         // Perform the matrix multiplication using the systolic approach
-        for (size_t step = 0; step <= 3 * (SA_SIZE - 1) ; ++step) {
+        for (size_t step = 0; step <= 3 * (SA_SIZE - 1); ++step) {
             std::cout << std::endl;
             std::cout << step << std::endl;
             for (size_t i = 0; i < SA_SIZE; ++i) {
                 for (size_t j = 0; j < SA_SIZE; ++j) {
                     // Ensure that we are within the bounds of matrix multiplication
-                    if (i + j <= step  && i + j + SA_SIZE > step) {
+                    if (i + j <= step && i + j + SA_SIZE > step) {
                         // Compute the value for each processing element
                         printf("i=%d, j=%d ", i, j);
-                        if(i == 0 && j == 0) {
-                            array[i][j].compute(matrixA[i][step-j], matrixB[step-i][j]);
+                        if (i == 0 && j == 0) {
+                            array[i][j].compute(matrixA[i][step - j], matrixB[step - i][j]);
                         } else if (i == 0 && j != 0) {
-                            array[i][j].compute(array[i][j-1].getHorizontalValue(), matrixB[step-j][j]);
+                            array[i][j].compute(array[i][j - 1].getHorizontalValue(), matrixB[step - j][j]);
                         } else if (i != 0 && j == 0) {
-                            array[i][j].compute(matrixA[i][step-i], array[i-1][j].getVerticalValue());
+                            array[i][j].compute(matrixA[i][step - i], array[i - 1][j].getVerticalValue());
                         } else {
-                            array[i][j].compute(array[i][j-1].getHorizontalValue(), array[i-1][j].getVerticalValue());
+                            array[i][j].compute(array[i][j - 1].getHorizontalValue(), array[i - 1][j].getVerticalValue());
                         }
                     }
                 }
             }
             for (size_t i = 0; i < SA_SIZE; ++i) {
                 for (size_t j = 0; j < SA_SIZE; ++j) {
-                        // Ensure that we are within the bounds of matrix multiplication
-                        array[i][j].update();
-                        std::cout << array[i][j].getValue() << " "; 
-                    
+                    // Ensure that we are within the bounds of matrix multiplication
+                    array[i][j].update();
+                    std::cout << array[i][j].getValue() << " ";
                 }
-                std:cout << std::endl;
+            std:
+                cout << std::endl;
             }
-
         }
-
-
 
         // Collect the results
         for (size_t i = 0; i < SA_SIZE; ++i) {
@@ -157,19 +152,19 @@ void mm_mult_systolic(
 #pragma HLS ARRAY_PARTITION variable = out dim = 0 complete
     SystolicArray<DTYPE, N> systolicArray;
     for (size_t i = 0; i < N; ++i) {
-            for (size_t j = 0; j < N; ++j) {
-                std::cout << a[i][j] << " ";
-            }
-            std::cout << std::endl;
-     }
+        for (size_t j = 0; j < N; ++j) {
+            std::cout << a[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
     std::cout << std::endl;
 
-     for (size_t i = 0; i < N; ++i) {
-            for (size_t j = 0; j < N; ++j) {
-                std::cout << b[i][j] << " ";
-            }
-            std::cout << std::endl;
-     }
+    for (size_t i = 0; i < N; ++i) {
+        for (size_t j = 0; j < N; ++j) {
+            std::cout << b[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
     systolicArray.multiply(a, b, out);
 }
 
