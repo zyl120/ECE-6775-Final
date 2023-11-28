@@ -68,21 +68,22 @@ void mm_mult_systolic (
 //     DTYPE   a[M][N],
 //     DTYPE   b[N][O],
 //     DTYPE out[M][O]
-// ){ 
+// ){
 //     #pragma HLS ARRAY_PARTITION variable=a dim=2 complete
 //     #pragma HLS ARRAY_PARTITION variable=b dim=1 complete
 //     #pragma HLS ARRAY_PARTITION variable=out dim=0 complete
-//     int MAX_PE_SIZE = 50;
+    
 //     systolic1:
 //     for (int k = 0; k < N; k++) {
 //         // #pragma HLS LOOP_TRIPCOUNT min=30 max=30
 //         // #pragma HLS PIPELINE II=1
 //         systolic2:
-//         for (int i = 0; i < MAX_PE_SIZE; i++) {
+//         for (int i = 0; i < MAX_M_SIZE; i++) {
 //             #pragma HLS UNROLL
 //             systolic3:
-//             for (int j = 0; j < MAX_PE_SIZE; j++) {
+//             for (int j = 0; j < MAX_M_SIZE; j++) {
 //                 #pragma HLS UNROLL
+//                 printf("%d, %d, %d\n", i, j, k);
 //                 DTYPE last = (k == 0) ? 0 : out[i][j];
 //                 DTYPE a_val = (i < M && k < N) ? a[i][k] : 0;
 //                 DTYPE b_val = (k < N && j < O) ? b[k][j] : 0;

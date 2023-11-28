@@ -17,6 +17,9 @@
 #define O 20
 #endif
 
+#ifndef MAX_M_SIZE
+#define MAX_M_SIZE 20
+#endif
 
 #define A_MATRIX_SIZE M*N
 #define B_MATRIX_SIZE O*N
