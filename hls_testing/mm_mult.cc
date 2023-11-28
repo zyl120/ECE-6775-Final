@@ -68,7 +68,7 @@ class SystolicArray {
         }
 
         // Perform the matrix multiplication using the systolic approach
-        for (size_t step = 0; step < 2 * SA_SIZE ; ++step) {
+        for (size_t step = 0; step <= 3 * (SA_SIZE - 1) ; ++step) {
             std::cout << std::endl;
             std::cout << step << std::endl;
             for (size_t i = 0; i < SA_SIZE; ++i) {
@@ -91,10 +91,8 @@ class SystolicArray {
             }
             for (size_t i = 0; i < SA_SIZE; ++i) {
                 for (size_t j = 0; j < SA_SIZE; ++j) {
-                    if (i + j <= step  && i + j + SA_SIZE > step){
                         // Ensure that we are within the bounds of matrix multiplication
                         array[i][j].update();
-                    }
                         std::cout << array[i][j].getValue() << " "; 
                     
                 }

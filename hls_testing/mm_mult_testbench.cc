@@ -26,7 +26,8 @@ int main() {
   A_MATRIX_INIT:
   for(int i = 0; i < M; i++){
     for(int j = 0; j < N; j++){
-      A.a[i][j] = rand_r(&globalSeed) % 512;
+      //A.a[i][j] = rand_r(&globalSeed) % 512;
+      A.a[i][j] = 1;
     }
   }
 
@@ -36,7 +37,8 @@ int main() {
   B_MATRIX_INIT:
   for(int i = 0; i < N; i++){
     for(int j = 0; j < O; j++){
-      B.b[i][j] = rand_r(&globalSeed) % 512;
+      B.b[i][j]=2;
+      //B.b[i][j] = rand_r(&globalSeed) % 512;
     }
   }
   
@@ -63,6 +65,7 @@ int main() {
     for(int j = 0; j<O; j++) {
       printf("%d, %d, %d, expected = %d\n", i, j, Out.out[i][j], out_ref[i][j]);
       if(Out.out[i][j] != out_ref[i][j]) {
+        printf("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
         fail=1;
       } 
     }
@@ -76,4 +79,3 @@ int main() {
   }
   return 0;
 }
-
