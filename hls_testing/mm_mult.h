@@ -10,12 +10,15 @@
 #include <vector>
 
 #include "hls_stream.h"
+
+#include "typedefs.h"
 using namespace std;
 
 typedef short DTYPE;
-#define M 10
-#define O 10
-#define N 10
+// Assume M, O, N to be even numbers
+#define M 6
+#define O 6
+#define N 6
 #define M_BLOCK_SIZE 2
 #define O_BLOCK_SIZE 2
 
@@ -36,9 +39,14 @@ void mm_mult(
     DTYPE b[N][O],
     DTYPE out[M][O]);
 
+// void dut(
+//     hls::stream<A_MATRIX_T> &A_in,
+//     hls::stream<B_MATRIX_T> &B_in,
+//     hls::stream<OUT_MATRIX_T> &Out_out);
+
 void dut(
-    hls::stream<A_MATRIX_T> &A_in,
-    hls::stream<B_MATRIX_T> &B_in,
-    hls::stream<OUT_MATRIX_T> &Out_out);
+    hls::stream<bit32_t> &strm_in,
+    hls::stream<bit32_t> &strm_out
+);
 
 #endif

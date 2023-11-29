@@ -69,6 +69,8 @@ class SystolicArray {
         for (size_t step = 0; step <= 3 * (SA_SIZE - 1); ++step) {
             std::cout << std::endl;
             std::cout << step << std::endl;
+            // #pragma HLS DATAFLOW
+            #pragma HLS PIPELINE II=1
             for (size_t i = 0; i < SA_SIZE; ++i) {
                 for (size_t j = 0; j < SA_SIZE; ++j) {
                     // Ensure that we are within the bounds of matrix multiplication
@@ -168,36 +170,6 @@ void mm_mult_systolic(
     systolicArray.multiply(a, b, out);
 }
 
-// void mm_mult_systolic (
-//     DTYPE   a[M][N],
-//     DTYPE   b[N][O],
-//     DTYPE out[M][O]
-// ){
-//     #pragma HLS ARRAY_PARTITION variable=a dim=2 complete
-//     #pragma HLS ARRAY_PARTITION variable=b dim=1 complete
-//     #pragma HLS ARRAY_PARTITION variable=out dim=0 complete
-
-//     systolic1:
-//     for (int k = 0; k < N; k++) {
-//         // #pragma HLS LOOP_TRIPCOUNT min=30 max=30
-//         // #pragma HLS PIPELINE II=1
-//         systolic2:
-//         for (int i = 0; i < MAX_M_SIZE; i++) {
-//             #pragma HLS UNROLL
-//             systolic3:
-//             for (int j = 0; j < MAX_M_SIZE; j++) {
-//                 #pragma HLS UNROLL
-//                 printf("%d, %d, %d\n", i, j, k);
-//                 DTYPE last = (k == 0) ? 0 : out[i][j];
-//                 DTYPE a_val = (i < M && k < N) ? a[i][k] : 0;
-//                 DTYPE b_val = (k < N && j < O) ? b[k][j] : 0;
-//                 DTYPE result = last + a_val * b_val;
-//                 out[i][j] = result;
-//             }
-//         }
-//     }
-// }
-
 // ================================ tiling ================================
 void mm_mult_tiling(
     DTYPE a[M][N],
@@ -240,22 +212,69 @@ void mm_mult(
 }
 
 // ================================ dut ================================
-void dut(
-    hls::stream<A_MATRIX_T> &A_in,
-    hls::stream<B_MATRIX_T> &B_in,
-    hls::stream<OUT_MATRIX_T> &Out_out) {
-    A_MATRIX_T A = A_in.read();
-    B_MATRIX_T B = B_in.read();
+// void dut(
+//     hls::stream<A_MATRIX_T> &A_in,
+//     hls::stream<B_MATRIX_T> &B_in,
+//     hls::stream<OUT_MATRIX_T> &Out_out) {
+//     A_MATRIX_T A = A_in.read();
+//     B_MATRIX_T B = B_in.read();
 
+//     OUT_MATRIX_T Out;
+
+//     //-----------Call mm_mult function---------------//
+//     // uncomment the one under tests
+//     // mm_mult(A.a, B.b, Out.out);
+//     // mm_mult_tiling(A.a, B.b, Out.out);
+//     mm_mult_systolic(A.a, B.b, Out.out);
+//     // mm_mult_tiling_systolic(A.a, B.b, Out.out);
+
+//     // write out the result.
+//     Out_out.write(Out);
+//}
+
+
+void dut(
+    hls::stream<bit32_t> &strm_in,
+    hls::stream<bit32_t> &strm_out
+) {
+    A_MATRIX_T A;
+    B_MATRIX_T B;
     OUT_MATRIX_T Out;
+    bit32_t input_2_in;
+    bit32_t output_2_out;
+
+    // receive A from ARM side
+    for (int i = 0; i < M; i++) {
+        for (int j = 0; j < N; j = j + 2) {
+            input_2_in = strm_in.read();
+            A.a[i][j+1] = input_2_in;
+            A.a[i][j] = input_2_in >> 16;
+        }
+    }
+
+    // receive B from ARM side
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < O; j = j + 2) {
+            input_2_in = strm_in.read();
+            B.b[i][j+1] = input_2_in;
+            B.b[i][j] = input_2_in >> 16;
+        }
+    }
+
+    std::cout << "received" << std::endl;
 
     //-----------Call mm_mult function---------------//
     // uncomment the one under tests
     // mm_mult(A.a, B.b, Out.out);
     // mm_mult_tiling(A.a, B.b, Out.out);
-    mm_mult_systolic(A.a, B.b, Out.out);
+     mm_mult_systolic(A.a, B.b, Out.out);
     // mm_mult_tiling_systolic(A.a, B.b, Out.out);
 
     // write out the result.
-    Out_out.write(Out);
+    for (int i = 0; i < M; i++) {
+        for (int j = 0; j < O; j = j + 2) {
+            output_2_out = (Out.out[i][j] << 16) + Out.out[i][j+1];
+            strm_out.write(output_2_out);
+        }
+    }
 }
