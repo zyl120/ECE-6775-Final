@@ -110,39 +110,39 @@ class SystolicArray {
 };
 
 // ================================ tiling_systolic ================================
-void tiling_systolic_helper(
-    DTYPE A[M][N],
-    DTYPE B[N][O],
-    DTYPE out[M][O],
-    int ii,
-    int jj) {
-    for (int k = 0; k < N; k++) {
-#pragma HLS PIPELINE II = 1
-        for (int i = 0; i < M_BLOCK_SIZE; i++) {
-            for (int j = 0; j < O_BLOCK_SIZE; j++) {
-                DTYPE last = (k == 0) ? 0 : out[i + ii][j + jj];
-                DTYPE a_val = (i + ii < M && k < N) ? A[i + ii][k] : 0;
-                DTYPE b_val = (k < N && j + jj < O) ? B[k][j + jj] : 0;
-                DTYPE result = last + a_val * b_val;
-                out[i + ii][j + jj] = result;
-            }
-        }
-    }
-}
+// void tiling_systolic_helper(
+//     DTYPE A[M][N],
+//     DTYPE B[N][O],
+//     DTYPE out[M][O],
+//     int ii,
+//     int jj) {
+//     for (int k = 0; k < N; k++) {
+// #pragma HLS PIPELINE II = 1
+//         for (int i = 0; i < M_BLOCK_SIZE; i++) {
+//             for (int j = 0; j < O_BLOCK_SIZE; j++) {
+//                 DTYPE last = (k == 0) ? 0 : out[i + ii][j + jj];
+//                 DTYPE a_val = (i + ii < M && k < N) ? A[i + ii][k] : 0;
+//                 DTYPE b_val = (k < N && j + jj < O) ? B[k][j + jj] : 0;
+//                 DTYPE result = last + a_val * b_val;
+//                 out[i + ii][j + jj] = result;
+//             }
+//         }
+//     }
+// }
 
-void mm_mult_tiling_systolic(
-    DTYPE a[M][N],
-    DTYPE b[N][O],
-    DTYPE out[M][O]) {
-#pragma HLS ARRAY_PARTITION variable = a dim = 2 complete
-#pragma HLS ARRAY_PARTITION variable = b dim = 1 complete
-#pragma HLS ARRAY_PARTITION variable = out dim = 0 complete
-    for (int ii = 0; ii < M; ii += M_BLOCK_SIZE) {
-        for (int jj = 0; jj < O; jj += O_BLOCK_SIZE) {
-            tiling_systolic_helper(a, b, out, ii, jj);
-        }
-    }
-}
+// void mm_mult_tiling_systolic(
+//     DTYPE a[M][N],
+//     DTYPE b[N][O],
+//     DTYPE out[M][O]) {
+// #pragma HLS ARRAY_PARTITION variable = a dim = 2 complete
+// #pragma HLS ARRAY_PARTITION variable = b dim = 1 complete
+// #pragma HLS ARRAY_PARTITION variable = out dim = 0 complete
+//     for (int ii = 0; ii < M; ii += M_BLOCK_SIZE) {
+//         for (int jj = 0; jj < O; jj += O_BLOCK_SIZE) {
+//             tiling_systolic_helper(a, b, out, ii, jj);
+//         }
+//     }
+// }
 
 // ================================ systolic ================================
 void mm_mult_systolic(
