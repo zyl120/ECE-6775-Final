@@ -3,10 +3,8 @@
 template <typename T>
 class PE {
     T accumulatedValue;
-    T tempHorizontalValue;
-    T horizontalValue;
-    T tempVerticalValue;
-    T verticalValue;
+    // T horizontalValue;
+    // T verticalValue;
     // hls::stream<DTYPE> fifo_A_in;
     // hls::stream<DTYPE> fifo_A_out;
     // hls::stream<DTYPE> fifo_B_in;
@@ -15,10 +13,8 @@ class PE {
    public:
     PE() {
         accumulatedValue = 0;
-        tempHorizontalValue = 0;
-        horizontalValue = 0;
-        tempVerticalValue = 0;
-        verticalValue = 0;
+        // horizontalValue = 0;
+        // verticalValue = 0;
         // fifo_A_in = nullptr;
         // fifo_B_in = nullptr;
         // fifo_A_out = nullptr;
@@ -52,22 +48,20 @@ class PE {
         return accumulatedValue;
     }
 
-    T getHorizontalValue() const {
-        // std::cout << "hv" << horizontalValue << " ";
-        return horizontalValue;
-    }
+    // T getHorizontalValue() const {
+    //     // std::cout << "hv" << horizontalValue << " ";
+    //     return horizontalValue;
+    // }
 
-    T getVerticalValue() const {
-        // std::cout << "vv" << verticalValue << " ";
-        return verticalValue;
-    }
+    // T getVerticalValue() const {
+    //     // std::cout << "vv" << verticalValue << " ";
+    //     return verticalValue;
+    // }
 
     void reset() {
         accumulatedValue = 0;
-        tempHorizontalValue = 0;
-        horizontalValue = 0;
-        tempVerticalValue = 0;
-        verticalValue = 0;
+        // horizontalValue = 0;
+        // verticalValue = 0;
     }
 
     // void update() {
@@ -233,19 +227,7 @@ void mm_mult_systolic(
             // array[i][j].setHorizontalFifo(h_fifo[i][j], h_fifo[i][j+1]);
             // array[i][j].setVertialFifo(v_fifo[i][j], v_fifo[i+1][j]);
             array[i][j].reset();
-        }
-    }
-
-    // put matrix A to horizontal fifos
-    for (size_t i = 0; i < SA_SIZE; ++i) {
-        for (size_t j = 0; j < SA_SIZE; ++j) {
             h_fifo[i][0].write(a[i][j]);
-        }
-    }
-
-    // put matrix B to vertical fifos
-    for (size_t j = 0; j < SA_SIZE; ++j) {
-        for (size_t i = 0; i < SA_SIZE; ++i) {
             v_fifo[0][j].write(b[i][j]);
         }
     }
@@ -261,19 +243,22 @@ void mm_mult_systolic(
             for (size_t j = 0; j < SA_SIZE; ++j) {
 #pragma HLS UNROLL
                 // Ensure that we are within the bounds of matrix multiplication
-                if (i + j <= step && i + j + SA_SIZE > step) {
+                //if (i + j <= step && i + j + SA_SIZE > step) {
                     // Compute the value for each processing element
                     // printf("i=%d, j=%d ", i, j);
-                    h_val = h_fifo[i][j].read();
-                    v_val = v_fifo[i][j].read();
-                    array[i][j].compute(h_val, v_val);
-                    if (j < SA_SIZE - 1) {
-                        h_fifo[i][j + 1].write(h_val);
+                    if(!h_fifo[i][j].empty() && !v_fifo[i][j].empty()) {
+                        h_val = h_fifo[i][j].read();
+                        v_val = v_fifo[i][j].read();
+                        array[i][j].compute(h_val, v_val);
+                        if (j < SA_SIZE - 1) {
+                            h_fifo[i][j + 1].write(h_val);
+                        }
+                        if (i < SA_SIZE - 1) {
+                            v_fifo[i + 1][j].write(v_val);
+                        }
                     }
-                    if (i < SA_SIZE - 1) {
-                        v_fifo[i + 1][j].write(v_val);
-                    }
-                }
+                    
+                //}
             }
         }
     }
