@@ -14,7 +14,7 @@ class PE {
         tempHorizontalValue = 0;
         horizontalValue = 0;
         tempVerticalValue = 0;
-        verticalValue = 0;
+        verticalValue = 0; 
     }
 
     void compute(T inputA, T inputB) {
