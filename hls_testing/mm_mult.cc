@@ -7,6 +7,10 @@ class PE {
     T horizontalValue;
     T tempVerticalValue;
     T verticalValue;
+    // hls::stream<DTYPE> fifo_A_in;
+    // hls::stream<DTYPE> fifo_A_out; 
+    // hls::stream<DTYPE> fifo_B_in;
+    // hls::stream<DTYPE> fifo_B_out;
 
    public:
     PE() {
@@ -14,27 +18,48 @@ class PE {
         tempHorizontalValue = 0;
         horizontalValue = 0;
         tempVerticalValue = 0;
-        verticalValue = 0; 
+        verticalValue = 0;
+        // fifo_A_in = nullptr;
+        // fifo_B_in = nullptr;
+        // fifo_A_out = nullptr;
+        // fifo_B_out = nullptr;
     }
 
+    // void setHorizontalFifo(hls::stream<DTYPE> &fifo_in, hls::stream<DTYPE> &fifo_out){
+    //     fifo_A_in = fifo_in;
+    //     fifo_A_out = fifo_out;
+    // }
+
+    // void setVertialFifo(hls::stream<DTYPE> &fifo_in, hls::stream<DTYPE> &fifo_out) {
+    //     fifo_B_in = fifo_in;
+    //     fifo_B_out = fifo_out;
+    // }
+
     void compute(T inputA, T inputB) {
-        tempHorizontalValue = inputA;
-        tempVerticalValue = inputB;
+        // tempHorizontalValue = inputA;
+        // tempVerticalValue = inputB;
         accumulatedValue += inputA * inputB;
-        std::cout << "[" << inputA << "*" << inputB << "]" << std::endl;
+        //std::cout << "[" << inputA << "*" << inputB << "]" << std::endl;
+        // fifo_A_out.write(tempHorizontalValue);
+        // fifo_B_out.write(tempVerticalValue);
+
     }
+
+    // void complete() {
+    //     fifo_C_drain_out.write(accumulatedValue);
+    // }
 
     T getValue() const {
         return accumulatedValue;
     }
 
     T getHorizontalValue() const {
-        std::cout << "hv" << horizontalValue << " ";
+        //std::cout << "hv" << horizontalValue << " ";
         return horizontalValue;
     }
 
     T getVerticalValue() const {
-        std::cout << "vv" << verticalValue << " ";
+        //std::cout << "vv" << verticalValue << " ";
         return verticalValue;
     }
 
@@ -46,18 +71,67 @@ class PE {
         verticalValue = 0;
     }
 
-    void update() {
-        horizontalValue = tempHorizontalValue;
-        verticalValue = tempVerticalValue;
-    }
+    // void update() {
+    //     horizontalValue = tempHorizontalValue;
+    //     verticalValue = tempVerticalValue;
+    // }
 };
 
 template <typename T, size_t SA_SIZE>
 class SystolicArray {
+
     PE<T> array[SA_SIZE][SA_SIZE];
+    hls::stream<DTYPE> h_fifo[SA_SIZE][SA_SIZE]; // array of fifos
+    hls::stream<DTYPE> v_fifo[SA_SIZE][SA_SIZE]; 
 
    public:
-    void multiply(T matrixA[SA_SIZE][SA_SIZE], T matrixB[SA_SIZE][SA_SIZE], T result[SA_SIZE][SA_SIZE]) {
+    void initialize(T matrixA[SA_SIZE][SA_SIZE], T matrixB[SA_SIZE][SA_SIZE]) {
+        for (size_t i = 0; i < SA_SIZE; ++i) {
+            for (size_t j = 0; j < SA_SIZE; ++j) {
+                // array[i][j].setHorizontalFifo(h_fifo[i][j], h_fifo[i][j+1]);
+                // array[i][j].setVertialFifo(v_fifo[i][j], v_fifo[i+1][j]);
+                array[i][j].reset();
+            }
+        }
+
+        // put matrix A to horizontal fifos
+        for (size_t i = 0; i < SA_SIZE; ++i) {
+            for(size_t j = 0; j < SA_SIZE; ++j) {
+                h_fifo[i][0].write(matrixA[i][j]);
+            }
+        }
+
+        // put matrix B to vertical fifos
+        for(size_t j = 0; j < SA_SIZE; ++j) {
+            for (size_t i = 0; i < SA_SIZE; ++i) {
+                v_fifo[0][j].write(matrixB[i][j]);
+            }
+        }
+    }
+
+    // void write_h_fifo(DTYPE val, int i, int j){
+    //     if(j < SA_SIZE - 1) {
+    //                         h_fifo[i][j+1].write(val);
+    //     }
+    // }
+
+    // void write_v_fifo(DTYPE val, int i, int j) {
+    //     if(i < SA_SIZE - 1) {
+    //                         v_fifo[i+1][j].write(val);
+    //     }
+    // }
+
+    // DTYPE read_h_fifo(int i, int j) {
+    //     return h_fifo[i][j].read();
+    // }
+
+    // DTYPE read_v_fifo(int i, int j) {
+    //     return v_fifo[i][j].read();
+    // }
+
+    void multiply() {
+        #pragma HLS STREAM variable=h_fifo depth=100
+        #pragma HLS STREAM variable=v_fifo depth=100
         // Reset all PEs
         for (size_t i = 0; i < SA_SIZE; ++i) {
             for (size_t j = 0; j < SA_SIZE; ++j) {
@@ -66,41 +140,44 @@ class SystolicArray {
         }
 
         // Perform the matrix multiplication using the systolic approach
+        // #pragma HLS DATAFLOW
+        // #pragma HLS PIPELINE II=1
         for (size_t step = 0; step <= 3 * (SA_SIZE - 1); ++step) {
-            std::cout << std::endl;
-            std::cout << step << std::endl;
-            // #pragma HLS DATAFLOW
+            // std::cout << std::endl;
+            // std::cout << step << std::endl;
             #pragma HLS PIPELINE II=1
+            DTYPE h_val, v_val;
             for (size_t i = 0; i < SA_SIZE; ++i) {
+                #pragma HLS UNROLL
                 for (size_t j = 0; j < SA_SIZE; ++j) {
+                    #pragma HLS UNROLL
                     // Ensure that we are within the bounds of matrix multiplication
                     if (i + j <= step && i + j + SA_SIZE > step) {
                         // Compute the value for each processing element
-                        printf("i=%d, j=%d ", i, j);
-                        if (i == 0 && j == 0) {
-                            array[i][j].compute(matrixA[i][step - j], matrixB[step - i][j]);
-                        } else if (i == 0 && j != 0) {
-                            array[i][j].compute(array[i][j - 1].getHorizontalValue(), matrixB[step - j][j]);
-                        } else if (i != 0 && j == 0) {
-                            array[i][j].compute(matrixA[i][step - i], array[i - 1][j].getVerticalValue());
-                        } else {
-                            array[i][j].compute(array[i][j - 1].getHorizontalValue(), array[i - 1][j].getVerticalValue());
+                        //printf("i=%d, j=%d ", i, j);
+                        h_val = h_fifo[i][j].read();
+                        v_val = v_fifo[i][j].read();
+                        array[i][j].compute(h_val, v_val);
+                        if(j < SA_SIZE - 1) {
+                            h_fifo[i][j+1].write(h_val);
+                        }
+                        if(i < SA_SIZE - 1) {
+                            v_fifo[i+1][j].write(v_val);
                         }
                     }
                 }
             }
-            for (size_t i = 0; i < SA_SIZE; ++i) {
-                for (size_t j = 0; j < SA_SIZE; ++j) {
-                    // Ensure that we are within the bounds of matrix multiplication
-                    array[i][j].update();
-                    std::cout << array[i][j].getValue() << " ";
-                }
-            std:
-                cout << std::endl;
-            }
+            // for (size_t i = 0; i < SA_SIZE; ++i) {
+            //     for (size_t j = 0; j < SA_SIZE; ++j) {
+            //         // Ensure that we are within the bounds of matrix multiplication
+            //         std::cout << array[i][j].getValue() << " ";
+            //     }
+            // std::cout << std::endl;
+            // }
         }
+    }
 
-        // Collect the results
+    void complete(T result[SA_SIZE][SA_SIZE]) {
         for (size_t i = 0; i < SA_SIZE; ++i) {
             for (size_t j = 0; j < SA_SIZE; ++j) {
                 result[i][j] = array[i][j].getValue();
@@ -153,21 +230,23 @@ void mm_mult_systolic(
 #pragma HLS ARRAY_PARTITION variable = b dim = 1 complete
 #pragma HLS ARRAY_PARTITION variable = out dim = 0 complete
     SystolicArray<DTYPE, N> systolicArray;
-    for (size_t i = 0; i < N; ++i) {
-        for (size_t j = 0; j < N; ++j) {
-            std::cout << a[i][j] << " ";
-        }
-        std::cout << std::endl;
-    }
-    std::cout << std::endl;
+    // for (size_t i = 0; i < N; ++i) {
+    //     for (size_t j = 0; j < N; ++j) {
+    //         std::cout << a[i][j] << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
+    // std::cout << std::endl;
 
-    for (size_t i = 0; i < N; ++i) {
-        for (size_t j = 0; j < N; ++j) {
-            std::cout << b[i][j] << " ";
-        }
-        std::cout << std::endl;
-    }
-    systolicArray.multiply(a, b, out);
+    // for (size_t i = 0; i < N; ++i) {
+    //     for (size_t j = 0; j < N; ++j) {
+    //         std::cout << b[i][j] << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
+    systolicArray.initialize(a, b);
+    systolicArray.multiply();
+    systolicArray.complete(out);
 }
 
 // ================================ tiling ================================
@@ -267,7 +346,7 @@ void dut(
     // uncomment the one under tests
     // mm_mult(A.a, B.b, Out.out);
     // mm_mult_tiling(A.a, B.b, Out.out);
-     mm_mult_systolic(A.a, B.b, Out.out);
+    mm_mult_systolic(A.a, B.b, Out.out);
     // mm_mult_tiling_systolic(A.a, B.b, Out.out);
 
     // write out the result.

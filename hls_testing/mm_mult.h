@@ -16,9 +16,9 @@ using namespace std;
 
 typedef short DTYPE;
 // Assume M, O, N to be even numbers
-#define M 6
-#define O 6
-#define N 6
+#define M 8
+#define O 8
+#define N 8
 #define M_BLOCK_SIZE 2
 #define O_BLOCK_SIZE 2
 
