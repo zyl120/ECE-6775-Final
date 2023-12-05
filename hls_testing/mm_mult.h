@@ -16,10 +16,10 @@ using namespace std;
 
 typedef short DTYPE;
 // Assume M, O, N to be even numbers
-#define SA_SIZE 4
-#define M 4
-#define O 4
-#define N 4
+#define SA_SIZE 6
+#define M 6
+#define O 6
+#define N 6
 
 #define M_BLOCK_SIZE 2
 #define O_BLOCK_SIZE 2
@@ -40,11 +40,6 @@ void mm_mult(
     DTYPE a[M][N],
     DTYPE b[N][O],
     DTYPE out[M][O]);
-
-// void dut(
-//     hls::stream<A_MATRIX_T> &A_in,
-//     hls::stream<B_MATRIX_T> &B_in,
-//     hls::stream<OUT_MATRIX_T> &Out_out);
 
 void dut(
     hls::stream<bit32_t> &strm_in,
