@@ -9,8 +9,9 @@
 #include <iostream>
 
 #include "timer.h"
-#include "typedefs.h"
 #include "host.h"
+
+unsigned globalSeed;
 
 //------------------------------------------------------------------------
 // Helper function for hex to int conversion
@@ -88,6 +89,9 @@ B_MATRIX_INIT:
 
     arm_timer.stop();
 
+
+    std::cout << "Begin axi transaction" << std::endl;
+
     // Timer
     Timer fpga_timer("FPGA timer");
 
@@ -107,6 +111,7 @@ B_MATRIX_INIT:
             assert(nbytes == sizeof(input));
         }
     }
+    std::cout << "Matrix A sent." << std::endl;
 
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < O; j = j + 2) {
@@ -117,6 +122,9 @@ B_MATRIX_INIT:
             assert(nbytes == sizeof(input));
         }
     }
+
+    std::cout << "Matrix B sent." << std::endl;
+    
 
     //--------------------------------------------------------------------
     // Add your code here to communicate with the hardware module
@@ -145,6 +153,8 @@ B_MATRIX_INIT:
         }
     }
 
+    std::cout << "Result received." << std::endl;
+
     fpga_timer.stop();
 
     for (int i = 0; i < M; i++) {
@@ -158,9 +168,9 @@ B_MATRIX_INIT:
     }
 
     if (fail == 1) {
-        cout << "failed" << endl;
+        std::cout << "failed" << std::endl;
     } else {
-        cout << "passed" << endl;
+        std::cout << "passed" << std::endl;
     }
     // for (int i = 0; i < N; ++i) {
     //     int32_t result_out;

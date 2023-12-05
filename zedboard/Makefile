@@ -21,11 +21,10 @@ mm-fpga: host.cpp
 	@echo "Make sure bitstream is loaded!"
 
 fpga: mm-fpga
-	@echo "Running digitrec accelerator ..."
+	@echo "Running mm accelerator ..."
 	./$<
 
 # Clean up the directory before submission
 clean:
 	@echo "Clean up output files"
-	rm -rf digitrec-sw vivado_hls.log *.prj result out.dat *~
 	rm -rf mm-fpga
