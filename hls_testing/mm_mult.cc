@@ -50,6 +50,40 @@ DTYPE PE(hls::stream<DTYPE> &inputA, hls::stream<DTYPE> &inputB, hls::stream<DTY
     return accum;
 }
 
+template<typename T, int ITER>
+DTYPE PE_H(hls::stream<DTYPE> &inputA, hls::stream<DTYPE> &inputB, hls::stream<DTYPE> &outputA){
+    DTYPE accum = 0;
+    for(int i = 0; i<ITER; i++){
+        DTYPE A_val = inputA.read();
+        DTYPE B_val = inputB.read();
+        accum += A_val * B_val;
+        outputA.write(A_val);
+    }
+    return accum;
+}
+
+template<typename T, int ITER>
+DTYPE PE_V(hls::stream<DTYPE> &inputA, hls::stream<DTYPE> &inputB, hls::stream<DTYPE> &outputB){
+    DTYPE accum = 0;
+    for(int i = 0; i<ITER; i++){
+        DTYPE A_val = inputA.read();
+        DTYPE B_val = inputB.read();
+        accum += A_val * B_val;
+        outputB.write(B_val);
+    }
+    return accum;
+}
+
+template<typename T, int ITER>
+DTYPE PE_N(hls::stream<DTYPE> &inputA, hls::stream<DTYPE> &inputB){
+    DTYPE accum = 0;
+    for(int i = 0; i<ITER; i++){
+        DTYPE A_val = inputA.read();
+        DTYPE B_val = inputB.read();
+        accum += A_val * B_val;
+    }
+    return accum;
+}
 
 
 // ================================ systolic ================================
@@ -57,9 +91,8 @@ void mm_mult_systolic(
     DTYPE a[M][N],
     DTYPE b[N][O],
     DTYPE out[M][O]) {
-    //PE<DTYPE> array[SA_SIZE][SA_SIZE];
-    hls::stream<DTYPE> h_fifo[SA_SIZE+1][SA_SIZE+1];  // array of fifos
-    hls::stream<DTYPE> v_fifo[SA_SIZE+1][SA_SIZE+1];
+    hls::stream<DTYPE> h_fifo[SA_SIZE][SA_SIZE];  // array of fifos
+    hls::stream<DTYPE> v_fifo[SA_SIZE][SA_SIZE];
     #pragma HLS ARRAY_PARTITION variable = a dim = 2 complete
     #pragma HLS ARRAY_PARTITION variable = b dim = 1 complete
     #pragma HLS ARRAY_PARTITION variable = out dim = 0 complete
@@ -67,7 +100,9 @@ void mm_mult_systolic(
     #pragma HLS STREAM variable = v_fifo depth = 10
     // initialize
     for (size_t i = 0; i < SA_SIZE; ++i) {
+        #pragma HLS UNROLL
         for (size_t j = 0; j < SA_SIZE; ++j) {
+            #pragma HLS UNROLL
             h_fifo[i][0].write(a[i][j]);
             v_fifo[0][j].write(b[i][j]);
         }
@@ -78,50 +113,18 @@ void mm_mult_systolic(
         #pragma HLS UNROLL
         for(size_t j = 0; j < SA_SIZE; j++) {
             #pragma HLS UNROLL
-            out[i][j] = PE<DTYPE, 3 * (SA_SIZE - 1)>(h_fifo[i][j], v_fifo[i][j], h_fifo[i][j+1], v_fifo[i+1][j]);
-            //std::cout << i << " " << j << std::endl;
+            if(i + 1 < SA_SIZE && j + 1 < SA_SIZE) {
+                out[i][j] = PE<DTYPE, 3 * (SA_SIZE - 1)>(h_fifo[i][j], v_fifo[i][j], h_fifo[i][j+1], v_fifo[i+1][j]);
+            } else if (i + 1 >= SA_SIZE && j + 1 < SA_SIZE ) {
+                out[i][j] = PE_H<DTYPE, 3 * (SA_SIZE - 1)>(h_fifo[i][j], v_fifo[i][j], h_fifo[i][j+1]);
+            } else if (i + 1 < SA_SIZE && j + 1 >= SA_SIZE ) {
+                out[i][j] = PE_V<DTYPE, 3 * (SA_SIZE - 1)>(h_fifo[i][j], v_fifo[i][j], v_fifo[i+1][j]);
+            } else {
+                out[i][j] = PE_N<DTYPE, 3 * (SA_SIZE - 1)>(h_fifo[i][j], v_fifo[i][j]);
+            }
+            
         }
     }
-
-    // multiply
-    //for (size_t step = 0; step <= 3 * (SA_SIZE - 1); ++step) {
-// std::cout << std::endl;
-// std::cout << step << std::endl;
-
-//         DTYPE h_val, v_val;
-//         for (size_t i = 0; i < SA_SIZE; ++i) {
-// #pragma HLS UNROLL
-//             for (size_t j = 0; j < SA_SIZE; ++j) {
-// #pragma HLS UNROLL
-//                 // Ensure that we are within the bounds of matrix multiplication
-//                 //if (i + j <= step && i + j + SA_SIZE > step) {
-//                     // Compute the value for each processing element
-//                     // printf("i=%d, j=%d ", i, j);
-//                     if(!h_fifo[i][j].empty() && !v_fifo[i][j].empty()) {
-//                         h_val = h_fifo[i][j].read();
-//                         v_val = v_fifo[i][j].read();
-//                         array[i][j].compute(h_val, v_val);
-//                         if (j < SA_SIZE - 1) {
-//                             h_fifo[i][j + 1].write(h_val);
-//                         }
-//                         if (i < SA_SIZE - 1) {
-//                             v_fifo[i + 1][j].write(v_val);
-//                         }
-//                     }
-                    
-//                 //}
-//             }
-//         }
-//     }
-//     for (size_t i = 0; i < SA_SIZE; ++i) {
-//         for (size_t j = 0; j < SA_SIZE; ++j) {
-//             out[i][j] = array[i][j].getValue();
-//         }
-//     }
-
-    // systolicArray.initialize(a, b);
-    // systolicArray.multiply();
-    // systolicArray.complete(out);
 }
 
 // ================================ tiling ================================

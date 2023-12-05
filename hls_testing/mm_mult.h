@@ -16,10 +16,10 @@ using namespace std;
 
 typedef short DTYPE;
 // Assume M, O, N to be even numbers
-#define SA_SIZE 6
-#define M 6
-#define O 6
-#define N 6
+#define SA_SIZE 12
+#define M 12
+#define O 12
+#define N 12
 
 #define M_BLOCK_SIZE 2
 #define O_BLOCK_SIZE 2
