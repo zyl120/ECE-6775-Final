@@ -24,14 +24,6 @@ all: mm_mult
 mm_mult: mm_mult.cc mm_mult_testbench.cc
 	g++ ${CFLAGS} $^ -o $@ -lrt
 
-# result/mm_csim.txt: mm_mult
-# 	@echo "Running mm_mult sim..."
-# 	mkdir -p result
-# 	./$< | tee $@
-
-# csim: result/mm_mult_csim.txt
-# 	@echo "Result recorded to $<"
-
 xillydemo.bit:
 	@echo "=================================================================" 
 	@echo "Synthesizing mm_mult and creating bitstream with $(TCL_SCRIPT)..."

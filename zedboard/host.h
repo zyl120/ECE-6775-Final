@@ -1,5 +1,5 @@
-#ifndef MM_MULT_H
-#define MM_MULT_H
+#ifndef HOST_H
+#define HOST_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,10 +9,7 @@
 #include <iostream>
 #include <vector>
 
-#include "hls_stream.h"
-
 #include "typedefs.h"
-using namespace std;
 
 typedef short DTYPE;
 // Assume M, O, N to be even numbers
@@ -36,14 +33,5 @@ typedef struct {
     DTYPE out[M][O];
 } OUT_MATRIX_T;
 
-void mm_mult(
-    DTYPE a[M][N],
-    DTYPE b[N][O],
-    DTYPE out[M][O]);
-
-void dut(
-    hls::stream<bit32_t> &strm_in,
-    hls::stream<bit32_t> &strm_out
-);
 
 #endif
