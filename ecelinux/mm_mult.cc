@@ -78,13 +78,13 @@ void mm_mult_systolic(
         for(size_t j = 0; j < SA_SIZE; j++) {
             #pragma HLS UNROLL
             if(i + 1 < SA_SIZE && j + 1 < SA_SIZE) {
-                out[i][j] = PE<DTYPE, 3 * (SA_SIZE - 1)>(h_fifo[i][j], v_fifo[i][j], h_fifo[i][j+1], v_fifo[i+1][j]);
+                out[i][j] = PE<DTYPE, SA_SIZE>(h_fifo[i][j], v_fifo[i][j], h_fifo[i][j+1], v_fifo[i+1][j]);
             } else if (i + 1 >= SA_SIZE && j + 1 < SA_SIZE ) {
-                out[i][j] = PE_H<DTYPE, 3 * (SA_SIZE - 1)>(h_fifo[i][j], v_fifo[i][j], h_fifo[i][j+1]);
+                out[i][j] = PE_H<DTYPE, SA_SIZE>(h_fifo[i][j], v_fifo[i][j], h_fifo[i][j+1]);
             } else if (i + 1 < SA_SIZE && j + 1 >= SA_SIZE ) {
-                out[i][j] = PE_V<DTYPE, 3 * (SA_SIZE - 1)>(h_fifo[i][j], v_fifo[i][j], v_fifo[i+1][j]);
+                out[i][j] = PE_V<DTYPE, SA_SIZE>(h_fifo[i][j], v_fifo[i][j], v_fifo[i+1][j]);
             } else {
-                out[i][j] = PE_N<DTYPE, 3 * (SA_SIZE - 1)>(h_fifo[i][j], v_fifo[i][j]);
+                out[i][j] = PE_N<DTYPE, SA_SIZE>(h_fifo[i][j], v_fifo[i][j]);
             }
             
         }

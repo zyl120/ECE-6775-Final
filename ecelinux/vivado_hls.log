@@ -1,0 +1,1239 @@
+
+****** Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2.1 (64-bit)
+  **** SW Build 2729669 on Thu Dec  5 04:48:12 MST 2019
+  **** IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+source /opt/xilinx/Xilinx_Vivado_vitis_2019.2/Vivado/2019.2/scripts/vivado_hls/hls.tcl -notrace
+INFO: Applying HLS Y2K22 patch v1.2 for IP revision
+INFO: [HLS 200-10] Running '/opt/xilinx/Xilinx_Vivado_vitis_2019.2/Vivado/2019.2/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'yz2797' on host 'en-ec-ecelinux-03.coecis.cornell.edu' (Linux_x86_64 version 3.10.0-1160.92.1.el7.x86_64) on Wed Dec 06 16:51:20 EST 2023
+INFO: [HLS 200-10] On os "CentOS Linux release 7.9.2009 (Core)"
+INFO: [HLS 200-10] In directory '/home/yz2797/ECE-6775-Final/ecelinux'
+Sourcing Tcl script 'run.tcl'
+INFO: [HLS 200-10] Opening and resetting project '/home/yz2797/ECE-6775-Final/ecelinux/mm.prj'.
+INFO: [HLS 200-10] Adding design file 'mm_mult.cc' to the project
+INFO: [HLS 200-10] Adding test bench file 'mm_mult_testbench.cc' to the project
+INFO: [HLS 200-10] Creating and opening solution '/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1'.
+INFO: [HLS 200-10] Cleaning up the solution database.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+make[1]: Entering directory `/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/csim/build'
+   Compiling ../../../../mm_mult_testbench.cc in release mode
+   Compiling ../../../../mm_mult.cc in release mode
+   Generating csim.exe
+make[1]: Leaving directory `/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/csim/build'
+4 15 10 12 
+15 9 0 15 
+4 13 6 10 
+15 8 14 11 
+5 9 6 14 
+9 11 10 4 
+14 3 12 1 
+15 7 4 6 
+received
+0, 0, 475, expected = 475
+0, 1, 315, expected = 315
+0, 2, 342, expected = 342
+0, 3, 198, expected = 198
+1, 0, 381, expected = 381
+1, 1, 339, expected = 339
+1, 2, 240, expected = 240
+1, 3, 336, expected = 336
+2, 0, 371, expected = 371
+2, 1, 267, expected = 267
+2, 2, 266, expected = 266
+2, 3, 174, expected = 174
+3, 0, 508, expected = 508
+3, 1, 342, expected = 342
+3, 2, 382, expected = 382
+3, 3, 322, expected = 322
+passed
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'mm_mult.cc' ... 
+WARNING: [HLS 214-114] Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region: mm_mult.cc:66:2
+WARNING: [HLS 214-114] Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region: mm_mult.cc:76:2
+WARNING: [HLS 200-471] Dataflow form checks found 2 issue(s) in file mm_mult.cc
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:24 ; elapsed = 00:00:34 . Memory (MB): peak = 1169.715 ; gain = 527.219 ; free physical = 472 ; free virtual = 22870
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:24 ; elapsed = 00:00:34 . Memory (MB): peak = 1169.715 ; gain = 527.219 ; free physical = 472 ; free virtual = 22870
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:25 ; elapsed = 00:00:35 . Memory (MB): peak = 1169.715 ; gain = 527.219 ; free physical = 469 ; free virtual = 22868
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:25 ; elapsed = 00:00:35 . Memory (MB): peak = 1169.715 ; gain = 527.219 ; free physical = 466 ; free virtual = 22865
+INFO: [HLS 200-489] Unrolling loop 'Loop-1' (mm_mult.cc:66) in function 'mm_mult_systolic' completely with a factor of 4.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1' (mm_mult.cc:68) in function 'mm_mult_systolic' completely with a factor of 4.
+INFO: [HLS 200-489] Unrolling loop 'Loop-2' (mm_mult.cc:76) in function 'mm_mult_systolic' completely with a factor of 4.
+INFO: [HLS 200-489] Unrolling loop 'Loop-2.1' (mm_mult.cc:78) in function 'mm_mult_systolic' completely with a factor of 4.
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'h_fifo' .
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'v_fifo' .
+INFO: [XFORM 203-101] Partitioning array 'A.a' (mm_mult.cc:139) in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'B.b' (mm_mult.cc:140) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'Out.out'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'h_fifo' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'v_fifo' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'Out.out'  in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'h_fifo' in dimension 2 completely.
+INFO: [XFORM 203-101] Partitioning array 'v_fifo' in dimension 2 completely.
+INFO: [XFORM 203-712] Applying dataflow to function 'mm_mult_systolic', detected/extracted 33 process function(s): 
+	 'mm_mult_systolic_Block_arrayctor.loop4.preheader350_proc90'
+	 'PE<short, 4>23'
+	 'mm_mult_systolic_Block_arrayctor.loop4.preheader350352_proc'
+	 'PE<short, 4>24'
+	 'mm_mult_systolic_Block_arrayctor.loop4.preheader350354_proc'
+	 'PE<short, 4>25'
+	 'mm_mult_systolic_Block_arrayctor.loop4.preheader350356_proc'
+	 'PE_V<short, 4>26'
+	 'mm_mult_systolic_Block_arrayctor.loop4.preheader350358_proc'
+	 'PE<short, 4>27'
+	 'mm_mult_systolic_Block_arrayctor.loop4.preheader350360_proc'
+	 'PE<short, 4>28'
+	 'mm_mult_systolic_Block_arrayctor.loop4.preheader350362_proc'
+	 'PE<short, 4>29'
+	 'mm_mult_systolic_Block_arrayctor.loop4.preheader350364_proc'
+	 'PE_V<short, 4>30'
+	 'mm_mult_systolic_Block_arrayctor.loop4.preheader350366_proc'
+	 'PE<short, 4>31'
+	 'mm_mult_systolic_Block_arrayctor.loop4.preheader350368_proc'
+	 'PE<short, 4>32'
+	 'mm_mult_systolic_Block_arrayctor.loop4.preheader350370_proc'
+	 'PE<short, 4>33'
+	 'mm_mult_systolic_Block_arrayctor.loop4.preheader350372_proc'
+	 'PE_V<short, 4>34'
+	 'mm_mult_systolic_Block_arrayctor.loop4.preheader350374_proc'
+	 'PE_H<short, 4>35'
+	 'mm_mult_systolic_Block_arrayctor.loop4.preheader350376_proc'
+	 'PE_H<short, 4>36'
+	 'mm_mult_systolic_Block_arrayctor.loop4.preheader350378_proc'
+	 'PE_H<short, 4>37'
+	 'mm_mult_systolic_Block_arrayctor.loop4.preheader350380_proc'
+	 'PE_N<short, 4>38'
+	 'mm_mult_systolic_Block_arrayctor.loop4.preheader350382_proc'.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:27 ; elapsed = 00:00:37 . Memory (MB): peak = 1169.715 ; gain = 527.219 ; free physical = 441 ; free virtual = 22841
+WARNING: [XFORM 203-631] Renaming function 'mm_mult_systolic_Block_arrayctor.loop4.preheader350_proc90' to 'mm_mult_systolic_Blo' (mm_mult.cc:70:13)
+WARNING: [XFORM 203-631] Renaming function 'mm_mult_systolic_Block_arrayctor.loop4.preheader350382_proc' to 'mm_mult_systolic_Blo.1' (mm_mult.cc:87:29)
+WARNING: [XFORM 203-631] Renaming function 'mm_mult_systolic_Block_arrayctor.loop4.preheader350380_proc' to 'mm_mult_systolic_Blo.2' (mm_mult.cc:83:29)
+WARNING: [XFORM 203-631] Renaming function 'mm_mult_systolic_Block_arrayctor.loop4.preheader350378_proc' to 'mm_mult_systolic_Blo.3' (mm_mult.cc:83:29)
+WARNING: [XFORM 203-631] Renaming function 'mm_mult_systolic_Block_arrayctor.loop4.preheader350376_proc' to 'mm_mult_systolic_Blo.4' (mm_mult.cc:83:29)
+WARNING: [XFORM 203-631] Renaming function 'mm_mult_systolic_Block_arrayctor.loop4.preheader350374_proc' to 'mm_mult_systolic_Blo.5' (mm_mult.cc:85:29)
+WARNING: [XFORM 203-631] Renaming function 'mm_mult_systolic_Block_arrayctor.loop4.preheader350372_proc' to 'mm_mult_systolic_Blo.6' (mm_mult.cc:81:29)
+WARNING: [XFORM 203-631] Renaming function 'mm_mult_systolic_Block_arrayctor.loop4.preheader350370_proc' to 'mm_mult_systolic_Blo.7' (mm_mult.cc:81:29)
+WARNING: [XFORM 203-631] Renaming function 'mm_mult_systolic_Block_arrayctor.loop4.preheader350368_proc' to 'mm_mult_systolic_Blo.8' (mm_mult.cc:81:29)
+WARNING: [XFORM 203-631] Renaming function 'mm_mult_systolic_Block_arrayctor.loop4.preheader350366_proc' to 'mm_mult_systolic_Blo.9' (mm_mult.cc:85:29)
+WARNING: [XFORM 203-631] Renaming function 'mm_mult_systolic_Block_arrayctor.loop4.preheader350364_proc' to 'mm_mult_systolic_Blo.10' (mm_mult.cc:81:29)
+WARNING: [XFORM 203-631] Renaming function 'mm_mult_systolic_Block_arrayctor.loop4.preheader350362_proc' to 'mm_mult_systolic_Blo.11' (mm_mult.cc:81:29)
+WARNING: [XFORM 203-631] Renaming function 'mm_mult_systolic_Block_arrayctor.loop4.preheader350360_proc' to 'mm_mult_systolic_Blo.12' (mm_mult.cc:81:29)
+WARNING: [XFORM 203-631] Renaming function 'mm_mult_systolic_Block_arrayctor.loop4.preheader350358_proc' to 'mm_mult_systolic_Blo.13' (mm_mult.cc:85:29)
+WARNING: [XFORM 203-631] Renaming function 'mm_mult_systolic_Block_arrayctor.loop4.preheader350356_proc' to 'mm_mult_systolic_Blo.14' (mm_mult.cc:81:29)
+WARNING: [XFORM 203-631] Renaming function 'mm_mult_systolic_Block_arrayctor.loop4.preheader350354_proc' to 'mm_mult_systolic_Blo.15' (mm_mult.cc:81:29)
+WARNING: [XFORM 203-631] Renaming function 'mm_mult_systolic_Block_arrayctor.loop4.preheader350352_proc' to 'mm_mult_systolic_Blo.16' (mm_mult.cc:81:29)
+INFO: [HLS 200-472] Inferring partial write operation for 'A.a[0]' (mm_mult.cc:150:25)
+INFO: [HLS 200-472] Inferring partial write operation for 'A.a[1]' (mm_mult.cc:149:29)
+INFO: [HLS 200-472] Inferring partial write operation for 'B.b[0]' (mm_mult.cc:158:29)
+INFO: [HLS 200-472] Inferring partial write operation for 'B.b[0]' (mm_mult.cc:159:25)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:29 ; elapsed = 00:00:40 . Memory (MB): peak = 1425.715 ; gain = 783.219 ; free physical = 235 ; free virtual = 22555
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'dut' ...
+WARNING: [SYN 201-103] Legalizing function name 'PE<short, 4>23' to 'PE_short_4_23'.
+WARNING: [SYN 201-103] Legalizing function name 'mm_mult_systolic_Blo.16' to 'mm_mult_systolic_Blo_16'.
+WARNING: [SYN 201-103] Legalizing function name 'PE<short, 4>24' to 'PE_short_4_24'.
+WARNING: [SYN 201-103] Legalizing function name 'mm_mult_systolic_Blo.15' to 'mm_mult_systolic_Blo_15'.
+WARNING: [SYN 201-103] Legalizing function name 'PE<short, 4>25' to 'PE_short_4_25'.
+WARNING: [SYN 201-103] Legalizing function name 'mm_mult_systolic_Blo.14' to 'mm_mult_systolic_Blo_14'.
+WARNING: [SYN 201-103] Legalizing function name 'PE_V<short, 4>26' to 'PE_V_short_4_26'.
+WARNING: [SYN 201-103] Legalizing function name 'mm_mult_systolic_Blo.13' to 'mm_mult_systolic_Blo_13'.
+WARNING: [SYN 201-103] Legalizing function name 'PE<short, 4>27' to 'PE_short_4_27'.
+WARNING: [SYN 201-103] Legalizing function name 'mm_mult_systolic_Blo.12' to 'mm_mult_systolic_Blo_12'.
+WARNING: [SYN 201-103] Legalizing function name 'PE<short, 4>28' to 'PE_short_4_28'.
+WARNING: [SYN 201-103] Legalizing function name 'mm_mult_systolic_Blo.11' to 'mm_mult_systolic_Blo_11'.
+WARNING: [SYN 201-103] Legalizing function name 'PE<short, 4>29' to 'PE_short_4_29'.
+WARNING: [SYN 201-103] Legalizing function name 'mm_mult_systolic_Blo.10' to 'mm_mult_systolic_Blo_10'.
+WARNING: [SYN 201-103] Legalizing function name 'PE_V<short, 4>30' to 'PE_V_short_4_30'.
+WARNING: [SYN 201-103] Legalizing function name 'mm_mult_systolic_Blo.9' to 'mm_mult_systolic_Blo_9'.
+WARNING: [SYN 201-103] Legalizing function name 'PE<short, 4>31' to 'PE_short_4_31'.
+WARNING: [SYN 201-103] Legalizing function name 'mm_mult_systolic_Blo.8' to 'mm_mult_systolic_Blo_8'.
+WARNING: [SYN 201-103] Legalizing function name 'PE<short, 4>32' to 'PE_short_4_32'.
+WARNING: [SYN 201-103] Legalizing function name 'mm_mult_systolic_Blo.7' to 'mm_mult_systolic_Blo_7'.
+WARNING: [SYN 201-103] Legalizing function name 'PE<short, 4>33' to 'PE_short_4_33'.
+WARNING: [SYN 201-103] Legalizing function name 'mm_mult_systolic_Blo.6' to 'mm_mult_systolic_Blo_6'.
+WARNING: [SYN 201-103] Legalizing function name 'PE_V<short, 4>34' to 'PE_V_short_4_34'.
+WARNING: [SYN 201-103] Legalizing function name 'mm_mult_systolic_Blo.5' to 'mm_mult_systolic_Blo_5'.
+WARNING: [SYN 201-103] Legalizing function name 'PE_H<short, 4>35' to 'PE_H_short_4_35'.
+WARNING: [SYN 201-103] Legalizing function name 'mm_mult_systolic_Blo.4' to 'mm_mult_systolic_Blo_4'.
+WARNING: [SYN 201-103] Legalizing function name 'PE_H<short, 4>36' to 'PE_H_short_4_36'.
+WARNING: [SYN 201-103] Legalizing function name 'mm_mult_systolic_Blo.3' to 'mm_mult_systolic_Blo_3'.
+WARNING: [SYN 201-103] Legalizing function name 'PE_H<short, 4>37' to 'PE_H_short_4_37'.
+WARNING: [SYN 201-103] Legalizing function name 'mm_mult_systolic_Blo.2' to 'mm_mult_systolic_Blo_2'.
+WARNING: [SYN 201-103] Legalizing function name 'PE_N<short, 4>38' to 'PE_N_short_4_38'.
+WARNING: [SYN 201-103] Legalizing function name 'mm_mult_systolic_Blo.1' to 'mm_mult_systolic_Blo_1'.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mm_mult_systolic_Blo' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 40.93 seconds; current allocated memory: 459.428 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.23 seconds; current allocated memory: 459.910 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'PE_short_4_23' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.35 seconds; current allocated memory: 460.028 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.09 seconds; current allocated memory: 460.151 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mm_mult_systolic_Blo_16' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.1 seconds; current allocated memory: 460.182 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.06 seconds; current allocated memory: 460.219 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'PE_short_4_24' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.19 seconds; current allocated memory: 460.274 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.1 seconds; current allocated memory: 460.397 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mm_mult_systolic_Blo_15' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.1 seconds; current allocated memory: 460.412 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 460.448 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'PE_short_4_25' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.2 seconds; current allocated memory: 460.503 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.09 seconds; current allocated memory: 460.626 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mm_mult_systolic_Blo_14' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.09 seconds; current allocated memory: 460.640 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.08 seconds; current allocated memory: 460.677 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'PE_V_short_4_26' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.17 seconds; current allocated memory: 460.764 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.08 seconds; current allocated memory: 460.876 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mm_mult_systolic_Blo_13' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.1 seconds; current allocated memory: 460.907 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 460.943 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'PE_short_4_27' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.22 seconds; current allocated memory: 460.998 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 461.121 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mm_mult_systolic_Blo_12' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 461.135 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 461.171 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'PE_short_4_28' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.2 seconds; current allocated memory: 461.242 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 461.365 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mm_mult_systolic_Blo_11' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 461.409 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 461.447 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'PE_short_4_29' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.23 seconds; current allocated memory: 461.502 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 461.625 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mm_mult_systolic_Blo_10' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 461.640 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 461.676 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'PE_V_short_4_30' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.18 seconds; current allocated memory: 461.727 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 461.839 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mm_mult_systolic_Blo_9' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 461.870 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 461.906 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'PE_short_4_31' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.22 seconds; current allocated memory: 461.961 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.09 seconds; current allocated memory: 462.083 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mm_mult_systolic_Blo_8' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 462.098 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 462.134 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'PE_short_4_32' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.19 seconds; current allocated memory: 462.189 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.1 seconds; current allocated memory: 462.312 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mm_mult_systolic_Blo_7' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.2 seconds; current allocated memory: 462.327 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.08 seconds; current allocated memory: 462.363 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'PE_short_4_33' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.22 seconds; current allocated memory: 462.434 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.09 seconds; current allocated memory: 462.557 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mm_mult_systolic_Blo_6' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 462.601 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.1 seconds; current allocated memory: 462.637 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'PE_V_short_4_34' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.18 seconds; current allocated memory: 462.688 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 462.801 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mm_mult_systolic_Blo_5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.13 seconds; current allocated memory: 462.832 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.06 seconds; current allocated memory: 462.867 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'PE_H_short_4_35' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.17 seconds; current allocated memory: 462.918 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 463.030 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mm_mult_systolic_Blo_4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.12 seconds; current allocated memory: 463.045 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.09 seconds; current allocated memory: 463.081 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'PE_H_short_4_36' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.19 seconds; current allocated memory: 463.132 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.1 seconds; current allocated memory: 463.244 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mm_mult_systolic_Blo_3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 463.259 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.09 seconds; current allocated memory: 463.295 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'PE_H_short_4_37' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.19 seconds; current allocated memory: 463.346 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.13 seconds; current allocated memory: 463.458 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mm_mult_systolic_Blo_2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 463.489 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.09 seconds; current allocated memory: 463.525 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'PE_N_short_4_38' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.18 seconds; current allocated memory: 463.572 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 463.673 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mm_mult_systolic_Blo_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.12 seconds; current allocated memory: 463.703 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.1 seconds; current allocated memory: 463.739 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mm_mult_systolic' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.19 seconds; current allocated memory: 464.048 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.61 seconds; current allocated memory: 465.011 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'dut' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.53 seconds; current allocated memory: 465.390 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.38 seconds; current allocated memory: 465.958 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mm_mult_systolic_Blo' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mm_mult_systolic_Blo'.
+INFO: [HLS 200-111]  Elapsed time: 0.44 seconds; current allocated memory: 466.547 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'PE_short_4_23' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'dut_mac_muladd_16s_16s_16ns_16_1_1' to 'dut_mac_muladd_16bkb' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'dut_mac_muladd_16bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'PE_short_4_23'.
+INFO: [HLS 200-111]  Elapsed time: 0.5 seconds; current allocated memory: 468.393 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mm_mult_systolic_Blo_16' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mm_mult_systolic_Blo_16'.
+INFO: [HLS 200-111]  Elapsed time: 0.22 seconds; current allocated memory: 468.892 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'PE_short_4_24' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'dut_mac_muladd_16bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'PE_short_4_24'.
+INFO: [HLS 200-111]  Elapsed time: 0.15 seconds; current allocated memory: 469.225 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mm_mult_systolic_Blo_15' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mm_mult_systolic_Blo_15'.
+INFO: [HLS 200-111]  Elapsed time: 0.18 seconds; current allocated memory: 469.704 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'PE_short_4_25' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'dut_mac_muladd_16bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'PE_short_4_25'.
+INFO: [HLS 200-111]  Elapsed time: 0.16 seconds; current allocated memory: 470.066 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mm_mult_systolic_Blo_14' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mm_mult_systolic_Blo_14'.
+INFO: [HLS 200-111]  Elapsed time: 0.25 seconds; current allocated memory: 470.500 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'PE_V_short_4_26' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'dut_mac_muladd_16bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'PE_V_short_4_26'.
+INFO: [HLS 200-111]  Elapsed time: 0.19 seconds; current allocated memory: 470.851 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mm_mult_systolic_Blo_13' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mm_mult_systolic_Blo_13'.
+INFO: [HLS 200-111]  Elapsed time: 0.18 seconds; current allocated memory: 471.295 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'PE_short_4_27' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'dut_mac_muladd_16bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'PE_short_4_27'.
+INFO: [HLS 200-111]  Elapsed time: 0.16 seconds; current allocated memory: 471.613 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mm_mult_systolic_Blo_12' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mm_mult_systolic_Blo_12'.
+INFO: [HLS 200-111]  Elapsed time: 0.19 seconds; current allocated memory: 472.046 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'PE_short_4_28' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'dut_mac_muladd_16bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'PE_short_4_28'.
+INFO: [HLS 200-111]  Elapsed time: 0.24 seconds; current allocated memory: 472.392 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mm_mult_systolic_Blo_11' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mm_mult_systolic_Blo_11'.
+INFO: [HLS 200-111]  Elapsed time: 0.24 seconds; current allocated memory: 472.870 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'PE_short_4_29' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'dut_mac_muladd_16bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'PE_short_4_29'.
+INFO: [HLS 200-111]  Elapsed time: 0.17 seconds; current allocated memory: 473.220 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mm_mult_systolic_Blo_10' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mm_mult_systolic_Blo_10'.
+INFO: [HLS 200-111]  Elapsed time: 0.23 seconds; current allocated memory: 473.699 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'PE_V_short_4_30' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'dut_mac_muladd_16bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'PE_V_short_4_30'.
+INFO: [HLS 200-111]  Elapsed time: 0.16 seconds; current allocated memory: 474.058 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mm_mult_systolic_Blo_9' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mm_mult_systolic_Blo_9'.
+INFO: [HLS 200-111]  Elapsed time: 0.24 seconds; current allocated memory: 474.516 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'PE_short_4_31' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'dut_mac_muladd_16bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'PE_short_4_31'.
+INFO: [HLS 200-111]  Elapsed time: 0.16 seconds; current allocated memory: 474.835 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mm_mult_systolic_Blo_8' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mm_mult_systolic_Blo_8'.
+INFO: [HLS 200-111]  Elapsed time: 0.2 seconds; current allocated memory: 475.328 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'PE_short_4_32' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'dut_mac_muladd_16bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'PE_short_4_32'.
+INFO: [HLS 200-111]  Elapsed time: 0.3 seconds; current allocated memory: 475.645 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mm_mult_systolic_Blo_7' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mm_mult_systolic_Blo_7'.
+INFO: [HLS 200-111]  Elapsed time: 0.23 seconds; current allocated memory: 476.123 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'PE_short_4_33' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'dut_mac_muladd_16bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'PE_short_4_33'.
+INFO: [HLS 200-111]  Elapsed time: 0.18 seconds; current allocated memory: 476.443 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mm_mult_systolic_Blo_6' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mm_mult_systolic_Blo_6'.
+INFO: [HLS 200-111]  Elapsed time: 0.19 seconds; current allocated memory: 476.876 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'PE_V_short_4_34' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'dut_mac_muladd_16bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'PE_V_short_4_34'.
+INFO: [HLS 200-111]  Elapsed time: 0.18 seconds; current allocated memory: 477.228 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mm_mult_systolic_Blo_5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mm_mult_systolic_Blo_5'.
+INFO: [HLS 200-111]  Elapsed time: 0.21 seconds; current allocated memory: 477.672 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'PE_H_short_4_35' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'dut_mac_muladd_16bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'PE_H_short_4_35'.
+INFO: [HLS 200-111]  Elapsed time: 0.21 seconds; current allocated memory: 478.024 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mm_mult_systolic_Blo_4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mm_mult_systolic_Blo_4'.
+INFO: [HLS 200-111]  Elapsed time: 0.21 seconds; current allocated memory: 478.452 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'PE_H_short_4_36' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'dut_mac_muladd_16bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'PE_H_short_4_36'.
+INFO: [HLS 200-111]  Elapsed time: 0.17 seconds; current allocated memory: 478.745 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mm_mult_systolic_Blo_3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mm_mult_systolic_Blo_3'.
+INFO: [HLS 200-111]  Elapsed time: 0.21 seconds; current allocated memory: 479.285 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'PE_H_short_4_37' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'dut_mac_muladd_16bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'PE_H_short_4_37'.
+INFO: [HLS 200-111]  Elapsed time: 0.19 seconds; current allocated memory: 479.562 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mm_mult_systolic_Blo_2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mm_mult_systolic_Blo_2'.
+INFO: [HLS 200-111]  Elapsed time: 0.25 seconds; current allocated memory: 480.019 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'PE_N_short_4_38' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'dut_mac_muladd_16bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'PE_N_short_4_38'.
+INFO: [HLS 200-111]  Elapsed time: 0.2 seconds; current allocated memory: 480.315 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mm_mult_systolic_Blo_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mm_mult_systolic_Blo_1'.
+INFO: [HLS 200-111]  Elapsed time: 0.24 seconds; current allocated memory: 480.752 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mm_mult_systolic' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'start_for_PE_short_4_23_U0' to 'start_for_PE_shorcud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'start_for_PE_short_4_24_U0' to 'start_for_PE_shordEe' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'start_for_PE_short_4_25_U0' to 'start_for_PE_shoreOg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'start_for_PE_V_short_4_26_U0' to 'start_for_PE_V_shfYi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'start_for_PE_short_4_27_U0' to 'start_for_PE_shorg8j' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'start_for_PE_short_4_31_U0' to 'start_for_PE_shorhbi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'start_for_PE_H_short_4_35_U0' to 'start_for_PE_H_shibs' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'start_for_PE_short_4_28_U0' to 'start_for_PE_shorjbC' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'start_for_PE_short_4_29_U0' to 'start_for_PE_shorkbM' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'start_for_PE_V_short_4_30_U0' to 'start_for_PE_V_shlbW' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'start_for_PE_short_4_33_U0' to 'start_for_PE_shormb6' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'start_for_PE_V_short_4_34_U0' to 'start_for_PE_V_shncg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'start_for_PE_short_4_32_U0' to 'start_for_PE_shorocq' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'start_for_PE_N_short_4_38_U0' to 'start_for_PE_N_shpcA' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'start_for_PE_H_short_4_36_U0' to 'start_for_PE_H_shqcK' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'start_for_PE_H_short_4_37_U0' to 'start_for_PE_H_shrcU' due to the length limit 20
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mm_mult_systolic'.
+INFO: [HLS 200-111]  Elapsed time: 0.56 seconds; current allocated memory: 484.088 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'dut' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/strm_in_V_V' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'dut/strm_out_V_V' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'dut' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Generating core module 'dut_mux_165_16_1_1': 2 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'dut'.
+INFO: [HLS 200-111]  Elapsed time: 1.17 seconds; current allocated memory: 487.752 MB.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 121.21 MHz
+INFO: [RTMG 210-285] Implementing FIFO 'h_fifo_0_0_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'v_fifo_0_0_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'v_fifo_0_1_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'v_fifo_0_2_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'v_fifo_0_3_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'h_fifo_1_0_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'h_fifo_2_0_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'h_fifo_3_0_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'tmp_34_channel_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'h_fifo_0_1_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'v_fifo_1_0_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'tmp_35_channel_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'h_fifo_0_2_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'v_fifo_1_1_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'tmp_36_channel_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'h_fifo_0_3_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'v_fifo_1_2_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'tmp_37_channel_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'v_fifo_1_3_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'tmp_38_channel_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'h_fifo_1_1_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'v_fifo_2_0_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'tmp_39_channel_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'h_fifo_1_2_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'v_fifo_2_1_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'tmp_40_channel_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'h_fifo_1_3_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'v_fifo_2_2_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'tmp_41_channel_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'v_fifo_2_3_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'tmp_42_channel_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'h_fifo_2_1_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'v_fifo_3_0_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'tmp_43_channel_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'h_fifo_2_2_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'v_fifo_3_1_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'tmp_44_channel_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'h_fifo_2_3_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'v_fifo_3_2_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'tmp_45_channel_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'v_fifo_3_3_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'tmp_46_channel_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'h_fifo_3_1_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'tmp_47_channel_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'h_fifo_3_2_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'tmp_48_channel_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'h_fifo_3_3_U(fifo_w16_d10_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'tmp_49_channel_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_PE_shorcud_U(start_for_PE_shorcud)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_PE_shordEe_U(start_for_PE_shordEe)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_PE_shoreOg_U(start_for_PE_shoreOg)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_PE_V_shfYi_U(start_for_PE_V_shfYi)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_PE_shorg8j_U(start_for_PE_shorg8j)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_PE_shorhbi_U(start_for_PE_shorhbi)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_PE_H_shibs_U(start_for_PE_H_shibs)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_PE_shorjbC_U(start_for_PE_shorjbC)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_PE_shorkbM_U(start_for_PE_shorkbM)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_PE_V_shlbW_U(start_for_PE_V_shlbW)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_PE_shormb6_U(start_for_PE_shormb6)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_PE_V_shncg_U(start_for_PE_V_shncg)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_PE_shorocq_U(start_for_PE_shorocq)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_PE_N_shpcA_U(start_for_PE_N_shpcA)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_PE_H_shqcK_U(start_for_PE_H_shqcK)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_PE_H_shrcU_U(start_for_PE_H_shrcU)' using Shift Registers.
+INFO: [RTMG 210-278] Implementing memory 'dut_A_a_0_ram (RAM)' using distributed RAMs.
+INFO: [RTMG 210-278] Implementing memory 'dut_B_b_0_ram (RAM)' using block RAMs.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:46 ; elapsed = 00:01:17 . Memory (MB): peak = 1555.715 ; gain = 913.219 ; free physical = 304 ; free virtual = 22529
+INFO: [VHDL 208-304] Generating VHDL RTL for dut.
+INFO: [VLOG 209-307] Generating Verilog RTL for dut.
+INFO: [COSIM 212-47] Using XSIM for RTL simulation.
+INFO: [COSIM 212-14] Instrumenting C test bench ...
+make[1]: Entering directory `/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/wrapc'
+   Build using "/opt/xilinx/Xilinx_Vivado_vitis_2019.2/Vivado/2019.2/tps/lnx64/gcc-6.2.0/bin/g++"
+   Compiling apatb_dut.cpp
+   Compiling mm_mult.cc_pre.cc.tb.cc
+   Compiling mm_mult_testbench.cc_pre.cc.tb.cc
+   Generating cosim.tv.exe
+make[1]: Leaving directory `/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/wrapc'
+INFO: [COSIM 212-302] Starting C TB testing ... 
+4 15 10 12 
+15 9 0 15 
+4 13 6 10 
+15 8 14 11 
+5 9 6 14 
+9 11 10 4 
+14 3 12 1 
+15 7 4 6 
+received
+0, 0, 475, expected = 475
+0, 1, 315, expected = 315
+0, 2, 342, expected = 342
+0, 3, 198, expected = 198
+1, 0, 381, expected = 381
+1, 1, 339, expected = 339
+1, 2, 240, expected = 240
+1, 3, 336, expected = 336
+2, 0, 371, expected = 371
+2, 1, 267, expected = 267
+2, 2, 266, expected = 266
+2, 3, 174, expected = 174
+3, 0, 508, expected = 508
+3, 1, 342, expected = 342
+3, 2, 382, expected = 382
+3, 3, 322, expected = 322
+passed
+INFO: [COSIM 212-333] Generating C post check test bench ...
+INFO: [COSIM 212-12] Generating RTL test bench ...
+INFO: [COSIM 212-1] *** C/RTL co-simulation file generation completed. ***
+INFO: [COSIM 212-323] Starting verilog simulation. 
+INFO: [COSIM 212-15] Starting XSIM ...
+INFO: [XSIM 43-3496] Using init file passed via -initfile option "/opt/xilinx/Xilinx_Vivado_vitis_2019.2/Vivado/2019.2/data/xsim/ip/xsim_ip.ini".
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: /opt/xilinx/Xilinx_Vivado_vitis_2019.2/Vivado/2019.2/bin/unwrapped/lnx64.o/xelab xil_defaultlib.apatb_dut_top glbl -prj dut.prj -L smartconnect_v1_0 -L axi_protocol_checker_v1_1_12 -L axi_protocol_checker_v1_1_13 -L axis_protocol_checker_v1_1_11 -L axis_protocol_checker_v1_1_12 -L xil_defaultlib -L unisims_ver -L xpm --initfile /opt/xilinx/Xilinx_Vivado_vitis_2019.2/Vivado/2019.2/data/xsim/ip/xsim_ip.ini --lib ieee_proposed=./ieee_proposed -s dut 
+Multi-threading is on. Using 8 slave threads.
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/glbl.v" into library work
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/dut.autotb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module apatb_dut_top
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/AESL_autofifo_strm_in_V_V.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_autofifo_strm_in_V_V
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/AESL_autofifo_strm_out_V_V.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_autofifo_strm_out_V_V
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/AESL_deadlock_detection_unit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_deadlock_detect_unit
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/AESL_deadlock_report_unit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_deadlock_report_unit
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/AESL_deadlock_detector.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_deadlock_detector
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/mm_mult_systolic_Blo.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mm_mult_systolic_Blo
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/PE_short_4_23.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PE_short_4_23
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/mm_mult_systolic_Blo_16.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mm_mult_systolic_Blo_16
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/PE_short_4_24.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PE_short_4_24
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/mm_mult_systolic_Blo_15.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mm_mult_systolic_Blo_15
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/PE_short_4_25.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PE_short_4_25
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/mm_mult_systolic_Blo_14.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mm_mult_systolic_Blo_14
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/PE_V_short_4_26.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PE_V_short_4_26
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/mm_mult_systolic_Blo_13.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mm_mult_systolic_Blo_13
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/PE_short_4_27.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PE_short_4_27
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/mm_mult_systolic_Blo_12.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mm_mult_systolic_Blo_12
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/PE_short_4_28.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PE_short_4_28
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/mm_mult_systolic_Blo_11.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mm_mult_systolic_Blo_11
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/PE_short_4_29.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PE_short_4_29
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/mm_mult_systolic_Blo_10.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mm_mult_systolic_Blo_10
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/PE_V_short_4_30.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PE_V_short_4_30
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/mm_mult_systolic_Blo_9.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mm_mult_systolic_Blo_9
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/PE_short_4_31.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PE_short_4_31
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/mm_mult_systolic_Blo_8.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mm_mult_systolic_Blo_8
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/PE_short_4_32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PE_short_4_32
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/mm_mult_systolic_Blo_7.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mm_mult_systolic_Blo_7
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/PE_short_4_33.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PE_short_4_33
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/mm_mult_systolic_Blo_6.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mm_mult_systolic_Blo_6
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/PE_V_short_4_34.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PE_V_short_4_34
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/mm_mult_systolic_Blo_5.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mm_mult_systolic_Blo_5
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/PE_H_short_4_35.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PE_H_short_4_35
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/mm_mult_systolic_Blo_4.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mm_mult_systolic_Blo_4
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/PE_H_short_4_36.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PE_H_short_4_36
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/mm_mult_systolic_Blo_3.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mm_mult_systolic_Blo_3
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/PE_H_short_4_37.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PE_H_short_4_37
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/mm_mult_systolic_Blo_2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mm_mult_systolic_Blo_2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/PE_N_short_4_38.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PE_N_short_4_38
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/mm_mult_systolic_Blo_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mm_mult_systolic_Blo_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/mm_mult_systolic.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mm_mult_systolic
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/dut.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module dut
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/dut_mac_muladd_16bkb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module dut_mac_muladd_16bkb_DSP48_0
+INFO: [VRFC 10-311] analyzing module dut_mac_muladd_16bkb
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/start_for_PE_V_shlbW.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module start_for_PE_V_shlbW_shiftReg
+INFO: [VRFC 10-311] analyzing module start_for_PE_V_shlbW
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/start_for_PE_V_shncg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module start_for_PE_V_shncg_shiftReg
+INFO: [VRFC 10-311] analyzing module start_for_PE_V_shncg
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/start_for_PE_shorocq.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module start_for_PE_shorocq_shiftReg
+INFO: [VRFC 10-311] analyzing module start_for_PE_shorocq
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/start_for_PE_H_shqcK.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module start_for_PE_H_shqcK_shiftReg
+INFO: [VRFC 10-311] analyzing module start_for_PE_H_shqcK
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/dut_mux_165_16_1_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module dut_mux_165_16_1_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/dut_A_a_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module dut_A_a_0_ram
+INFO: [VRFC 10-311] analyzing module dut_A_a_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/dut_B_b_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module dut_B_b_0_ram
+INFO: [VRFC 10-311] analyzing module dut_B_b_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/fifo_w16_d10_A.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fifo_w16_d10_A_shiftReg
+INFO: [VRFC 10-311] analyzing module fifo_w16_d10_A
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/fifo_w16_d2_A.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fifo_w16_d2_A_shiftReg
+INFO: [VRFC 10-311] analyzing module fifo_w16_d2_A
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/start_for_PE_shorcud.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module start_for_PE_shorcud_shiftReg
+INFO: [VRFC 10-311] analyzing module start_for_PE_shorcud
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/start_for_PE_shordEe.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module start_for_PE_shordEe_shiftReg
+INFO: [VRFC 10-311] analyzing module start_for_PE_shordEe
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/start_for_PE_shoreOg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module start_for_PE_shoreOg_shiftReg
+INFO: [VRFC 10-311] analyzing module start_for_PE_shoreOg
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/start_for_PE_V_shfYi.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module start_for_PE_V_shfYi_shiftReg
+INFO: [VRFC 10-311] analyzing module start_for_PE_V_shfYi
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/start_for_PE_shorg8j.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module start_for_PE_shorg8j_shiftReg
+INFO: [VRFC 10-311] analyzing module start_for_PE_shorg8j
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/start_for_PE_shorhbi.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module start_for_PE_shorhbi_shiftReg
+INFO: [VRFC 10-311] analyzing module start_for_PE_shorhbi
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/start_for_PE_H_shibs.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module start_for_PE_H_shibs_shiftReg
+INFO: [VRFC 10-311] analyzing module start_for_PE_H_shibs
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/start_for_PE_shorjbC.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module start_for_PE_shorjbC_shiftReg
+INFO: [VRFC 10-311] analyzing module start_for_PE_shorjbC
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/start_for_PE_shorkbM.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module start_for_PE_shorkbM_shiftReg
+INFO: [VRFC 10-311] analyzing module start_for_PE_shorkbM
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/start_for_PE_shormb6.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module start_for_PE_shormb6_shiftReg
+INFO: [VRFC 10-311] analyzing module start_for_PE_shormb6
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/start_for_PE_N_shpcA.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module start_for_PE_N_shpcA_shiftReg
+INFO: [VRFC 10-311] analyzing module start_for_PE_N_shpcA
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/start_for_PE_H_shrcU.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module start_for_PE_H_shrcU_shiftReg
+INFO: [VRFC 10-311] analyzing module start_for_PE_H_shrcU
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.dut_A_a_0_ram
+Compiling module xil_defaultlib.dut_A_a_0(DataWidth=16,AddressRa...
+Compiling module xil_defaultlib.dut_B_b_0_ram
+Compiling module xil_defaultlib.dut_B_b_0(DataWidth=16,AddressRa...
+Compiling module xil_defaultlib.mm_mult_systolic_Blo
+Compiling module xil_defaultlib.dut_mac_muladd_16bkb_DSP48_0
+Compiling module xil_defaultlib.dut_mac_muladd_16bkb(ID=1,NUM_ST...
+Compiling module xil_defaultlib.PE_short_4_23
+Compiling module xil_defaultlib.mm_mult_systolic_Blo_16
+Compiling module xil_defaultlib.PE_short_4_24
+Compiling module xil_defaultlib.mm_mult_systolic_Blo_15
+Compiling module xil_defaultlib.PE_short_4_25
+Compiling module xil_defaultlib.mm_mult_systolic_Blo_14
+Compiling module xil_defaultlib.PE_V_short_4_26
+Compiling module xil_defaultlib.mm_mult_systolic_Blo_13
+Compiling module xil_defaultlib.PE_short_4_27
+Compiling module xil_defaultlib.mm_mult_systolic_Blo_12
+Compiling module xil_defaultlib.PE_short_4_28
+Compiling module xil_defaultlib.mm_mult_systolic_Blo_11
+Compiling module xil_defaultlib.PE_short_4_29
+Compiling module xil_defaultlib.mm_mult_systolic_Blo_10
+Compiling module xil_defaultlib.PE_V_short_4_30
+Compiling module xil_defaultlib.mm_mult_systolic_Blo_9
+Compiling module xil_defaultlib.PE_short_4_31
+Compiling module xil_defaultlib.mm_mult_systolic_Blo_8
+Compiling module xil_defaultlib.PE_short_4_32
+Compiling module xil_defaultlib.mm_mult_systolic_Blo_7
+Compiling module xil_defaultlib.PE_short_4_33
+Compiling module xil_defaultlib.mm_mult_systolic_Blo_6
+Compiling module xil_defaultlib.PE_V_short_4_34
+Compiling module xil_defaultlib.mm_mult_systolic_Blo_5
+Compiling module xil_defaultlib.PE_H_short_4_35
+Compiling module xil_defaultlib.mm_mult_systolic_Blo_4
+Compiling module xil_defaultlib.PE_H_short_4_36
+Compiling module xil_defaultlib.mm_mult_systolic_Blo_3
+Compiling module xil_defaultlib.PE_H_short_4_37
+Compiling module xil_defaultlib.mm_mult_systolic_Blo_2
+Compiling module xil_defaultlib.PE_N_short_4_38
+Compiling module xil_defaultlib.mm_mult_systolic_Blo_1
+Compiling module xil_defaultlib.fifo_w16_d10_A_shiftReg
+Compiling module xil_defaultlib.fifo_w16_d10_A
+Compiling module xil_defaultlib.fifo_w16_d2_A_shiftReg
+Compiling module xil_defaultlib.fifo_w16_d2_A
+Compiling module xil_defaultlib.start_for_PE_shorcud_shiftReg
+Compiling module xil_defaultlib.start_for_PE_shorcud
+Compiling module xil_defaultlib.start_for_PE_shordEe_shiftReg
+Compiling module xil_defaultlib.start_for_PE_shordEe
+Compiling module xil_defaultlib.start_for_PE_shoreOg_shiftReg
+Compiling module xil_defaultlib.start_for_PE_shoreOg
+Compiling module xil_defaultlib.start_for_PE_V_shfYi_shiftReg
+Compiling module xil_defaultlib.start_for_PE_V_shfYi
+Compiling module xil_defaultlib.start_for_PE_shorg8j_shiftReg
+Compiling module xil_defaultlib.start_for_PE_shorg8j
+Compiling module xil_defaultlib.start_for_PE_shorhbi_shiftReg
+Compiling module xil_defaultlib.start_for_PE_shorhbi
+Compiling module xil_defaultlib.start_for_PE_H_shibs_shiftReg
+Compiling module xil_defaultlib.start_for_PE_H_shibs
+Compiling module xil_defaultlib.start_for_PE_shorjbC_shiftReg
+Compiling module xil_defaultlib.start_for_PE_shorjbC
+Compiling module xil_defaultlib.start_for_PE_shorkbM_shiftReg
+Compiling module xil_defaultlib.start_for_PE_shorkbM
+Compiling module xil_defaultlib.start_for_PE_V_shlbW_shiftReg
+Compiling module xil_defaultlib.start_for_PE_V_shlbW
+Compiling module xil_defaultlib.start_for_PE_shormb6_shiftReg
+Compiling module xil_defaultlib.start_for_PE_shormb6
+Compiling module xil_defaultlib.start_for_PE_V_shncg_shiftReg
+Compiling module xil_defaultlib.start_for_PE_V_shncg
+Compiling module xil_defaultlib.start_for_PE_shorocq_shiftReg
+Compiling module xil_defaultlib.start_for_PE_shorocq
+Compiling module xil_defaultlib.start_for_PE_N_shpcA_shiftReg
+Compiling module xil_defaultlib.start_for_PE_N_shpcA
+Compiling module xil_defaultlib.start_for_PE_H_shqcK_shiftReg
+Compiling module xil_defaultlib.start_for_PE_H_shqcK
+Compiling module xil_defaultlib.start_for_PE_H_shrcU_shiftReg
+Compiling module xil_defaultlib.start_for_PE_H_shrcU
+Compiling module xil_defaultlib.mm_mult_systolic
+Compiling module xil_defaultlib.dut_mux_165_16_1_1(ID=1,din0_WID...
+Compiling module xil_defaultlib.dut
+Compiling module xil_defaultlib.AESL_autofifo_strm_in_V_V
+Compiling module xil_defaultlib.AESL_autofifo_strm_out_V_V
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_report_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detector_1
+Compiling module xil_defaultlib.apatb_dut_top
+Compiling module work.glbl
+Built simulation snapshot dut
+
+****** Webtalk v2019.2.1 (64-bit)
+  **** SW Build 2729669 on Thu Dec  5 04:48:12 MST 2019
+  **** IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+source /home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/xsim.dir/dut/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Wed Dec  6 16:53:11 2023...
+
+****** xsim v2019.2.1 (64-bit)
+  **** SW Build 2729669 on Thu Dec  5 04:48:12 MST 2019
+  **** IP Build 2729494 on Thu Dec  5 07:38:25 MST 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+source xsim.dir/dut/xsim_script.tcl
+# xsim {dut} -autoloadwcfg -tclbatch {dut.tcl}
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+source dut.tcl
+## run all
+////////////////////////////////////////////////////////////////////////////////////
+// Inter-Transaction Progress: Completed Transaction / Total Transaction
+// Intra-Transaction Progress: Measured Latency / Latency Estimation * 100%
+//
+// RTL Simulation : "Inter-Transaction Progress" ["Intra-Transaction Progress"] @ "Simulation Time"
+////////////////////////////////////////////////////////////////////////////////////
+// RTL Simulation : 0 / 1 [0.00%] @ "125000"
+// RTL Simulation : 1 / 1 [100.00%] @ "855000"
+////////////////////////////////////////////////////////////////////////////////////
+$finish called at time : 895 ns : File "/home/yz2797/ECE-6775-Final/ecelinux/mm.prj/solution1/sim/verilog/dut.autotb.v" Line 271
+## quit
+INFO: [Common 17-206] Exiting xsim at Wed Dec  6 16:53:26 2023...
+INFO: [COSIM 212-316] Starting C post checking ...
+4 15 10 12 
+15 9 0 15 
+4 13 6 10 
+15 8 14 11 
+5 9 6 14 
+9 11 10 4 
+14 3 12 1 
+15 7 4 6 
+0, 0, 475, expected = 475
+0, 1, 315, expected = 315
+0, 2, 342, expected = 342
+0, 3, 198, expected = 198
+1, 0, 381, expected = 381
+1, 1, 339, expected = 339
+1, 2, 240, expected = 240
+1, 3, 336, expected = 336
+2, 0, 371, expected = 371
+2, 1, 267, expected = 267
+2, 2, 266, expected = 266
+2, 3, 174, expected = 174
+3, 0, 508, expected = 508
+3, 1, 342, expected = 342
+3, 2, 382, expected = 382
+3, 3, 322, expected = 322
+passed
+INFO: [COSIM 212-1000] *** C/RTL co-simulation finished: PASS ***
+INFO: [COSIM 212-211] II is measurable only when transaction number is greater than 1 in RTL simulation. Otherwise, they will be marked as all NA. If user wants to calculate them, please make sure there are at least 2 transactions in RTL simulation.
+INFO: [HLS 200-112] Total elapsed time: 128.33 seconds; peak allocated memory: 487.752 MB.
+INFO: [Common 17-206] Exiting vivado_hls at Wed Dec  6 16:53:28 2023...
