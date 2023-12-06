@@ -104,6 +104,7 @@ B_MATRIX_INIT:
      // write A to FPGA
     for (int i = 0; i < M; i++) {
         for (int j = 0; j < N; j = j + 2) {
+            std::cout << i << " " << j << std::endl;
             input_2_in = (A.a[i][j] << 16) + A.a[i][j+1];
             //strm_in.write(input_2_in);
             int32_t input = input_2_in;
@@ -115,6 +116,7 @@ B_MATRIX_INIT:
 
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < O; j = j + 2) {
+            std::cout << i << " " << j << std::endl;
             input_2_in = (B.b[i][j] << 16) + B.b[i][j+1];
             //strm_in.write(input_2_in);
             int32_t input = input_2_in;
@@ -143,6 +145,7 @@ B_MATRIX_INIT:
     // After sending the digit to the FIFO, begin receiving data
     for (int i = 0; i < M; i++) {
         for (int j = 0; j < O; j = j + 2) {
+            std::cout << i << " " << j << std::endl;
             int32_t result_out;
             //output_2_out = strm_out.read();
             nbytes = read(fdr, (void *)&result_out, sizeof(result_out));
