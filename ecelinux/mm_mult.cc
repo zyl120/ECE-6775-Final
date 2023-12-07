@@ -102,9 +102,9 @@ void mm_mult_tiling(
 
     for (int ii = 0; ii < M; ii += M_BLOCK_SIZE) {
         for (int jj = 0; jj < O; jj += O_BLOCK_SIZE) {
-#pragma HLS PIPELINE II = 1
             for (int i = 0; i < M_BLOCK_SIZE; i++) {
                 for (int j = 0; j < O_BLOCK_SIZE; j++) {
+                    #pragma HLS PIPELINE II = 1
                     DTYPE accum = 0;
                     for (int k = 0; k < N; k++) {
                         accum += a[i + ii][k] * b[k][j + jj];
@@ -165,8 +165,8 @@ void dut(
     //-----------Call mm_mult function---------------//
     // uncomment the one under tests, comment all to test axi delay
     // mm_mult(A.a, B.b, Out.out);
-    // mm_mult_tiling(A.a, B.b, Out.out);
-    mm_mult_systolic(A.a, B.b, Out.out);
+    mm_mult_tiling(A.a, B.b, Out.out);
+    // mm_mult_systolic(A.a, B.b, Out.out);
 
     // write out the result.
     for (int i = 0; i < M; i++) {
