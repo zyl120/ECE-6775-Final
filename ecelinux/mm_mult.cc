@@ -163,7 +163,7 @@ void dut(
     std::cout << "received" << std::endl;
 
     //-----------Call mm_mult function---------------//
-    // uncomment the one under tests
+    // uncomment the one under tests, comment all to test axi delay
     // mm_mult(A.a, B.b, Out.out);
     // mm_mult_tiling(A.a, B.b, Out.out);
     mm_mult_systolic(A.a, B.b, Out.out);

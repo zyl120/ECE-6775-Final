@@ -13,19 +13,6 @@
 
 unsigned globalSeed;
 
-//------------------------------------------------------------------------
-// Helper function for hex to int conversion
-//------------------------------------------------------------------------
-int64_t hexstring_to_int64(std::string h) {
-    int64_t x = 0;
-    for (int i = 0; i < h.length(); ++i) {
-        char c = h[i];
-        int k = (c > '9') ? toupper(c) - 'A' + 10 : c - '0';
-        x = x * 16 + k;
-    }
-    return x;
-}
-
 //--------------------------------------
 // main function
 //--------------------------------------
@@ -56,9 +43,7 @@ A_MATRIX_INIT:
     for (int i = 0; i < M; i++) {
         for (int j = 0; j < N; j++) {
             A.a[i][j] = rand_r(&globalSeed) % 16;
-            std::cout << A.a[i][j] << " ";
         }
-        std::cout << std::endl;
     }
 
 // Initialize matrix B (N*O) with random values.
@@ -66,9 +51,7 @@ B_MATRIX_INIT:
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < O; j++) {
             B.b[i][j] = rand_r(&globalSeed) % 16;
-            std::cout << B.b[i][j] << " ";
         }
-        std::cout << std::endl;
     }
 
 
@@ -89,9 +72,6 @@ B_MATRIX_INIT:
 
     arm_timer.stop();
 
-
-    std::cout << "Begin axi transaction" << std::endl;
-
     // Timer
     Timer fpga_timer("FPGA timer");
 
@@ -104,50 +84,27 @@ B_MATRIX_INIT:
      // write A to FPGA
     for (int i = 0; i < M; i++) {
         for (int j = 0; j < N; j = j + 2) {
-            std::cout << i << " " << j << std::endl;
             input_2_in = (A.a[i][j] << 16) + A.a[i][j+1];
-            //strm_in.write(input_2_in);
             int32_t input = input_2_in;
             nbytes = write(fdw, (void *) &input, sizeof(input));
             assert(nbytes == sizeof(input));
         }
     }
-    std::cout << "Matrix A sent." << std::endl;
 
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < O; j = j + 2) {
-            std::cout << i << " " << j << std::endl;
             input_2_in = (B.b[i][j] << 16) + B.b[i][j+1];
-            //strm_in.write(input_2_in);
             int32_t input = input_2_in;
             nbytes = write(fdw, (void *) &input, sizeof(input));
             assert(nbytes == sizeof(input));
         }
     }
 
-    std::cout << "Matrix B sent." << std::endl;
-    
-
-    //--------------------------------------------------------------------
-    // Add your code here to communicate with the hardware module
-    //--------------------------------------------------------------------
-    // First add all digits into the FIFO
-    // for (int i = 0; i < N; ++i) {
-    //     digit current_digit = inputs[i];
-    //     bit64_t current_digit_i;
-    //     current_digit_i(current_digit.length() - 1, 0) = current_digit(current_digit.length() - 1, 0);
-    //     int64_t input = current_digit_i;
-    //     nbytes = write(fdw, (void *)&input, sizeof(input));
-    //     assert(nbytes == sizeof(input));
-    //     num_test_insts += 1; // increment the test instances counter.
-    // }
 
     // After sending the digit to the FIFO, begin receiving data
     for (int i = 0; i < M; i++) {
         for (int j = 0; j < O; j = j + 2) {
-            std::cout << i << " " << j << std::endl;
             int32_t result_out;
-            //output_2_out = strm_out.read();
             nbytes = read(fdr, (void *)&result_out, sizeof(result_out));
             assert(nbytes == sizeof(result_out));
             output_2_out = result_out;
@@ -155,8 +112,6 @@ B_MATRIX_INIT:
             Out.out[i][j] = output_2_out >> 16;
         }
     }
-
-    std::cout << "Result received." << std::endl;
 
     fpga_timer.stop();
 
@@ -175,20 +130,6 @@ B_MATRIX_INIT:
     } else {
         std::cout << "passed" << std::endl;
     }
-    // for (int i = 0; i < N; ++i) {
-    //     int32_t result_out;
-    //     nbytes = read(fdr, (void *)&result_out, sizeof(result_out));
-    //     assert(nbytes == sizeof(result_out));
-
-    //     // converting int64 to bit_4
-    //     bit32_t result_i = result_out;
-    //     interpreted_digit(interpreted_digit.length() - 1, 0) = result_i(interpreted_digit.length() - 1, 0);
-
-    //     if (interpreted_digit != expecteds[i]) {
-    //         error += 1;
-    //     }
-    // }
-    
 
     return 0;
 }

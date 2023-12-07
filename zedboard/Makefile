@@ -1,7 +1,7 @@
 #==========================================================================
 # Makefile
 #==========================================================================
-# @brief: A makefile the compiles and runs the digitrec program
+# @brief: A makefile the compiles and runs the matrix-matrix mult program
 #
 # @desc: 1. "make" or "make sw" runs software execution by default
 #        2. "make fpga" invokes the HW accelerator
