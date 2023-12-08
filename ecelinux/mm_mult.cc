@@ -91,6 +91,35 @@ void mm_mult_systolic(
     }
 }
 
+// ================================row-wise================================
+void mm_mult_rowWise(
+    DTYPE a[M][N],
+    DTYPE b[N][O],
+    DTYPE out[M][O]) {
+#pragma HLS ARRAY_PARTITION variable = a dim = 2 complete
+#pragma HLS ARRAY_PARTITION variable = b dim = 1 complete
+#pragma HLS ARRAY_PARTITION variable = out dim = 0 complete
+    for(int i = 0; i<N; i++){
+        DTYPE C_vec[O];
+        for(int j=0; j<O; j++){
+            C_vec[j] = 0;
+        }
+
+        for(int k=0; k<N; k++){
+            for(int j=0; j<O; j++){
+                #pragma PIPELINE II=1
+                C_vec[j] += a[i][k]*b[k][j];
+            }
+        }
+
+        for(int j=0; j<O; j++){
+            out[i][j] = C_vec[j];
+        }
+    }
+}
+
+
+
 // ================================ tiling ================================
 void mm_mult_tiling(
     DTYPE a[M][N],
@@ -100,11 +129,13 @@ void mm_mult_tiling(
 #pragma HLS ARRAY_PARTITION variable = b dim = 1 complete
 #pragma HLS ARRAY_PARTITION variable = out dim = 0 complete
 
+
     for (int ii = 0; ii < M; ii += M_BLOCK_SIZE) {
         for (int jj = 0; jj < O; jj += O_BLOCK_SIZE) {
             for (int i = 0; i < M_BLOCK_SIZE; i++) {
+                #pragma HLS UNROLL
                 for (int j = 0; j < O_BLOCK_SIZE; j++) {
-                    #pragma HLS PIPELINE II = 1
+                    #pragma HLS UNROLL
                     DTYPE accum = 0;
                     for (int k = 0; k < N; k++) {
                         accum += a[i + ii][k] * b[k][j + jj];
@@ -167,6 +198,7 @@ void dut(
     // mm_mult(A.a, B.b, Out.out);
     mm_mult_tiling(A.a, B.b, Out.out);
     // mm_mult_systolic(A.a, B.b, Out.out);
+    // mm_mult_rowWise(A.a, B.b, Out.out);
 
     // write out the result.
     for (int i = 0; i < M; i++) {

@@ -21,8 +21,8 @@ typedef short DTYPE;
 #define O 12
 #define N 12
 
-#define M_BLOCK_SIZE 2
-#define O_BLOCK_SIZE 2
+#define M_BLOCK_SIZE 4
+#define O_BLOCK_SIZE 4
 
 typedef struct {
     DTYPE a[M][N];

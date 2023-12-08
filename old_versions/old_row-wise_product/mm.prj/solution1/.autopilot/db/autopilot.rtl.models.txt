@@ -1,6 +1,0 @@
-matrix_mult_urem_Thq
-matrix_mult_a_bufbkb
-matrix_mult_b_bufdEe
-matrix_mult_c_bufRg6
-matrix_mult_c_vec
-matrix_mult

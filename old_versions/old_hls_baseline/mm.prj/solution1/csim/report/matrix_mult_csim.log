@@ -1,8 +1,0 @@
-INFO: [SIM 2] *************** CSIM start ***************
-INFO: [SIM 4] CSIM will launch GCC as the compiler.
-   Compiling ../../../../mm_mult_test.cc in release mode
-   Compiling ../../../../mm_mult.cc in release mode
-   Generating csim.exe
-Test successful
-INFO: [SIM 1] CSim done with 0 errors.
-INFO: [SIM 3] *************** CSIM finish ***************
